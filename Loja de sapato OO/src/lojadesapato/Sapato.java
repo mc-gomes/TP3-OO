@@ -7,6 +7,9 @@ public abstract class Sapato {
 	protected int quantidade;
 	protected String cor;
 	
+	
+	// PRECISA DOS CRUDs
+	
 	public String getMarca() {
 		return marca;
 	}

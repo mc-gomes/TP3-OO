@@ -8,7 +8,15 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 	
+	public Endereco(int _cep, String b, int n, String c, String e) {
+		cEP = _cep;
+		bairro = b;
+		numero = n;
+		cidade = c;
+		estado = e;
+	}
 	
+	// PRECISA DOS CRUDs
 	
 	public int getcEP() {
 		return cEP;

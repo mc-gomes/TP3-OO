@@ -10,8 +10,10 @@ public class Bota extends Sapato{
 		quantidade = q;
 		cor = c;
 		genero = g;
-		canoAlto = ca;
+		canoAlto = ca; // trocar só pra "cano'?
 	}
+	
+	// PRECISA DOS CRUDs
 	
 	public String getMarca() {
 		return marca;
@@ -51,6 +53,7 @@ public class Bota extends Sapato{
 	public void setTipo(String genero) {
 		this.genero = genero;
 	}
+	
 	public boolean isCanoAlto() {
 		return canoAlto;
 	}

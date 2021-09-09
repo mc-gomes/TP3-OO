@@ -3,24 +3,26 @@ import java.util.*;
 
 public class Telefone {
 
-	private String dDD;
+	private String DDD;
 	private String numero;
 	
 	public Telefone(String cod, String num) {
-		dDD = cod;
+		DDD = cod;
 		numero = num;
 	}
 	
+	// PRECISA DOS CRUDs
+	
 	@Override
 	public String toString() {
-		return "Telefone: (" + dDD + ") " + numero;
+		return "Telefone: (" + DDD + ") " + numero;
 	}
 	
 	public String getdDD() {
-		return dDD;
+		return DDD;
 	}
 	public void setdDD(String dDD) {
-		this.dDD = dDD;
+		this.DDD = dDD;
 	}
 	public String getNumero() {
 		return numero;

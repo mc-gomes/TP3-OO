@@ -8,7 +8,15 @@ public class Cliente {
 	private Endereco endereco;
 	private Telefone telefone;
 	
-	//public Cliente()
+	public Cliente(String n, Date dt, int _cpf, Endereco e, Telefone t) {
+		nome = n;
+		dtNascimento = dt;
+		cPF = _cpf;
+		endereco = e;
+		telefone = t;
+	}
+	
+	// PRECISA DOS CRUDs
 	
 	public String getNome() {
 		return nome;

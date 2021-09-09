@@ -6,7 +6,6 @@ public class Chuteira extends Sapato{
 	private String tipo;
 	private boolean canoAlto;
 	
-	
 	// quais vairáveis colocar exatamente?
 	public Chuteira(String m, double p, int q, String c, String t, boolean ca) {
 		marca = m;
@@ -17,6 +16,8 @@ public class Chuteira extends Sapato{
 		canoAlto = ca; // precisa disso?
 	}
 
+	// PRECISA DOS CRUDs
+	
 	public String toString() {
 		return "Nome do produto: " + nome + "\nMarca: " + marca +
 				"\nTipo: " + tipo + "\nCor: " + cor + "\nPreço R$ " +
