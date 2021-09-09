@@ -2,6 +2,7 @@ package lojadesapato;
 import java.util.*;
 
 public class Chuteira extends Sapato{
+	private String nome;
 	private String tipo;
 	private boolean canoAlto;
 	
@@ -13,25 +14,39 @@ public class Chuteira extends Sapato{
 		quantidade = q;
 		cor = c;
 		tipo = t;
-		canoAlto = ca;
+		canoAlto = ca; // precisa disso?
+	}
+
+	public String toString() {
+		return "Nome do produto: " + nome + "\nMarca: " + marca +
+				"\nTipo: " + tipo + "\nCor: " + cor + "\nPreço R$ " +
+				preco + "\nQuantidade em estoque: " + quantidade;
 	}
 	
-	public String toString() {
-		return "";
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public String getMarca() {
 		return marca;
 	}
-
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 
 	public double getPreco() {
 		return preco;
 	}
-
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
@@ -39,17 +54,8 @@ public class Chuteira extends Sapato{
 	public int getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
 	}
 
 	public String getTipo() {
@@ -58,6 +64,7 @@ public class Chuteira extends Sapato{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
 	public boolean isCanoAlto() {
 		return canoAlto;
 	}

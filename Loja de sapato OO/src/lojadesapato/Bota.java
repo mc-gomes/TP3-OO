@@ -13,5 +13,49 @@ public class Bota extends Sapato{
 		canoAlto = ca;
 	}
 	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+	public void setTipo(String genero) {
+		this.genero = genero;
+	}
+	public boolean isCanoAlto() {
+		return canoAlto;
+	}
+	public void setCanoAlto(boolean canoAlto) {
+		this.canoAlto = canoAlto;
+	}
 	
 }
