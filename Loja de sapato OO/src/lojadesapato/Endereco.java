@@ -8,6 +8,8 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 	
+	
+	
 	public int getcEP() {
 		return cEP;
 	}
@@ -38,6 +40,5 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
 	
 }

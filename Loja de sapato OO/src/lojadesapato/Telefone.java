@@ -4,7 +4,17 @@ import java.util.*;
 public class Telefone {
 
 	private String dDD;
-	private String Telefone;
+	private String numero;
+	
+	public Telefone(String cod, String num) {
+		dDD = cod;
+		numero = num;
+	}
+	
+	@Override
+	public String toString() {
+		return "Telefone: (" + dDD + ") " + numero;
+	}
 	
 	public String getdDD() {
 		return dDD;
@@ -12,13 +22,11 @@ public class Telefone {
 	public void setdDD(String dDD) {
 		this.dDD = dDD;
 	}
-	public String getTelefone() {
-		return Telefone;
+	public String getNumero() {
+		return numero;
 	}
-	public void setTelefone(String telefone) {
-		Telefone = telefone;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
-	
-
 	
 }

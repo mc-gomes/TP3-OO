@@ -8,6 +8,8 @@ public class Cliente {
 	private Endereco endereco;
 	private Telefone telefone;
 	
+	//public Cliente()
+	
 	public String getNome() {
 		return nome;
 	}

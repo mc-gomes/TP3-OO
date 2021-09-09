@@ -5,6 +5,8 @@ public class Chuteira extends Sapato{
 	private String tipo;
 	private boolean canoAlto;
 	
+	
+	// quais vairáveis colocar exatamente?
 	public Chuteira(String m, double p, int q, String c, String t, boolean ca) {
 		marca = m;
 		preco = p;
@@ -17,6 +19,7 @@ public class Chuteira extends Sapato{
 	public String toString() {
 		return "";
 	}
+	
 	public String getMarca() {
 		return marca;
 	}
