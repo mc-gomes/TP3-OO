@@ -7,8 +7,8 @@ public class Telefone {
 	private String numero;
 	
 	public Telefone(String cod, String num) {
-		DDD = cod;
-		numero = num;
+		this.DDD = cod;
+		this.numero = num;
 	}
 	
 	// PRECISA DOS CRUDs

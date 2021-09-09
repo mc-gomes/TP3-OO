@@ -8,10 +8,10 @@ public class Chuteira extends Sapato{
 	
 	// quais vairáveis colocar exatamente?
 	public Chuteira(String m, double p, int q, String c, String t, boolean ca) {
-		marca = m;
-		preco = p;
-		quantidade = q;
-		cor = c;
+		this.marca = m;
+		this.preco = p;
+		this.quantidade = q;
+		this.cor = c;
 		tipo = t;
 		canoAlto = ca; // precisa disso?
 	}
