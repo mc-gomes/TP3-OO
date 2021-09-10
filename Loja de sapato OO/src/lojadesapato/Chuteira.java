@@ -68,8 +68,8 @@ public class Chuteira extends Sapato{
 	public static ArrayList<Bota> preencher(){
 		String[]nomeCadastrado= {"Goletto","Artilheira III","Boleiro" ,"Predator"};
 		String[]marcaCadastrado= {"Adidas","Adidas","Topper" ,"Adidas"};
-		Double[]precoCadastrado= {"149,90","159,90","39,99","154,99"};
-		int[]quantidadeCadastrado= {"100","7","63","15"};
+		Double[]precoCadastrado= {"149.90","159.90","39.99","154.99"};
+		int[]quantidadeCadastrado= {100,7,63,15};
 		String[]corCadastrado= {"rosa e preto","preta e branco","branco","branco e dourado"};
 		String[]tipoCadastrado= {"campo","society","futsal","salao"};
 

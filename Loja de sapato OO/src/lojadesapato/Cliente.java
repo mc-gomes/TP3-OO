@@ -4,7 +4,7 @@ import java.util.*;
 public class Cliente {
 	private String nome;
 	private Date dtNascimento;
-	private int cPF;// mudar pra String
+	private String cPF;
 	private Endereco endereco;
 	private Telefone telefone;
 	
@@ -67,7 +67,7 @@ public class Cliente {
 		String[]enderecoCadastrado= {"Elm Street, Escola Primaria de Badham","Haddonfield, Travessa Lampkin","Tumulo de Glenvale,Salao Dead Dawg","Floresta Vermelha, Refugio da Cacadora","Pantano do Remanso, Despensa Cruel","Fazenda Coldwind, Abatedouro Asqueroso","Fabrica de Embalagem de Carnes Gideon","Propriedade dos Yamaoka,Santuario da Ira","Hospicio Crotus Prenn,Capela do Padre Campbell","Ferro Velho Autohaven, Abrigo Sangrento","Instituto Memorial Lery,Centro de Tratamento","Hospicio Crotus Prenn, Enfermeira Conturbada"};
 		String[]CEPCadastrado= {"61942330","69265970","78659970","98385970","71258135","58475972","79442970","76940970","72545509","35200970","68633971","45657308"};
 		String[]bairroCadastrado= {"Outra Banda","Centro","Centro Metropolitano","Areal","Setor Norte (Vila Estrutural - Guará)","Mandacaru","Bom Fim","Cruzeiro","Vargem","Centro A","Interlagos","Lourdes"};
-		int[]numeroCadastrado= {"20","547","68","32","785","346","81","1242","5789","101","13","1501"};
+		int[]numeroCadastrado= {20,547,68,32,785,346,81,1242,5789,101,13,1501};
 		String[]cidadeCadastrado= {"Maranguape","Apuí","Nova Primavera","Dois Irmãos das Missões","Brasília","Queimadas","Bom Fim","Rolim de Moura","Santa Maria","Aimorés","Dom Eliseu","Ilhéus"};
 		String[]estadoCadastrado= {"CE","AM","MT","RS","DF","PB","MS","BA","DF","MG","PA","BA"};
 		String[]telefoneCadastrado= {"954214507","945874632","985652366","987452136","985846521","963625415","912451232","985263140","915487542","926598653","931649746","939281795"};
