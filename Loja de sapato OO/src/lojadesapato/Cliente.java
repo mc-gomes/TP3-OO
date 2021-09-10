@@ -53,6 +53,7 @@ public class Cliente {
 
 	// FUNCOES RELACIONADAS AO CLIENTE
 
+
 	public static ArrayList<Cliente> cadastraCliente(ArrayList<Cliente> listaDeCliente, String nome, Date dtnascimento, String cPF, String endereco, String CEP, String bairro,int numero, String cidade, String estado, String telefone, String dDD) {
 		Cliente novoCliente= new Cliente(nome,dtnascimento,cPF, endereco,CEP,bairro,numero, cidade, estado,telefone,dDD);
 		listaDeCliente.add(novoCliente);

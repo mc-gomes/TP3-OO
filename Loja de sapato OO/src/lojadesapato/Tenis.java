@@ -67,4 +67,51 @@ public class Tenis extends Sapato{
 		}
 		return listaDeTenis;
 	}
+	public void editar(Tenis tenis) {
+
+		int num = 0;
+
+		do {
+			System.out.println("Selecione o que deseja alterar:\n"
+					+ "1-Aterar a marca\n"
+					+ "2-Aterar o preco\n"
+					+ "3-Aterar a quantidade\n"
+					+ "4-Aterar a cor\n"
+					+ "5-Aterar tipo(casual,corrida,caminhada)\n"
+					+ "6-Sair\n");
+
+			num = input.nextInt();
+
+			switch (num) {
+				case 1:
+					System.out.println("Digite a nova marca:\n");
+					tenis.setMarca(input.nextLine());
+					break;
+				case 2:
+					System.out.println("Digite o novo preco:\n");
+					tenis.setPreco(input.nextLine());
+					break;
+				case 3:
+					System.out.println("Digite a nova quantidade:\n");
+					tenis.setQuantidade(input.nextLine());
+					break;
+				case 4:
+					System.out.println("Digite a nova cor:\n");
+					tenis.setCor(input.nextInt());
+					break;
+				case 5:
+					System.out.println("Digite o tipo(casual,corrida,caminhada):\n");
+					tenis.setTipo(input.nextLine());
+					break;
+				case 6:
+					System.out.println("Retornando ao menu\n");
+					break;
+				default:
+					System.out.println("Insira uma opção válida\n");
+					break;
+
+			}
+		} while (1 > num || num > 6);
+
+	}
 }

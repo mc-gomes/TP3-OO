@@ -78,4 +78,56 @@ public class Salto extends Sapato{
 		}
 		return listaDeSalto;
 	}
+	public void editar(Salto salto) {
+
+		int num = 0;
+
+		do {
+			System.out.println("Selecione o que deseja alterar:\n"
+					+ "1-Aterar a marca\n"
+					+ "2-Aterar o preco\n"
+					+ "3-Aterar a quantidade\n"
+					+ "4-Aterar a cor\n"
+					+ "5-Aterar tamanho do salto (em cm)\n"
+					+ "6-Aterar tipo do salto(agulha,grosso,fino)\n"
+					+ "7-Sair\n");
+
+			num = input.nextInt();
+
+			switch (num) {
+				case 1:
+					System.out.println("Digite a nova marca:\n");
+					salto.setMarca(input.nextLine());
+					break;
+				case 2:
+					System.out.println("Digite o novo preco:\n");
+					salto.setPreco(input.nextLine());
+					break;
+				case 3:
+					System.out.println("Digite a nova quantidade:\n");
+					salto.setQuantidade(input.nextLine());
+					break;
+				case 4:
+					System.out.println("Digite a nova cor:\n");
+					salto.setCor(input.nextInt());
+					break;
+				case 5:
+					System.out.println("Digite o tamanho do salto (em cm):\n");
+					salto.setTamDoSalto(input.nextLine());
+					break;
+				case 6:
+					System.out.println("Digite o tipo do salto (agulha,grosso,fino):\n");
+					salto.setTipoDoSalto(input.nextLine());
+					break;
+				case 7:
+					System.out.println("Retornando ao menu\n");
+					break;
+				default:
+					System.out.println("Insira uma opção válida\n");
+					break;
+
+			}
+		} while (1 > num || num > 6);
+
+	}
 }
