@@ -9,14 +9,14 @@ public class Chuteira extends Sapato{
 	private String cano;
 	
 	// quais vairáveis colocar exatamente?
-	public Chuteira(String n, String m, double p, int q,  String c,  String ca, String t) {
+	public Chuteira(String n, String m, double p, int q,  String c, String t, String ca) {
 		nome = n;
 		this.marca = m;
 		this.preco = p;
 		this.quantidade = q;
 		this.cor = c;
-		cano = ca;
 		tipo = t;
+		cano = ca;
 	}
 
 	@Override
@@ -26,27 +26,18 @@ public class Chuteira extends Sapato{
 				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n\n";
 	}
 	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
-	public static ArrayList<Chuteira> preencher(){
+	public ArrayList<Chuteira> preencher(){
 		
-		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "cano baixo", "feminino");
-		Chuteira chuteira2 = new Chuteira("WorldColors", 89.90, 5, "Transparente", "cano alto", "infantil");
-		Chuteira chuteira3 = new Chuteira("Tricae", 35.99, 13, "Branco", "cano alto", "infantil");
-		Chuteira chuteira4 = new Chuteira("MADALE", 199.60, 10, "Marrom", "cano alto", "masculino");
+		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "Society", "cano baixo");
+		Chuteira chuteira2 = new Chuteira("Predator 19.4", "Adidas", 139.90, 50, "Preta", "Campo", "cano alto");
+		Chuteira chuteira3 = new Chuteira("Morelia Club IN", "Mizuno", 109.99, 50, "Preta", "Futsal", "cano baixo");
+		Chuteira chuteira4 = new Chuteira("Deportivo", "Adidas", 169.99, 50, "Verde", "Futsal", "cano baixo");
 		
-		String[]nomeCadastrado= {"Goletto","Artilheira III","Boleiro" ,"Predator"};
-		String[]marcaCadastrado= {"Adidas","Adidas","Topper" ,"Adidas"};
-		Double[]precoCadastrado= {149.90,159.90,39.99,154.99};
-		int[]quantidadeCadastrado= {100,7,63,15};
-		String[]corCadastrado= {"rosa e preto","preta e branco","branco","branco e dourado"};
-		String[]tipoCadastrado= {"campo","society","futsal","salao"};
+		listaDeChuteira.add(chuteira1);
+		listaDeChuteira.add(chuteira2);
+		listaDeChuteira.add(chuteira3);
+		listaDeChuteira.add(chuteira4);	
 
-
-		ArrayList<Chuteira> listaDeChuteira = new Arraylist<Chuteira>();
-		for (int i=0;i<4;i++){
-			Chuteira chuteira = new Chuteira(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tipoCadastrado[i]);
-
-			listaDeChuteira.add(chuteira);
-		}
 		return listaDeChuteira;
 	}
 	
@@ -75,7 +66,7 @@ public class Chuteira extends Sapato{
 		System.out.print("\nAltura do cano: ");
 		cano = ler.nextLine();
 		
-		Chuteira chuteira = new Chuteira(nome, marca, tipo, preco, qtd, cor, cano);
+		Chuteira chuteira = new Chuteira(nome, marca, preco, qtd, cor, tipo, cano);
 		listaDeChuteira.add(chuteira);
 		
 	}
@@ -85,10 +76,10 @@ public class Chuteira extends Sapato{
 		
 		do {
 			System.out.println("Deseja visualizar por:"
-					+ "1- Faixa de preço"
-					+ "2- Marca"
-					+ "3- Sem filtro"
-					+ "4- Sair da visualização\n");
+					+ "\n1- Faixa de preço"
+					+ "\n2- Marca"
+					+ "\n3- Sem filtro"
+					+ "\n4- Sair da visualização\n");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			

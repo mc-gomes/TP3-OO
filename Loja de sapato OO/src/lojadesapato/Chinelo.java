@@ -51,10 +51,10 @@ public class Chinelo extends Sapato{
 		
 		do {
 			System.out.println("Deseja visualizar por:"
-					+ "1- Faixa de preço"
-					+ "2- Marca"
-					+ "3- Sem filtro"
-					+ "4- Sair da visualização\n");
+					+ "\n1- Faixa de preço"
+					+ "\n2- Marca"
+					+ "\n3- Sem filtro"
+					+ "\n4- Sair da visualização\n");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			

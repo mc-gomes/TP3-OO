@@ -7,6 +7,10 @@ public class Bota extends Sapato{
 	private String cano;
 	private String genero;
 	
+	public Bota() {
+		
+	}
+	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
 		this.marca = m;
 		this.preco = p;
@@ -52,16 +56,16 @@ public class Bota extends Sapato{
 				
 		System.out.print("Marca: ");
 		marca = ler.nextLine();
-		System.out.print("\nPreço R$ ");
+		System.out.print("Preço R$ ");
 		preco = ler.nextDouble();
-		System.out.print("\nQuantidade a ser cadastrada: ");
+		System.out.print("Quantidade a ser cadastrada: ");
 		qtd = ler.nextInt();
 		ler.nextLine();
-		System.out.print("\nCor: ");
+		System.out.print("Cor: ");
 		cor = ler.nextLine();
-		System.out.print("\nAltura do cano: ");
+		System.out.print("Altura do cano: ");
 		cano = ler.nextLine();
-		System.out.print("\nGênero [M/F]: ");
+		System.out.print("Gênero [M/F]: ");
 		genero = ler.nextLine();
 		
 		Bota bota = new Bota(marca, preco, qtd, cor, cano, genero);
@@ -74,10 +78,10 @@ public class Bota extends Sapato{
 		
 		do {
 			System.out.println("Deseja visualizar por:"
-					+ "1- Faixa de preço"
-					+ "2- Marca"
-					+ "3- Sem filtro"
-					+ "4- Sair da visualização\n");
+					+ "\n1- Faixa de preço"
+					+ "\n2- Marca"
+					+ "\n3- Sem filtro"
+					+ "\n4- Sair da visualização\n");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			
