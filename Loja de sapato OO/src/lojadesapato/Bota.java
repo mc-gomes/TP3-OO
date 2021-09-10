@@ -16,6 +16,35 @@ public class Bota extends Sapato{
 	}
 	
 	// PRECISA DOS CRUDs
+	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
+	
+	@Override
+	public String toString() {
+		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\nQuantidade em estoque: "
+				+ quantidade + "\n-Altura do cano: " + cano + "\n-Gênero: " + genero;
+	}
+
+	public void visualizar(int modo) {
+		if(modo == 1) {
+			// mostrar faixa de preco
+		}
+		if(modo == 2) {
+			// mostrar pela marca
+		}
+		int i;
+		boolean encontrado = false;
+				
+		for(i=0; i<listaDeBota.size(); i++) {
+			if(listaDeBota.get(i).getMarca() == marca) {
+				System.out.println(listaDeBota.get(i).toString());
+				//encontrado = true;
+				//return vLivro.get(i);
+			}
+		}
+//		int i;
+//		System.out.println("Marca: " + botas.get(i).getMarca());
+	}
+	
 	
 	public String getMarca() {
 		return marca;
