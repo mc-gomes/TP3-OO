@@ -1,5 +1,4 @@
 package lojadesapato;
-import java.util.*;
 
 public class Chuteira extends Sapato{
 	private String nome;

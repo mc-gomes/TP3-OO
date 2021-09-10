@@ -1,5 +1,4 @@
 package lojadesapato;
-import java.util.*;
 
 public class Telefone {
 
@@ -7,8 +6,8 @@ public class Telefone {
 	private String numero;
 	
 	public Telefone(String cod, String num) {
-		this.DDD = cod;
-		this.numero = num;
+		DDD = cod;
+		numero = num;
 	}
 	
 	// PRECISA DOS CRUDs

@@ -1,5 +1,4 @@
 package lojadesapato;
-import java.util.*;
 
 public class Endereco {
 	private int cEP;
