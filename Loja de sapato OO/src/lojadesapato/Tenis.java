@@ -51,4 +51,20 @@ public class Tenis extends Sapato{
 		this.tipo = tipo;
 	}
 
+	public static ArrayList<Tenis> preencher(){;
+		String[]marcaCadastrado= {"OLYMPIKUS","New Balance","Balenciaga" ,"Vans"};
+		Double[]precoCadastrado= {"179.90","299.99","8144.99","379.99"};
+		int[]quantidadeCadastrado= {10,10,10,10};
+		String[]corCadastrado= {"laranja","roxo e amarelo","verde neon","branc"};
+		String[]tipoCadastrado= {"caminhada","corrida","casual","skate"};
+
+
+		ArrayList<Tenis> listaDeTenis = new Arraylist<Chuteira>();
+		for (int i=0;i<4;i++){
+			Tenis tenis = new Tenis(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tipoCadastrado[i]);
+
+			listaDeTenis.add(tenis);
+		}
+		return listaDeTenis;
+	}
 }
