@@ -12,7 +12,7 @@ public class Bota extends Sapato{
 		this.quantidade = q;
 		this.cor = c;
 		genero = g;
-		cano = ca; // trocar só pra "cano'?
+		cano = ca;
 	}
 	
 	// PRECISA DOS CRUDs
@@ -95,8 +95,8 @@ public class Bota extends Sapato{
 
 	public static ArrayList<Bota> preencher(){
 		String[]marcaCadastrado= {"MADALE","WorldColors","Tricae" ,"Sapatofran"};
-		Double[]precoCadastrado= {"199,60","89,90","35,99","139,90"};
-		int[]quantidadeCadastrado= {"10","5","13","3"};
+		Double[]precoCadastrado= {"199.60","89.90","35.99","139.90"};
+		int[]quantidadeCadastrado= {10,5,13,3};
 		String[]corCadastrado= {"preto","transparente","branco","marrom"};
 		String[]generoCadastrado= {"feminino","infantil","infantil","masculino"};
 		String[]canoCadastrado= {"cano alto","cano alto","cano alto","cano alto"};
