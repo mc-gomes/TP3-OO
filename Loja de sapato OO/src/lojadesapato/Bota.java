@@ -63,13 +63,28 @@ public class Bota extends Sapato{
 		this.genero = genero;
 	}
 	
-	public boolean isCano() {
+	public String getcano() {
 		return cano;
 	}
-	public void setCano(boolean cano) {
+	public void setCano(String cano) {
 		this.cano = cano;
 	}
-	
-}
 
-,
+
+	public static ArrayList<Bota> preencher(){
+		String[]marcaCadastrado= {"MADALE","WorldColors","Tricae" ,"Sapatofran"};
+		Double[]precoCadastrado= {"199,60","89,90","35,99","139,90"};
+		int[]quantidadeCadastrado= {"10","5","13","3"};
+		String[]corCadastrado= {"preto","transparente","branco","marrom"};
+		String[]generoCadastrado= {"feminino","infantil","infantil","masculino"};
+		String[]canoCadastrado= {"cano alto","cano alto","cano alto","cano alto"};
+
+		ArrayList<Bota> listaDeBota = new Arraylist<Bota>();
+		for (int i=0;i<4;i++){
+			Bota bota = new Bota(marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],generoCadastrado[i],canoCadastrado[i]);
+
+			listaDeBota.add(bota);
+		}
+		return listaDeBota;
+	}
+}

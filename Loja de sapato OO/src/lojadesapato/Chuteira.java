@@ -4,16 +4,15 @@ import java.util.*;
 public class Chuteira extends Sapato{
 	private String nome;
 	private String tipo;
-	private boolean canoAlto;
+	private String cano;
 	
 	// quais vairáveis colocar exatamente?
-	public Chuteira(String m, double p, int q, String c, String t, boolean ca) {
+	public Chuteira(String m, double p, int q, String c, String t, String ca) {
 		this.marca = m;
 		this.preco = p;
 		this.quantidade = q;
 		this.cor = c;
 		tipo = t;
-		canoAlto = ca; // precisa disso?
 	}
 
 	// PRECISA DOS CRUDs
@@ -65,12 +64,23 @@ public class Chuteira extends Sapato{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
-	public boolean isCanoAlto() {
-		return canoAlto;
+
+
+	public static ArrayList<Bota> preencher(){
+		String[]nomeCadastrado= {"Goletto","Artilheira III","Boleiro" ,"Predator"};
+		String[]marcaCadastrado= {"Adidas","Adidas","Topper" ,"Adidas"};
+		Double[]precoCadastrado= {"149,90","159,90","39,99","154,99"};
+		int[]quantidadeCadastrado= {"100","7","63","15"};
+		String[]corCadastrado= {"rosa e preto","preta e branco","branco","branco e dourado"};
+		String[]tipoCadastrado= {"campo","society","futsal","salao"};
+
+
+		ArrayList<Chuteira> listaDeChuteira = new Arraylist<Chuteira>();
+		for (int i=0;i<4;i++){
+			Chuteira chuteira = new Chuteira(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tipoCadastrado[i]);
+
+			listaDeChuteira.add(chuteira);
+		}
+		return listaDeChuteira;
 	}
-	public void setCanoAlto(boolean canoAlto) {
-		this.canoAlto = canoAlto;
-	}
-	
 }
