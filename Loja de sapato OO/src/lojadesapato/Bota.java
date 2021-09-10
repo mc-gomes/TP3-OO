@@ -28,7 +28,7 @@ public class Bota extends Sapato{
 	}
 	
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
-	public ArrayList<Bota> preencheBota(){
+	public void preencheBota(){
 		
 		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "cano alto", "feminino");
 		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "cano alto", "infantil");
@@ -40,7 +40,7 @@ public class Bota extends Sapato{
 		listaDeBota.add(bota3);
 		listaDeBota.add(bota4);	
 
-		return listaDeBota;
+		//return listaDeBota;
 	}
 
 	
@@ -84,6 +84,7 @@ public class Bota extends Sapato{
 					+ "\n4- Sair da visualização\n");
 			System.out.print(">> ");
 			modo = ler.nextInt();
+			ler.nextLine();
 			
 			
 			if(modo == 1) {
@@ -107,6 +108,7 @@ public class Bota extends Sapato{
 				System.out.print("Informe o nome da marca: ");
 				marca = ler.nextLine();
 				
+				System.out.println(listaDeBota.size());
 				for(int i=0; i<listaDeBota.size(); i++) {
 					if(marca.equals(listaDeBota.get(i).getMarca())) {
 						check = true;

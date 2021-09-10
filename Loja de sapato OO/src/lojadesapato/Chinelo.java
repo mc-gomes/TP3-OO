@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Chinelo extends Sapato{
 	private String estilo;
 	
+	public Chinelo() {
+		
+	}
+	
 	public Chinelo(String m, double p, int q, String c, String e) {
 		this.marca = m;
 		this.preco = p;

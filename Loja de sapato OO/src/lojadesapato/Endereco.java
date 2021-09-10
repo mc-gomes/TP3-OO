@@ -2,46 +2,27 @@ package lojadesapato;
 
 public class Endereco {
 	private String endereco;
-	private int cEP;// mudar pra string
-	private String bairro;
-	private int numero;
 	private String cidade;
 	private String estado;
 	
-	public Endereco(String en, int _cep, String b, int n, String c, String e) {
-		endereco = en;
-		cEP = _cep;
-		bairro = b;
-		numero = n;
+	public Endereco() {
+		
+	}
+	
+	public Endereco(String end, String c, String e) {
+		endereco = end;
 		cidade = c;
 		estado = e;
 	}
 	
-	// PRECISA DOS CRUDs
-	public String getendereco() {
+	
+	public String getEndereco() {
 		return endereco;
 	}
-	public void setendereco(String endereco) {
+	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public int getcEP() {
-		return cEP;
-	}
-	public void setcEP(int cEP) {
-		this.cEP = cEP;
-	}
-	public String getBairro() {
-		return bairro;
-	}
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+	
 	public String getCidade() {
 		return cidade;
 	}

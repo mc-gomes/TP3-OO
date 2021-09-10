@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Tenis extends Sapato{
 	private String tipo;
 
+	public Tenis() {
+		
+	}
+	
 	public Tenis(String m, double p, int q, String c, String t){
 		this.marca = m;
 		this.preco = p;

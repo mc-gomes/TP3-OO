@@ -7,6 +7,10 @@ public class Salto extends Sapato{
 	private int tamDoSalto;
 	private String tipoDoSalto;
 
+	public Salto() {
+		
+	}
+	
 	public Salto(String m, double p, int q, String c, int tam, String tipo){
 		this.marca = m;
 		this.preco = p;

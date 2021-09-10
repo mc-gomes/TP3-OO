@@ -8,6 +8,10 @@ public class Venda {
 	private Sapato produto;
 	private double valorDaVenda;
 	
+	public Venda() {
+		
+	}
+	
 	public Venda(Cliente c, Sapato s, double v){
 		this.cliente = c;
 		this.produto = s;

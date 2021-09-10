@@ -8,6 +8,10 @@ public class Cliente {
 	private Endereco endereco;
 	private Telefone telefone;
 	
+	public Cliente() {
+		
+	}
+	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
 		nome = n;
 		dtNascimento = dt;
@@ -17,7 +21,34 @@ public class Cliente {
 	}
 	
 	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
-	// PRECISA DOS CRUDs
+	Scanner ler = new Scanner (System.in);
+	
+	public void cadastrar() {
+		String nome, dtNasc, cpf;
+		Endereco ender = new Endereco();
+		Telefone tel = new Telefone();
+				
+		System.out.print("Nome do cliente: ");
+		nome = ler.nextLine();
+		System.out.print("Data de nascimento (D/M/AA): ");
+		dtNasc = ler.nextLine();
+		System.out.print("Informe o CPF: ");
+		cpf = ler.nextLine();
+		System.out.print("Endereço: ");
+		ender.setEndereco(ler.nextLine());
+		System.out.print("Cidade: ");
+		ender.setCidade(ler.nextLine());
+		System.out.print("Estado: ");
+		ender.setEstado(ler.nextLine());
+		System.out.print("DDD do telefone: ");
+		tel.setdDD(ler.nextLine());
+		System.out.print("Número de telefone: ");
+		tel.setNumero(ler.nextLine());
+		
+		Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
+		listaDeCliente.add(cliente);
+		
+	}
 	
 	//Dados dos Clientes
 //	public ArrayList<Cliente> preencher(){
@@ -47,6 +78,7 @@ public class Cliente {
 //		listaDeCliente.add(novoCliente);
 //		return listaDeCliente;
 //	}
+	
 	
 	public String getNome() {
 		return nome;
