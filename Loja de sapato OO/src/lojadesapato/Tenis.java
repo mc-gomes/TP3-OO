@@ -55,7 +55,7 @@ public class Tenis extends Sapato{
 		String[]marcaCadastrado= {"OLYMPIKUS","New Balance","Balenciaga" ,"Vans"};
 		Double[]precoCadastrado= {"179.90","299.99","8144.99","379.99"};
 		int[]quantidadeCadastrado= {10,10,10,10};
-		String[]corCadastrado= {"laranja","roxo e amarelo","verde neon","branc"};
+		String[]corCadastrado= {"laranja","roxo e amarelo","verde neon","branco"};
 		String[]tipoCadastrado= {"caminhada","corrida","casual","skate"};
 
 

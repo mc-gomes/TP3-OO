@@ -82,4 +82,56 @@ public class Chuteira extends Sapato{
 		}
 		return listaDeChuteira;
 	}
+	public void editar(Chuteira chuteira) {
+
+		int num = 0;
+
+		do {
+			System.out.println("Selecione o que deseja alterar:\n"
+					+ "1-Aterar o nome\n"
+					+ "2-Aterar a marca\n"
+					+ "3-Aterar o preco\n"
+					+ "4-Aterar a quantidade\n"
+					+ "5-Aterar a cor\n"
+					+ "6-Aterar tipo(campo, society ou futsal)\n"
+					+ "7-Sair\n");
+
+			num = input.nextInt();
+
+			switch (num) {
+				case 1:
+					System.out.println("Digite o novo nome:\n");
+					chuteira.setNome(input.nextLine());
+					break;
+				case 2:
+					System.out.println("Digite a nova marca:\n");
+					chuteira.setMarca(input.nextLine());
+					break;
+				case 3:
+					System.out.println("Digite o novo preco:\n");
+					chuteira.setPreco(input.nextLine());
+					break;
+				case 4:
+					System.out.println("Digite a nova quantidade:\n");
+					chuteira.setQuantidade(input.nextLine());
+					break;
+				case 5:
+					System.out.println("Digite a nova cor:\n");
+					chuteira.setCor(input.nextInt());
+					break;
+				case 6:
+					System.out.println("Digite o tipo(campo, society ou futsal):\n");
+					chuteira.setTipo(input.nextLine());
+					break;
+				case 7:
+					System.out.println("Retornando ao menu\n");
+					break;
+				default:
+					System.out.println("Insira uma opção válida\n");
+					break;
+
+			}
+		} while (1 > num || num > 7);
+
+	}
 }
