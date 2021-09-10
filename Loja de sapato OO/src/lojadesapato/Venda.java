@@ -8,6 +8,10 @@ public class Venda {
 	private Sapato produto;
 	private double valorDaVenda;
 	
+	public Venda() {
+		
+	}
+	
 	public Venda(Cliente c, Sapato s, double v){
 		this.cliente = c;
 		this.produto = s;
@@ -15,11 +19,10 @@ public class Venda {
 	}
 	
 	
-	//PRECISA TER OS CRUDs
 	ArrayList<Venda> vendas = new ArrayList<Venda>();
+	Scanner ler = new Scanner(System.in);
 	
 	public void cadastrarVenda(Cliente client, Sapato produt, int qtd){
-//		Scanner ler = new Scanner(System.in);
 //		
 //		String nomeCliente = client.getNome();
 		

@@ -1,25 +1,137 @@
 package lojadesapato;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Chuteira extends Sapato{
 	private String nome;
 	private String tipo;
 	private String cano;
 	
-	// quais vairáveis colocar exatamente?
-	public Chuteira(String m, double p, int q, String c, String t, String ca) {
+	public Chuteira() {
+		
+	}
+	
+	
+	public Chuteira(String n, String m, double p, int q,  String c, String t, String ca) {
+		nome = n;
 		this.marca = m;
 		this.preco = p;
 		this.quantidade = q;
 		this.cor = c;
 		tipo = t;
+		cano = ca;
 	}
 
-	// PRECISA DOS CRUDs
-	
+	@Override
 	public String toString() {
-		return "Nome do produto: " + nome + "\nMarca: " + marca +
-				"\nTipo: " + tipo + "\nCor: " + cor + "\nPreço R$ " +
-				preco + "\nQuantidade em estoque: " + quantidade;
+		return "-Nome da chuteira: " + nome + "-\nMarca: " + marca + "Tipo: " + tipo +
+				"\n-Preço R$ " + preco + "\n-Quantidade em estoque: " + quantidade  +
+				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n\n";
+	}
+	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
+	public ArrayList<Chuteira> preencher(){
+		
+		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "Society", "cano baixo");
+		Chuteira chuteira2 = new Chuteira("Predator 19.4", "Adidas", 139.90, 50, "Preta", "Campo", "cano alto");
+		Chuteira chuteira3 = new Chuteira("Morelia Club IN", "Mizuno", 109.99, 50, "Preta", "Futsal", "cano baixo");
+		Chuteira chuteira4 = new Chuteira("Deportivo", "Adidas", 169.99, 50, "Verde", "Futsal", "cano baixo");
+		
+		listaDeChuteira.add(chuteira1);
+		listaDeChuteira.add(chuteira2);
+		listaDeChuteira.add(chuteira3);
+		listaDeChuteira.add(chuteira4);	
+
+		return listaDeChuteira;
+	}
+	
+	Scanner ler = new Scanner (System.in);
+	
+	
+	public void cadastrar() {
+		String nome, marca, cor, cano, tipo;
+		double preco;
+		int qtd;
+		
+		System.out.print("Nome da chuteira: ");
+		nome = ler.nextLine();
+		System.out.print("Marca: ");
+		marca = ler.nextLine();
+		System.out.print("Tipo da chuteira: ");
+		tipo = ler.nextLine();
+		System.out.print("\nPreço R$ ");
+		preco = ler.nextDouble();
+		System.out.print("\nQuantidade a ser cadastrada: ");
+		qtd = ler.nextInt();
+		ler.nextLine();
+		System.out.print("\nCor: ");
+		cor = ler.nextLine();
+		System.out.print("\nAltura do cano: ");
+		cano = ler.nextLine();
+		
+		Chuteira chuteira = new Chuteira(nome, marca, preco, qtd, cor, tipo, cano);
+		listaDeChuteira.add(chuteira);
+		
+	}
+
+	public void visualizar() {
+		int modo;
+		
+		do {
+			System.out.println("Deseja visualizar por:"
+					+ "\n1- Faixa de preço"
+					+ "\n2- Marca"
+					+ "\n3- Sem filtro"
+					+ "\n4- Sair da visualização\n");
+			System.out.print(">> ");
+			modo = ler.nextInt();
+			
+			
+			if(modo == 1) {
+				// mostrar faixa de preco
+				int precoMin, precoMax;
+				System.out.print("Informe o preço mínimo (valor inteiro): ");
+				precoMin = ler.nextInt();
+				System.out.print("\nInforme o preço máximo (valor inteiro): ");
+				precoMax = ler.nextInt();
+				
+				for(int i=0; i<listaDeChuteira.size(); i++) {
+					if(precoMin < listaDeChuteira.get(i).getPreco() && listaDeChuteira.get(i).getPreco() < precoMax){
+						System.out.println(listaDeChuteira.get(i).toString());
+					}
+				}
+			}
+			else if(modo == 2) {
+				// mostrar pela marca
+				String marca;
+				boolean check = false;
+				System.out.print("Informe o nome da marca: ");
+				marca = ler.nextLine();
+				
+				for(int i=0; i<listaDeChuteira.size(); i++) {
+					if(marca.equals(listaDeChuteira.get(i).getMarca())) {
+						check = true;
+						System.out.println(listaDeChuteira.get(i).toString());
+					}
+				}
+				if(!check) {
+					System.out.println("Marca não encontrada!");
+				}
+			}
+			else if(modo == 3) {
+				for(int i=0; i<listaDeChuteira.size(); i++) {
+					System.out.println(listaDeChuteira.get(i).toString());
+				}
+			}
+			else if(modo == 4) {
+				System.out.println("Encerrando visualização...");
+				break;
+			}
+			else {
+				System.out.println("Opção inválida!");
+			}
+			
+		}while(modo != 4);
 	}
 	
 	public String getNome() {
@@ -63,23 +175,5 @@ public class Chuteira extends Sapato{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
-
-	public static ArrayList<Bota> preencher(){
-		String[]nomeCadastrado= {"Goletto","Artilheira III","Boleiro" ,"Predator"};
-		String[]marcaCadastrado= {"Adidas","Adidas","Topper" ,"Adidas"};
-		Double[]precoCadastrado= {"149.90","159.90","39.99","154.99"};
-		int[]quantidadeCadastrado= {100,7,63,15};
-		String[]corCadastrado= {"rosa e preto","preta e branco","branco","branco e dourado"};
-		String[]tipoCadastrado= {"campo","society","futsal","salao"};
-
-
-		ArrayList<Chuteira> listaDeChuteira = new Arraylist<Chuteira>();
-		for (int i=0;i<4;i++){
-			Chuteira chuteira = new Chuteira(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tipoCadastrado[i]);
-
-			listaDeChuteira.add(chuteira);
-		}
-		return listaDeChuteira;
-	}
+	
 }

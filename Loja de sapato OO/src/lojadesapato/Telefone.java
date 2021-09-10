@@ -5,12 +5,15 @@ public class Telefone {
 	private String DDD;
 	private String numero;
 	
+	public Telefone() {
+		
+	}
+	
 	public Telefone(String cod, String num) {
 		DDD = cod;
 		numero = num;
 	}
 	
-	// PRECISA DOS CRUDs
 	
 	@Override
 	public String toString() {
