@@ -171,46 +171,48 @@ public class Main {
 				sleep(1500);
 				
 				break;
-			}
+			}*/
 			case 3: {
 				titulo("Cadastro de Novo Produto");
-				System.out.print("Quantos produtos deseja cadastrar? ");
-				qtd = ler.nextInt();
+				
+				System.out.print("Qual produto deseja cadastrar?");
+				System.out.println("1 - Bota"
+						+ "\n2 - Chinelo"
+						+ "\n3 - Chuteira"
+						+ "\n4 - Salto"
+						+ "\n5 - Tenis");
+				escolha = ler.nextInt();
 				ler.nextLine();
 				
-				for(int i = 0; i < qtd; i++) {
-					System.out.printf("\n-> %d° PRODUTO", (i+1));
-					System.out.print("\nInforme o nome do novo produto: ");
-					nomeProd = ler.nextLine();
-					produto.add(toTitleCase(nomeProd));
-					
-					System.out.print("Informe uma descrição para o novo produto: ");
-					descricao = ler.nextLine();
-					produto.add(toTitleCase(descricao));
-					
-					System.out.print("Informe o preço do novo produto (centavos separados por vírgula): R$ ");
-					preco = ler.nextLine();
-					produto.add(preco);
-					
-					System.out.print("Informe a porcentagem de lucro do novo produto (apenas números): ");
-					porcent = ler.nextLine();
-					produto.add(porcent);
-					
-					System.out.print("Informe a quantidade em estoque do novo produto: ");
-					estoque = ler.nextLine();
-					produto.add(estoque);
-					
-					produtos.add((ArrayList<String>) produto.clone());
-					System.out.printf("Novo produto '%s' cadastrado com sucesso!\n", produto.get(0));
-					produto.removeAll(produto);
-					sleep(500);
-					
-				}				
+				if(escolha == 1) {
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else if(escolha == 1) {
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				
+				else if(escolha == 1) {
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else if(escolha == 1) {
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else if(escolha == 1) {
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else {
+					System.out.print("Opção inválida!");
+				}
 				
 				System.out.println("\nVoltando ao menu principal...");
 				sleep(1500);
 				break;
-			}
+			}/*
 			case 4: {
 				titulo("Busca por Produto");
 				boolean check = false;
@@ -551,6 +553,11 @@ public class Main {
 				break;
 			}
 			*/
+			case 6:
+				System.out.println("\nEncerrando o programa...");
+				sleep(1500);
+				System.out.println("FIM");
+				break;
 			default: {
 				linhas('~');
 				System.out.println("Opção inválida! Voltando ao menu principal...");
