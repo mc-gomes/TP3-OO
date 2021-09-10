@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bota extends Sapato{
-	private String genero;
 	private String cano;
+	private String genero;
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
 		this.marca = m;
@@ -16,15 +16,34 @@ public class Bota extends Sapato{
 		genero = g;
 	}
 	
-	// PRECISA DOS CRUDs
-	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
-	Scanner ler = new Scanner (System.in);
-	
 	@Override
 	public String toString() {
-		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\nQuantidade em estoque: "
-				+ quantidade  + "\n-Gênero: " + genero + "\n-Altura do cano: " + cano;
+		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
+				+ quantidade  + "\n-Cor: " + cor + "\n-Gênero: " + genero +
+				"\n-Altura do cano: " + cano + "\n\n";
 	}
+	
+	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
+	public ArrayList<Bota> preencheBota(){
+		
+		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "cano alto", "feminino");
+		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "cano alto", "infantil");
+		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "cano alto", "infantil");
+		Bota bota4 = new Bota("MADALE", 199.60, 10, "Marrom", "cano alto", "masculino");
+		
+		listaDeBota.add(bota1);
+		listaDeBota.add(bota2);
+		listaDeBota.add(bota3);
+		listaDeBota.add(bota4);	
+
+		return listaDeBota;
+	}
+
+	
+	
+	Scanner ler = new Scanner (System.in);
+	
+	// PRECISA DOS CRUDs
 	
 	public void cadastrar() {
 		String marca, cor, cano, genero;
@@ -33,16 +52,16 @@ public class Bota extends Sapato{
 				
 		System.out.print("Marca: ");
 		marca = ler.nextLine();
-		System.out.print("Preço R$ ");
+		System.out.print("\nPreço R$ ");
 		preco = ler.nextDouble();
-		System.out.print("Quantidade a ser cadastrada: ");
+		System.out.print("\nQuantidade a ser cadastrada: ");
 		qtd = ler.nextInt();
 		ler.nextLine();
-		System.out.print("Cor: ");
+		System.out.print("\nCor: ");
 		cor = ler.nextLine();
-		System.out.print("Altura do cano: ");
+		System.out.print("\nAltura do cano: ");
 		cano = ler.nextLine();
-		System.out.print("Gênero [M/F]: ");
+		System.out.print("\nGênero [M/F]: ");
 		genero = ler.nextLine();
 		
 		Bota bota = new Bota(marca, preco, qtd, cor, cano, genero);
@@ -53,43 +72,61 @@ public class Bota extends Sapato{
 	public void visualizar() {
 		int modo;
 		
-		System.out.println("Deseja visualizar por:"
-				+ "1- Faixa de preço"
-				+ "2- Marca\n");
-		System.out.print(">> ");
-		modo = ler.nextInt();
-		
-		
-		if(modo == 1) {
-			// mostrar faixa de preco
-			int precoMin, precoMax;
-			System.out.print("Informe o preço mínimo (valor inteiro): ");
-			precoMin = ler.nextInt();
-			System.out.print("\nInforme o preço máximo (valor inteiro): ");
-			precoMax = ler.nextInt();
+		do {
+			System.out.println("Deseja visualizar por:"
+					+ "1- Faixa de preço"
+					+ "2- Marca"
+					+ "3- Sem filtro"
+					+ "4- Sair da visualização\n");
+			System.out.print(">> ");
+			modo = ler.nextInt();
 			
-			for(int i=0; i<listaDeBota.size(); i++) {
-				if(precoMin < listaDeBota.get(i).getPreco() && listaDeBota.get(i).getPreco() < precoMax){
+			
+			if(modo == 1) {
+				// mostrar faixa de preco
+				int precoMin, precoMax;
+				System.out.print("Informe o preço mínimo (valor inteiro): ");
+				precoMin = ler.nextInt();
+				System.out.print("\nInforme o preço máximo (valor inteiro): ");
+				precoMax = ler.nextInt();
+				
+				for(int i=0; i<listaDeBota.size(); i++) {
+					if(precoMin < listaDeBota.get(i).getPreco() && listaDeBota.get(i).getPreco() < precoMax){
+						System.out.println(listaDeBota.get(i).toString());
+					}
+				}
+			}
+			else if(modo == 2) {
+				// mostrar pela marca
+				String marca;
+				boolean check = false;
+				System.out.print("Informe o nome da marca: ");
+				marca = ler.nextLine();
+				
+				for(int i=0; i<listaDeBota.size(); i++) {
+					if(marca.equals(listaDeBota.get(i).getMarca())) {
+						check = true;
+						System.out.println(listaDeBota.get(i).toString());
+					}
+				}
+				if(!check) {
+					System.out.println("Marca não encontrada!");
+				}
+			}
+			else if(modo == 3) {
+				for(int i=0; i<listaDeBota.size(); i++) {
 					System.out.println(listaDeBota.get(i).toString());
 				}
 			}
-		}
-		if(modo == 2) {
-			// mostrar pela marca
-			String marca;
-			boolean check = false;
-			System.out.print("Informe o nome da marca: ");
-			marca = ler.nextLine();
-			for(int i=0; i<listaDeBota.size(); i++) {
-				if(marca.equals(listaDeBota.get(i).getMarca())) {
-					check = true;
-					System.out.println(listaDeBota.get(i).toString());
-				}
+			else if(modo == 4) {
+				System.out.println("Encerrando visualização...");
+				break;
 			}
-			if(!check) {
-				System.out.println("Marca não encontrada!");
+			else {
+				System.out.println("Opção inválida!");
 			}
-		}
+			
+		}while(modo != 4);
 	}
 	
 	
@@ -139,20 +176,4 @@ public class Bota extends Sapato{
 		this.cano = cano;
 	}
 
-
-	public void preencher(){
-		String[]marcaCadastrado= {"MADALE","WorldColors","Tricae" ,"Sapatofran"};
-		Double[]precoCadastrado= {199.60, 89.90, 35.99, 139.90};
-		int[]quantidadeCadastrado= {10, 5, 13, 3};
-		String[]corCadastrado= {"preto","transparente","branco","marrom"};
-		String[]generoCadastrado= {"feminino","infantil","infantil","masculino"};
-		String[]canoCadastrado= {"cano alto","cano alto","cano alto","cano alto"};
-
-		for (int i=0;i<4;i++){
-			Bota bota = new Bota(marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],generoCadastrado[i],canoCadastrado[i]);
-
-			listaDeBota.add(bota);
-		}
-		return listaDeBota;
-	}
 }

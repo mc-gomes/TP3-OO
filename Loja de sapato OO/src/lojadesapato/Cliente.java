@@ -8,7 +8,7 @@ public class Cliente {
 	private Endereco endereco;
 	private Telefone telefone;
 	
-	public Cliente(String n, Date dt, int _cpf, Endereco e, Telefone t) {
+	public Cliente(String n, Date dt, String _cpf, Endereco e, Telefone t) {
 		nome = n;
 		dtNascimento = dt; // DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM);
 		//System.out.println(dfm.format(data)); // 14/03/2016
@@ -31,10 +31,10 @@ public class Cliente {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
-	public int getcPF() {
+	public String getcPF() {
 		return cPF;
 	}
-	public void setcPF(int cPF) {
+	public void setcPF(String cPF) {
 		this.cPF = cPF;
 	}
 	public Endereco getEndereco() {
@@ -54,6 +54,9 @@ public class Cliente {
 	// FUNCOES RELACIONADAS AO CLIENTE
 
 	public static ArrayList<Cliente> cadastraCliente(ArrayList<Cliente> listaDeCliente, String nome, Date dtnascimento, String cPF, String endereco, String CEP, String bairro,int numero, String cidade, String estado, String telefone, String dDD) {
+		
+		
+		
 		Cliente novoCliente= new Cliente(nome,dtnascimento,cPF, endereco,CEP,bairro,numero, cidade, estado,telefone,dDD);
 		listaDeCliente.add(novoCliente);
 		return listaDeCliente;
