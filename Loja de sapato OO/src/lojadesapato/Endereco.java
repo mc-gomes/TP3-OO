@@ -1,13 +1,15 @@
 package lojadesapato;
 
 public class Endereco {
-	private int cEP;
+	private String endereco;
+	private int cEP;// mudar pra string
 	private String bairro;
 	private int numero;
 	private String cidade;
 	private String estado;
 	
-	public Endereco(int _cep, String b, int n, String c, String e) {
+	public Endereco(String en, int _cep, String b, int n, String c, String e) {
+		endereco = en;
 		cEP = _cep;
 		bairro = b;
 		numero = n;
@@ -16,7 +18,12 @@ public class Endereco {
 	}
 	
 	// PRECISA DOS CRUDs
-	
+	public String getendereco() {
+		return endereco;
+	}
+	public void setendereco(String endereco) {
+		this.endereco = endereco;
+	}
 	public int getcEP() {
 		return cEP;
 	}
