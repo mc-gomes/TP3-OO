@@ -230,4 +230,7 @@ public class Salto extends Sapato{
 		} while (1 > num || num > 6);
 
 	}
+	public void deletar(Salto salto) {
+		listaDeSalto.remove(listaDeSalto.indexOf(salto));
+	}
 }

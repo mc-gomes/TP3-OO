@@ -232,4 +232,7 @@ public class Chuteira extends Sapato{
 		} while (1 > num || num > 8);
 
 	}
+	public void deletar(Chuteira chuteira) {
+		listaDeChuteira.remove(listaDeChuteira.indexOf(chuteira));
+	}
 }

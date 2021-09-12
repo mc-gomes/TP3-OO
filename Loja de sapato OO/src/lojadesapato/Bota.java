@@ -227,5 +227,8 @@ public class Bota extends Sapato{
 		} while (1 > num || num > 7);
 
 	}
+	public void deletar(Bota bota) {
+		listaDeBota.remove(listaDeBota.indexOf(bota));
+	}
 
 }

@@ -89,4 +89,7 @@ public class Cliente {
 		listaDeCliente.add(novoCliente);
 		return listaDeCliente;
 	}
+	public void deletar(Cliente cliente) {
+		listaDeCliente.remove(listaDeCliente.indexOf(cliente));
+	}
 }

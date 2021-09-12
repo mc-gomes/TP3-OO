@@ -215,4 +215,7 @@ public class Chinelo extends Sapato{
 		} while (1 > num || num > 7);
 
 	}
+	public void deletar(Chinelo chinelo) {
+		listaDeChinelo.remove(listaDeChinelo.indexOf(chinelo));
+	}
 }

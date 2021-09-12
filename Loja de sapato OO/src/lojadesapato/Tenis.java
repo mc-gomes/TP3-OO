@@ -214,4 +214,7 @@ public class Tenis extends Sapato{
 		} while (1 > num || num > 6);
 
 	}
+	public void deletar(Tenis tenis) {
+		listaDeTenis.remove(listaDeTenis.indexOf(tenis));
+	}
 }
