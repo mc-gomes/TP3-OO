@@ -19,7 +19,55 @@ public class Salto extends Sapato{
 		this.tamDoSalto = tam;
 		this.tipoDoSalto = tipo;
 	}
-	
+
+	public int getTamDoSalto() {
+		return tamDoSalto;
+	}
+
+	public void setTamDoSalto(int tamDoSalto) {
+		this.tamDoSalto = tamDoSalto;
+	}
+
+	public String getTipoDoSalto() {
+		return tipoDoSalto;
+	}
+
+	public void setTipoDoSalto(String tipoDoSalto) {
+		this.tipoDoSalto = tipoDoSalto;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
@@ -27,6 +75,21 @@ public class Salto extends Sapato{
 				"\n-Tipo do salto: " + tipoDoSalto + "\n\n";
 	}
 	ArrayList<Salto> listaDeSalto = new ArrayList<Salto>();
+	public ArrayList<Salto> preencher(){
+
+		Salto salto1 = new Salto("Bella Chic Shoes", "129.90", 10, "preto e dourado", 5, "salto tratorado");
+		Salto salto2 = new Salto("Vizzano", "84.99", 10, "nude", 14, "salto grosso");
+		Salto salto3 = new Salto("V. STYLO", "64.90", 10, "branco", 12, "salto agulha");
+		Salto salto4 = new Salto("Amorelle", "154.99", 10, "branco e dourado", 10, "salto quadrado");
+
+		listaDeSalto.add(salto1);
+		listaDeSalto.add(salto2);
+		listaDeSalto.add(salto3);
+		listaDeSalto.add(salto4);
+
+		return listaDeSalto;
+	}
+
 	Scanner ler = new Scanner (System.in);
 	
 	// PRECISA DOS CRUDs
@@ -115,83 +178,18 @@ public class Salto extends Sapato{
 		}while(modo != 4);
 	}
 
-	public int getTamDoSalto() {
-		return tamDoSalto;
-	}
-
-	public void setTamDoSalto(int tamDoSalto) {
-		this.tamDoSalto = tamDoSalto;
-	}
-
-	public String getTipoDoSalto() {
-		return tipoDoSalto;
-	}
-
-	public void setTipoDoSalto(String tipoDoSalto) {
-		this.tipoDoSalto = tipoDoSalto;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public static ArrayList<Salto> preencher(){
-		String[]marcaCadastrado= {"Bella Chic Shoes","Vizzano","V. STYLO" ,"Amorelle"};
-		Double[]precoCadastrado= {"129.90","84.99","64.90","154.99"};
-		int[]quantidadeCadastrado= {5,5,5,5};
-		String[]corCadastrado= {"preto e dourado","nude","branco","branco e dourado"};
-		int[]tamDoSaltoCadastrado= {5,14,12,10};
-		String[]tipoDoSaltoCadastrado= {"salto tratorado","salto grosso","salto agulha","salto quadrado"};
-
-
-		ArrayList<Salto> listaDeSalto = new Arraylist<Salto>();
-		for (int i=0;i<4;i++){
-			Salto salto = new Salto(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tamDoSaltoCadastrado[i],tipoDoSaltoCadastrado[i]);
-
-			listaDeSalto.add(salto);
-		}
-		return listaDeSalto;
-	}
 	public void editar(Salto salto) {
 
 		int num = 0;
 
 		do {
 			System.out.println("Selecione o que deseja alterar:\n"
-					+ "1-Aterar a marca\n"
-					+ "2-Aterar o preco\n"
-					+ "3-Aterar a quantidade\n"
-					+ "4-Aterar a cor\n"
-					+ "5-Aterar tamanho do salto (em cm)\n"
-					+ "6-Aterar tipo do salto(agulha,grosso,fino)\n"
+					+ "1-Alterar a marca\n"
+					+ "2-Alterar o preco\n"
+					+ "3-Alterar a quantidade\n"
+					+ "4-Alterar a cor\n"
+					+ "5-Alterar tamanho do salto (em cm)\n"
+					+ "6-Alterar tipo do salto(agulha,grosso,fino)\n"
 					+ "7-Sair\n");
 
 			num = input.nextInt();

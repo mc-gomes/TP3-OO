@@ -17,16 +17,68 @@ public class Chinelo extends Sapato{
 		this.cor = c;
 		estilo = e;
 	}
+	public String getEstilo() {
+		return estilo;
+	}
+	public void setEstilo(String estilo) {
+		this.estilo = estilo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
 
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
 				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n\n";
 	}
-	// PRECISA DOS CRUDs
+
 	ArrayList<Chinelo> listaDeChinelo = new ArrayList<Chinelo>();
+	public ArrayList<Chinelo> preencher(){
+
+		Chinelo chinelo1 = new Chinelo("Ipanema", 25.90, 10, "amarela", "slide");
+		Chinelo chinelo2 = new Chinelo("Havaianas", 26.99, 10, "pink", "de dedo");
+		Chinelo chinelo3 = new Chinelo("Nike", 69.90, 10, "preto", "slide");
+		Chinelo chinelo4 = new Chinelo("Colcci", 34.99, 10, "verde neon", "de dedo");
+
+		listaDeChinelo.add(chinelo1);
+		listaDeChinelo.add(chinelo2);
+		listaDeChinelo.add(chinelo3);
+		listaDeChinelo.add(chinelo4);
+
+		return listaDeChinelo;
+	}
 	Scanner ler = new Scanner (System.in);
-	
+	// PRECISA DOS CRUDs
 	
 	public void cadastrar() {
 		String marca, cor, estilo;
@@ -109,44 +161,58 @@ public class Chinelo extends Sapato{
 			
 		}while(modo != 4);
 	}
-	
-	public String getEstilo() {
-		return estilo;
-	}
-	public void setEstilo(String estilo) {
-		this.estilo = estilo;
-	}
-	
-	public String getMarca() {
-		return marca;
-	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
 
-	public double getPreco() {
-		return preco;
-	}
+	public void editar(Chinelo chinelo) {
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
+		int num = 0;
 
-	public int getQuantidade() {
-		return quantidade;
-	}
+		do {
+			System.out.println("Selecione o que deseja alterar:\n"
+					+ "1-Alterar o nome\n"
+					+ "2-Alterar a marca\n"
+					+ "3-Alterar o preco\n"
+					+ "4-Alterar a quantidade\n"
+					+ "5-Alterar a cor\n"
+					+ "6-Alterar estilo(de dedo ou slide)\n"
+					+ "7-Sair\n");
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
+			num = input.nextInt();
 
-	public String getCor() {
-		return cor;
-	}
+			switch (num) {
+				case 1:
+					System.out.println("Digite o novo nome:\n");
+					chuteira.setNome(input.nextLine());
+					break;
+				case 2:
+					System.out.println("Digite a nova marca:\n");
+					chuteira.setMarca(input.nextLine());
+					break;
+				case 3:
+					System.out.println("Digite o novo preco:\n");
+					chuteira.setPreco(input.nextLine());
+					break;
+				case 4:
+					System.out.println("Digite a nova quantidade:\n");
+					chuteira.setQuantidade(input.nextLine());
+					break;
+				case 5:
+					System.out.println("Digite a nova cor:\n");
+					chuteira.setCor(input.nextInt());
+					break;
+				case 6:
+					System.out.println("Digite o estilo(de dedo ou slide):\n");
+					chuteira.setEstilo(input.nextLine());
+					break;
+				case 7:
+					System.out.println("Retornando ao menu\n");
+					break;
+				default:
+					System.out.println("Insira uma opção válida\n");
+					break;
 
-	public void setCor(String cor) {
-		this.cor = cor;
+			}
+		} while (1 > num || num > 7);
+
 	}
-	
 }

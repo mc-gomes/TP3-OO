@@ -17,13 +17,69 @@ public class Tenis extends Sapato{
 		this.cor = c;
 		this.tipo = t;
 	}
-	
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
 				+ quantidade  + "\n-Cor: " + cor + "\n-Tipo do Tenis: " + tipo + "\n\n";
 	}
 	ArrayList<Tenis> listaDeTenis = new ArrayList<Tenis>();
+	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
+	public ArrayList<Chuteira> preencher() {
+
+		Tenis tenis1 = new Tenis("OLYMPIKUS", "179.90", 50, "laranja", "caminhada");
+		Tenis tenis2 = new Tenis("New Balance", "299.99", 50, "roxo e amarelo", "corrida");
+		Tenis tenis3 = new Tenis("Balenciaga", "8144.99", 50, "verde neon", "casual");
+		Tenis tenis4 = new Tenis("Vans", "379.99", 50, "preto", "skate");
+
+		listaDeTenis.add(Tenis1);
+		listaDeTenis.add(Tenis2);
+		listaDeTenis.add(Tenis3);
+		listaDeTenis.add(Tenis4);
+
+		return listaDeTenis;
+	}
+
 	Scanner ler = new Scanner (System.in);
 	
 	// PRECISA DOS CRUDs
@@ -111,73 +167,17 @@ public class Tenis extends Sapato{
 		
 	}
 
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public static ArrayList<Tenis> preencher(){;
-		String[]marcaCadastrado= {"OLYMPIKUS","New Balance","Balenciaga" ,"Vans"};
-		Double[]precoCadastrado= {"179.90","299.99","8144.99","379.99"};
-		int[]quantidadeCadastrado= {10,10,10,10};
-		String[]corCadastrado= {"laranja","roxo e amarelo","verde neon","branco"};
-		String[]tipoCadastrado= {"caminhada","corrida","casual","skate"};
-
-
-		ArrayList<Tenis> listaDeTenis = new Arraylist<Chuteira>();
-		for (int i=0;i<4;i++){
-			Tenis tenis = new Tenis(nomeCadastrado[i], marcaCadastrado[i],precoCadastrado[i],quantidadeCadastrado[i], corCadastrado[i],tipoCadastrado[i]);
-
-			listaDeTenis.add(tenis);
-		}
-		return listaDeTenis;
-	}
 	public void editar(Tenis tenis) {
 
 		int num = 0;
 
 		do {
 			System.out.println("Selecione o que deseja alterar:\n"
-					+ "1-Aterar a marca\n"
-					+ "2-Aterar o preco\n"
-					+ "3-Aterar a quantidade\n"
-					+ "4-Aterar a cor\n"
-					+ "5-Aterar tipo(casual,corrida,caminhada)\n"
+					+ "1-Alterar a marca\n"
+					+ "2-Alterar o preco\n"
+					+ "3-Alterar a quantidade\n"
+					+ "4-Alterar a cor\n"
+					+ "5-Alterar tipo(casual,corrida,caminhada)\n"
 					+ "6-Sair\n");
 
 			num = input.nextInt();
