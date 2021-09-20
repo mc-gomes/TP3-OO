@@ -544,12 +544,6 @@ public class Main {
 				sleep(1000);
 				break;
 			}
-			case 9: {				
-				System.out.println("\nEncerrando o programa...");
-				sleep(1500);
-				System.out.println("FIM");
-				break;
-			}
 			*/
 			default: {
 				linhas('~');
