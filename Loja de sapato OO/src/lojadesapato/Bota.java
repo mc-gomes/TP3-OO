@@ -24,7 +24,7 @@ public class Bota extends Sapato{
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
 				+ quantidade  + "\n-Cor: " + cor + "\n-Gênero: " + genero +
-				"\n-Altura do cano: " + cano + "\n\n";
+				"\n-Altura do cano: " + cano + "\n";
 	}
 	
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
@@ -43,7 +43,7 @@ public class Bota extends Sapato{
 		//return listaDeBota;
 	}
 
-	
+
 	
 	Scanner ler = new Scanner (System.in);
 	
@@ -79,8 +79,8 @@ public class Bota extends Sapato{
 			System.out.println("Deseja visualizar por:"
 					+ "\n1- Faixa de preço"
 					+ "\n2- Marca"
-					+ "\n3- Sem filtro"
-					+ "\n4- Sair da visualização\n");
+					+ "\n3- Visualizar todos"
+					+ "\n4- Sair da visualização");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			ler.nextLine();
@@ -89,13 +89,14 @@ public class Bota extends Sapato{
 			if(modo == 1) {
 				// mostrar faixa de preco
 				int precoMin, precoMax;
-				System.out.print("Informe o preço mínimo (valor inteiro): ");
+				System.out.print("\nInforme o preço mínimo (valor inteiro): ");
 				precoMin = ler.nextInt();
-				System.out.print("\nInforme o preço máximo (valor inteiro): ");
+				System.out.print("Informe o preço máximo (valor inteiro): ");
 				precoMax = ler.nextInt();
 				
 				for(int i=0; i<listaDeBota.size(); i++) {
 					if(precoMin < listaDeBota.get(i).getPreco() && listaDeBota.get(i).getPreco() < precoMax){
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeBota.get(i).toString());
 					}
 				}
@@ -104,13 +105,14 @@ public class Bota extends Sapato{
 				// mostrar pela marca
 				String marca;
 				boolean check = false;
-				System.out.print("Informe o nome da marca: ");
+				System.out.print("\nInforme o nome da marca: ");
 				marca = ler.nextLine();
 				
-				System.out.println(listaDeBota.size());
+
 				for(int i=0; i<listaDeBota.size(); i++) {
 					if(marca.equals(listaDeBota.get(i).getMarca())) {
 						check = true;
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeBota.get(i).toString());
 					}
 				}
@@ -120,6 +122,7 @@ public class Bota extends Sapato{
 			}
 			else if(modo == 3) {
 				for(int i=0; i<listaDeBota.size(); i++) {
+					System.out.println("\n-> PRODUTO " + (i+1));
 					System.out.println(listaDeBota.get(i).toString());
 				}
 			}

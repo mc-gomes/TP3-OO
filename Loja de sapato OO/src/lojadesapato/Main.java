@@ -44,10 +44,15 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Cadastre um Sapato");
 		Scanner ler = new Scanner(System.in);
 		int opc, escolha;
 		Cliente cliente = new Cliente();
+		Bota bota = new Bota();
+		Chinelo chinelo = new Chinelo();
+		Chuteira chuteira = new Chuteira();
+		Salto salto = new Salto();
+		Tenis tenis = new Tenis();
+		
 		
 		do{
 			menu();
@@ -175,35 +180,37 @@ public class Main {
 			case 3: {
 				titulo("Cadastro de Novo Produto");
 				
-				System.out.print("Qual produto deseja cadastrar?");
+				System.out.println("Que tipo de sapato deseja cadastrar?");
 				System.out.println("1 - Bota"
 						+ "\n2 - Chinelo"
 						+ "\n3 - Chuteira"
 						+ "\n4 - Salto"
-						+ "\n5 - Tenis");
+						+ "\n5 - Tênis");
+				System.out.print(">> ");
+				
 				escolha = ler.nextInt();
 				ler.nextLine();
+				linhas('-');
 				
 				if(escolha == 1) {
-					Bota bota = new Bota();
+					System.out.println("-> CADASTRO DE BOTA");
 					bota.cadastrar();
 				}
-				else if(escolha == 1) {
-					Bota bota = new Bota();
-					bota.cadastrar();
+				else if(escolha == 2) {
+					System.out.println("-> CADASTRO DE CHINELO");
+					chinelo.cadastrar();
 				}
-				
-				else if(escolha == 1) {
-					Bota bota = new Bota();
-					bota.cadastrar();
+				else if(escolha == 3) {
+					System.out.println("-> CADASTRO DE CHUTEIRA");
+					chuteira.cadastrar();
 				}
-				else if(escolha == 1) {
-					Bota bota = new Bota();
-					bota.cadastrar();
+				else if(escolha == 4) {
+					System.out.println("-> CADASTRO DE SALTO");
+					salto.cadastrar();
 				}
-				else if(escolha == 1) {
-					Bota bota = new Bota();
-					bota.cadastrar();
+				else if(escolha == 5) {
+					System.out.println("-> CADASTRO DE TÊNIS");
+					tenis.cadastrar();
 				}
 				else {
 					System.out.print("Opção inválida!");
@@ -215,6 +222,56 @@ public class Main {
 			}/*
 			case 4: {
 				titulo("Busca por Produto");
+				bota.visualizar();
+				
+				System.out.println("Voltando ao menu principal...");
+				sleep(1500);
+				break;
+			}
+				System.out.println("Qual tipo de sapato deseja encontrar?");
+				System.out.println("1 - Bota"
+						+ "\n2 - Chinelo"
+						+ "\n3 - Chuteira"
+						+ "\n4 - Salto"
+						+ "\n5 - Tênis");
+				System.out.print(">> ");
+				
+				escolha = ler.nextInt();
+				ler.nextLine();
+				linhas('-');
+				
+				if(escolha == 1) {
+					System.out.println("-> CADASTRO DE BOTA");
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else if(escolha == 2) {
+					System.out.println("-> CADASTRO DE CHINELO");
+					Chinelo chinelo = new Chinelo();
+					chinelo.cadastrar();
+				}
+				
+				else if(escolha == 3) {
+					System.out.println("-> CADASTRO DE CHUTEIRA");
+					Chuteira chuteira = new Chuteira();
+					chuteira.cadastrar();
+				}
+				else if(escolha == 4) {
+					System.out.println("-> CADASTRO DE SALTO");
+					Salto salto = new Salto();
+					salto.cadastrar();
+				}
+				else if(escolha == 5) {
+					System.out.println("-> CADASTRO DE TÊNIS");
+					Tenis tenis = new Tenis();
+					tenis.cadastrar();
+				}
+				else {
+					System.out.print("Opção inválida!");
+				}
+				
+				
+				
 				boolean check = false;
 				int pos = 0, son, opc;
 				String alteraNomeProd, alteraDescricao, alteraPreco, alteraPorcent, alteraEstoque;
