@@ -27,7 +27,7 @@ public class Chuteira extends Sapato{
 	public String toString() {
 		return "-Nome da chuteira: " + nome + "-\nMarca: " + marca + "Tipo: " + tipo +
 				"\n-Preço R$ " + preco + "\n-Quantidade em estoque: " + quantidade  +
-				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n\n";
+				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n";
 	}
 	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
 	public ArrayList<Chuteira> preencher(){
@@ -47,7 +47,6 @@ public class Chuteira extends Sapato{
 	
 	Scanner ler = new Scanner (System.in);
 	
-	// PRECISA DOS CRUDs
 	
 	public void cadastrar() {
 		String nome, marca, cor, cano, tipo;
@@ -60,14 +59,14 @@ public class Chuteira extends Sapato{
 		marca = ler.nextLine();
 		System.out.print("Tipo da chuteira: ");
 		tipo = ler.nextLine();
-		System.out.print("\nPreço R$ ");
+		System.out.print("Preço R$ ");
 		preco = ler.nextDouble();
-		System.out.print("\nQuantidade a ser cadastrada: ");
+		System.out.print("Quantidade a ser cadastrada: ");
 		qtd = ler.nextInt();
 		ler.nextLine();
-		System.out.print("\nCor: ");
+		System.out.print("Cor: ");
 		cor = ler.nextLine();
-		System.out.print("\nAltura do cano: ");
+		System.out.print("Altura do cano: ");
 		cano = ler.nextLine();
 		
 		Chuteira chuteira = new Chuteira(nome, marca, preco, qtd, cor, tipo, cano);
@@ -82,8 +81,8 @@ public class Chuteira extends Sapato{
 			System.out.println("Deseja visualizar por:"
 					+ "\n1- Faixa de preço"
 					+ "\n2- Marca"
-					+ "\n3- Sem filtro"
-					+ "\n4- Sair da visualização\n");
+					+ "\n3- Visualizar todos"
+					+ "\n4- Sair da visualização");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			
@@ -91,13 +90,14 @@ public class Chuteira extends Sapato{
 			if(modo == 1) {
 				// mostrar faixa de preco
 				int precoMin, precoMax;
-				System.out.print("Informe o preço mínimo (valor inteiro): ");
+				System.out.print("\nInforme o preço mínimo (valor inteiro): ");
 				precoMin = ler.nextInt();
-				System.out.print("\nInforme o preço máximo (valor inteiro): ");
+				System.out.print("Informe o preço máximo (valor inteiro): ");
 				precoMax = ler.nextInt();
 				
 				for(int i=0; i<listaDeChuteira.size(); i++) {
 					if(precoMin < listaDeChuteira.get(i).getPreco() && listaDeChuteira.get(i).getPreco() < precoMax){
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeChuteira.get(i).toString());
 					}
 				}
@@ -106,12 +106,13 @@ public class Chuteira extends Sapato{
 				// mostrar pela marca
 				String marca;
 				boolean check = false;
-				System.out.print("Informe o nome da marca: ");
+				System.out.print("\nInforme o nome da marca: ");
 				marca = ler.nextLine();
 				
 				for(int i=0; i<listaDeChuteira.size(); i++) {
 					if(marca.equals(listaDeChuteira.get(i).getMarca())) {
 						check = true;
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeChuteira.get(i).toString());
 					}
 				}
@@ -121,6 +122,7 @@ public class Chuteira extends Sapato{
 			}
 			else if(modo == 3) {
 				for(int i=0; i<listaDeChuteira.size(); i++) {
+					System.out.println("\n-> PRODUTO " + (i+1));
 					System.out.println(listaDeChuteira.get(i).toString());
 				}
 			}

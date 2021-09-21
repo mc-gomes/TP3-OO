@@ -21,9 +21,10 @@ public class Chinelo extends Sapato{
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
-				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n\n";
+				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n";
 	}
-	// PRECISA DOS CRUDs
+	
+	
 	ArrayList<Chinelo> listaDeChinelo = new ArrayList<Chinelo>();
 	Scanner ler = new Scanner (System.in);
 	
@@ -35,14 +36,14 @@ public class Chinelo extends Sapato{
 				
 		System.out.print("Marca: ");
 		marca = ler.nextLine();
-		System.out.print("\nPreço R$ ");
+		System.out.print("Preço R$ ");
 		preco = ler.nextDouble();
-		System.out.print("\nQuantidade a ser cadastrada: ");
+		System.out.print("Quantidade a ser cadastrada: ");
 		qtd = ler.nextInt();
 		ler.nextLine();
-		System.out.print("\nCor: ");
+		System.out.print("Cor: ");
 		cor = ler.nextLine();
-		System.out.print("\nEstilo do chinelo: ");
+		System.out.print("Estilo do chinelo: ");
 		estilo = ler.nextLine();
 		
 		Chinelo chinelo = new Chinelo(marca, preco, qtd, cor, estilo);
@@ -57,8 +58,8 @@ public class Chinelo extends Sapato{
 			System.out.println("Deseja visualizar por:"
 					+ "\n1- Faixa de preço"
 					+ "\n2- Marca"
-					+ "\n3- Sem filtro"
-					+ "\n4- Sair da visualização\n");
+					+ "\n3- Visualizar todos"
+					+ "\n4- Sair da visualização");
 			System.out.print(">> ");
 			modo = ler.nextInt();
 			
@@ -66,13 +67,14 @@ public class Chinelo extends Sapato{
 			if(modo == 1) {
 				// mostrar faixa de preco
 				int precoMin, precoMax;
-				System.out.print("Informe o preço mínimo (valor inteiro): ");
+				System.out.print("\nInforme o preço mínimo (valor inteiro): ");
 				precoMin = ler.nextInt();
-				System.out.print("\nInforme o preço máximo (valor inteiro): ");
+				System.out.print("Informe o preço máximo (valor inteiro): ");
 				precoMax = ler.nextInt();
 				
 				for(int i=0; i<listaDeChinelo.size(); i++) {
 					if(precoMin < listaDeChinelo.get(i).getPreco() && listaDeChinelo.get(i).getPreco() < precoMax){
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeChinelo.get(i).toString());
 					}
 				}
@@ -81,12 +83,13 @@ public class Chinelo extends Sapato{
 				// mostrar pela marca
 				String marca;
 				boolean check = false;
-				System.out.print("Informe o nome da marca: ");
+				System.out.print("\nInforme o nome da marca: ");
 				marca = ler.nextLine();
 				
 				for(int i=0; i<listaDeChinelo.size(); i++) {
 					if(marca.equals(listaDeChinelo.get(i).getMarca())) {
 						check = true;
+						System.out.println("\n-> PRODUTO " + (i+1));
 						System.out.println(listaDeChinelo.get(i).toString());
 					}
 				}
@@ -96,6 +99,7 @@ public class Chinelo extends Sapato{
 			}
 			else if(modo == 3) {
 				for(int i=0; i<listaDeChinelo.size(); i++) {
+					System.out.println("\n-> PRODUTO " + (i+1));
 					System.out.println(listaDeChinelo.get(i).toString());
 				}
 			}

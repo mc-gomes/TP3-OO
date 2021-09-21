@@ -44,10 +44,15 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Cadastre um Sapato");
 		Scanner ler = new Scanner(System.in);
 		int opc, escolha;
 		Cliente cliente = new Cliente();
+		Bota bota = new Bota();
+		Chinelo chinelo = new Chinelo();
+		Chuteira chuteira = new Chuteira();
+		Salto salto = new Salto();
+		Tenis tenis = new Tenis();
+		
 		
 		do{
 			menu();
@@ -171,48 +176,102 @@ public class Main {
 				sleep(1500);
 				
 				break;
-			}
+			}*/
 			case 3: {
 				titulo("Cadastro de Novo Produto");
-				System.out.print("Quantos produtos deseja cadastrar? ");
-				qtd = ler.nextInt();
-				ler.nextLine();
 				
-				for(int i = 0; i < qtd; i++) {
-					System.out.printf("\n-> %d° PRODUTO", (i+1));
-					System.out.print("\nInforme o nome do novo produto: ");
-					nomeProd = ler.nextLine();
-					produto.add(toTitleCase(nomeProd));
-					
-					System.out.print("Informe uma descrição para o novo produto: ");
-					descricao = ler.nextLine();
-					produto.add(toTitleCase(descricao));
-					
-					System.out.print("Informe o preço do novo produto (centavos separados por vírgula): R$ ");
-					preco = ler.nextLine();
-					produto.add(preco);
-					
-					System.out.print("Informe a porcentagem de lucro do novo produto (apenas números): ");
-					porcent = ler.nextLine();
-					produto.add(porcent);
-					
-					System.out.print("Informe a quantidade em estoque do novo produto: ");
-					estoque = ler.nextLine();
-					produto.add(estoque);
-					
-					produtos.add((ArrayList<String>) produto.clone());
-					System.out.printf("Novo produto '%s' cadastrado com sucesso!\n", produto.get(0));
-					produto.removeAll(produto);
-					sleep(500);
-					
-				}				
+				System.out.println("Que tipo de sapato deseja cadastrar?");
+				System.out.println("1 - Bota"
+						+ "\n2 - Chinelo"
+						+ "\n3 - Chuteira"
+						+ "\n4 - Salto"
+						+ "\n5 - Tênis");
+				System.out.print(">> ");
+				
+				escolha = ler.nextInt();
+				ler.nextLine();
+				linhas('-');
+				
+				if(escolha == 1) {
+					System.out.println("-> CADASTRO DE BOTA");
+					bota.cadastrar();
+				}
+				else if(escolha == 2) {
+					System.out.println("-> CADASTRO DE CHINELO");
+					chinelo.cadastrar();
+				}
+				else if(escolha == 3) {
+					System.out.println("-> CADASTRO DE CHUTEIRA");
+					chuteira.cadastrar();
+				}
+				else if(escolha == 4) {
+					System.out.println("-> CADASTRO DE SALTO");
+					salto.cadastrar();
+				}
+				else if(escolha == 5) {
+					System.out.println("-> CADASTRO DE TÊNIS");
+					tenis.cadastrar();
+				}
+				else {
+					System.out.print("Opção inválida!");
+				}
 				
 				System.out.println("\nVoltando ao menu principal...");
 				sleep(1500);
 				break;
-			}
+			}/*
 			case 4: {
 				titulo("Busca por Produto");
+				bota.visualizar();
+				
+				System.out.println("Voltando ao menu principal...");
+				sleep(1500);
+				break;
+			}
+				System.out.println("Qual tipo de sapato deseja encontrar?");
+				System.out.println("1 - Bota"
+						+ "\n2 - Chinelo"
+						+ "\n3 - Chuteira"
+						+ "\n4 - Salto"
+						+ "\n5 - Tênis");
+				System.out.print(">> ");
+				
+				escolha = ler.nextInt();
+				ler.nextLine();
+				linhas('-');
+				
+				if(escolha == 1) {
+					System.out.println("-> CADASTRO DE BOTA");
+					Bota bota = new Bota();
+					bota.cadastrar();
+				}
+				else if(escolha == 2) {
+					System.out.println("-> CADASTRO DE CHINELO");
+					Chinelo chinelo = new Chinelo();
+					chinelo.cadastrar();
+				}
+				
+				else if(escolha == 3) {
+					System.out.println("-> CADASTRO DE CHUTEIRA");
+					Chuteira chuteira = new Chuteira();
+					chuteira.cadastrar();
+				}
+				else if(escolha == 4) {
+					System.out.println("-> CADASTRO DE SALTO");
+					Salto salto = new Salto();
+					salto.cadastrar();
+				}
+				else if(escolha == 5) {
+					System.out.println("-> CADASTRO DE TÊNIS");
+					Tenis tenis = new Tenis();
+					tenis.cadastrar();
+				}
+				else {
+					System.out.print("Opção inválida!");
+				}
+				
+				
+				
 				boolean check = false;
 				int pos = 0, son, opc;
 				String alteraNomeProd, alteraDescricao, alteraPreco, alteraPorcent, alteraEstoque;
@@ -544,7 +603,18 @@ public class Main {
 				sleep(1000);
 				break;
 			}
+			case 9: {				
+				System.out.println("\nEncerrando o programa...");
+				sleep(1500);
+				System.out.println("FIM");
+				break;
+			}
 			*/
+			case 6:
+				System.out.println("\nEncerrando o programa...");
+				sleep(1500);
+				System.out.println("FIM");
+				break;
 			default: {
 				linhas('~');
 				System.out.println("Opção inválida! Voltando ao menu principal...");
@@ -559,8 +629,5 @@ public class Main {
 		
 	
 	}
-
-
-
 
 }
