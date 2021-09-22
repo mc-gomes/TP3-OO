@@ -24,7 +24,7 @@ public class Chuteira extends Sapato{
 
 	@Override
 	public String toString() {
-		return "-Nome da chuteira: " + nome + "-\nMarca: " + marca + "Tipo: " + tipo +
+		return "-Nome da chuteira: " + nome + "\n-Marca: " + marca + "\n-Tipo: " + tipo +
 				"\n-Preço R$ " + preco + "\n-Quantidade em estoque: " + quantidade  +
 				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n";
 	}
