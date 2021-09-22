@@ -20,7 +20,30 @@ public class Cliente {
 		telefone = t;
 	}
 	
+	@Override
+	public String toString() {
+		return "-Nome do cliente: " + nome + "\n-CPF: " + cPF + "\n-Data de nascimento: "
+				+ dtNascimento + "\n-Endereço: " + endereco.toString() + "\n-Telefone: "+
+				telefone.toString() +"\n";
+	}
+	
 	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+	
+	public void preCadastrosCliente(){
+		Endereco end1 = new Endereco("Gama", "Brasília", "DF");
+		Endereco end2 = new Endereco("Gama", "Brasília", "DF");
+		
+		Telefone tel1 = new Telefone("61", "76842637");
+		Telefone tel2 = new Telefone("61", "992434155");
+		
+		Cliente cliente1 = new Cliente("Laura", "29/08/00", "19009090100", end1, tel1);
+		Cliente cliente2 = new Cliente("Matheus", "02/01/01", "19009333100", end2, tel2);
+		
+		listaDeCliente.add(cliente1);
+		listaDeCliente.add(cliente2);
+		
+	}
+	
 	Scanner ler = new Scanner (System.in);
 	
 	public void cadastrar() {
@@ -30,15 +53,15 @@ public class Cliente {
 				
 		System.out.print("Nome do cliente: ");
 		nome = ler.nextLine();
-		System.out.print("Data de nascimento (D/M/AA): ");
-		dtNasc = ler.nextLine();
-		System.out.print("Informe o CPF: ");
+		System.out.print("CPF do cliente (apenas números): ");
 		cpf = ler.nextLine();
+		System.out.print("Data de nascimento (DD/MM/AA): ");
+		dtNasc = ler.nextLine();
 		System.out.print("Endereço: ");
 		ender.setEndereco(ler.nextLine());
 		System.out.print("Cidade: ");
 		ender.setCidade(ler.nextLine());
-		System.out.print("Estado: ");
+		System.out.print("Estado (UF): ");
 		ender.setEstado(ler.nextLine());
 		System.out.print("DDD do telefone: ");
 		tel.setdDD(ler.nextLine());
@@ -48,37 +71,152 @@ public class Cliente {
 		Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
 		listaDeCliente.add(cliente);
 		
+		System.out.printf("Novo cliente '%s' cadastrado com sucesso!\n", nome);
+		
 	}
 	
-	//Dados dos Clientes
-//	public ArrayList<Cliente> preencher(){
-//		String[]nomeCadastrado= {"Freddy Krueger","Michael Myers","Caleb Quinn" ,"Anna Bear", "Lisa Sherwood","Max Thompson Jr","Amanda Young","Kazan Yamaoka","Kenneth Chase","Philip Ojomo","Herman Carter","Sally Smithson"};
-//		String[]dtnascimentoCadastrado= {"02/09/1938","30/01/1962","09/10/1985","06/08/1974","13/04/1968","20/01/1998","07/08/1997","10/04/1999","25/11/1948","27/12/1967","02/07/2000","910/07/1974"};
-//		String[]cPFCadastrado= {"96722590003","87492471076","04890332022","57118790060","25682175026","20734172052","89073252008","28847699002","37314576017","16357756040","09677245031","60477583040"};
-//		String[]enderecoCadastrado= {"Elm Street, Escola Primaria de Badham","Haddonfield, Travessa Lampkin","Tumulo de Glenvale,Salao Dead Dawg","Floresta Vermelha, Refugio da Cacadora","Pantano do Remanso, Despensa Cruel","Fazenda Coldwind, Abatedouro Asqueroso","Fabrica de Embalagem de Carnes Gideon","Propriedade dos Yamaoka,Santuario da Ira","Hospicio Crotus Prenn,Capela do Padre Campbell","Ferro Velho Autohaven, Abrigo Sangrento","Instituto Memorial Lery,Centro de Tratamento","Hospicio Crotus Prenn, Enfermeira Conturbada"};
-//		String[]CEPCadastrado= {"61942330","69265970","78659970","98385970","71258135","58475972","79442970","76940970","72545509","35200970","68633971","45657308"};
-//		String[]bairroCadastrado= {"Outra Banda","Centro","Centro Metropolitano","Areal","Setor Norte (Vila Estrutural - Guará)","Mandacaru","Bom Fim","Cruzeiro","Vargem","Centro A","Interlagos","Lourdes"};
-//		int[]numeroCadastrado= {20,547,68,32,785,346,81,1242,5789,101,13,1501};
-//		String[]cidadeCadastrado= {"Maranguape","Apuí","Nova Primavera","Dois Irmãos das Missões","Brasília","Queimadas","Bom Fim","Rolim de Moura","Santa Maria","Aimorés","Dom Eliseu","Ilhéus"};
-//		String[]estadoCadastrado= {"CE","AM","MT","RS","DF","PB","MS","BA","DF","MG","PA","BA"};
-//		String[]telefoneCadastrado= {"954214507","945874632","985652366","987452136","985846521","963625415","912451232","985263140","915487542","926598653","931649746","939281795"};
-//		String[]dDDCadastrado= {"92","68","65","27","41","53","49","61","41","77","34","68"};
-//
-//		for (int i=0;i<12;i++){
-//			Cliente cliente = new Cliente(nomeCadastrado[i],dtnascimentoCadastrado[i],cPFCadastrado[i], enderecoCadastrado[i],CEPCadastrado[i],bairroCadastrado[i],numeroCadastrado[i],cidadeCadastrado[i],estadoCadastrado[i],telefoneCadastrado[i],dDDCadastrado[i]);
-//
-//			listaDeCliente.add(cliente);
-//		}
-//		return listaDeCliente;
-//	}
-//		
-//	// FUNCOES RELACIONADAS AO CLIENTE
-//	public static ArrayList<Cliente> cadastraCliente(ArrayList<Cliente> listaDeCliente, String nome, Date dtnascimento, String cPF, String endereco, String CEP, String bairro,int numero, String cidade, String estado, String telefone, String dDD) {
-//		Cliente novoCliente= new Cliente(nome,dtnascimento,cPF, endereco,CEP,bairro,numero, cidade, estado,telefone,dDD);
-//		listaDeCliente.add(novoCliente);
-//		return listaDeCliente;
-//	}
+	public void visualizar() {
+		int modo;
+		
+		do {
+			boolean check = false;
+			System.out.println("Deseja visualizar por:"
+					+ "\n1- Nome"
+					+ "\n2- CPF"
+					+ "\n3- Sair da visualização");
+			System.out.print(">> ");
+			modo = ler.nextInt();
+			ler.nextLine();
+			
+			
+			if(modo == 1) {
+				String nome;
+				System.out.print("\nInforme o nome completo do cliente: ");
+				nome = ler.nextLine();
+				
+				for(int i=0; i<listaDeCliente.size(); i++) {
+					if(nome.equals(listaDeCliente.get(i).getNome())){
+						check = true;
+						System.out.println();
+						System.out.println(listaDeCliente.get(i).toString());
+						break;
+					}
+				}
+				
+				if(!check) {
+					System.out.println("Cliente não encontrado!\n");
+				}
+			}
+			else if(modo == 2) {
+				String cpf;
+				System.out.print("\nInforme o CPF (apenas números): ");
+				cpf = ler.nextLine();
+				
+
+				for(int i=0; i<listaDeCliente.size(); i++) {
+					if(cpf.equals(listaDeCliente.get(i).getcPF())) {
+						check = true;
+						System.out.println();
+						System.out.println(listaDeCliente.get(i).toString());
+					}
+				}
+				if(!check) {
+					System.out.println("Cliente não encontrado!\n");
+				}
+			}
+			else if(modo == 3) {
+				System.out.println("\nEncerrando visualização...");
+				break;
+			}
+			else {
+				System.out.println("Opção inválida!");
+			}
+			
+		}while(modo != 3);
+	}
 	
+	public void editar(int n) {
+		int num = 0;
+		String nome = listaDeCliente.get(n).getNome();
+		
+		System.out.println("\n<<Alterar dados de '" + nome + "'>>");
+
+		do {
+			System.out.println("\nSelecione o que deseja alterar:"
+					+ "\n1- Nome do cliente (Atual: "+listaDeCliente.get(n).getNome()+")"
+					+ "\n2- CPF do cliente (Atual: "+listaDeCliente.get(n).getcPF()+")"
+					+ "\n3- Data de nascimento (Atual: "+listaDeCliente.get(n).getDtNascimento()+")"
+					+ "\n4- Endereço (Atual: "+listaDeCliente.get(n).getEndereco().toString()+")"
+					+ "\n5- Telefone (Atual: "+listaDeCliente.get(n).getTelefone().toString()+")"
+					+ "\n6- Sair");
+			System.out.print(">> ");
+			num = ler.nextInt();
+			ler.nextLine();
+
+			switch (num) {
+				case 1:
+					System.out.println("\nNovo nome do cliente: ");
+					listaDeCliente.get(n).setNome(ler.nextLine());
+					break;
+				case 2:
+					System.out.println("\nInforme o novo CPF: ");
+					listaDeCliente.get(n).setcPF(ler.nextLine());;
+					break;
+				case 3:
+					System.out.println("\nNova data de nascimento (DD/MM/AA): ");
+					listaDeCliente.get(n).setDtNascimento(ler.nextLine());
+					break;
+				case 4:
+					System.out.println("\nNovo enderço: ");
+					listaDeCliente.get(n).endereco.setEndereco(ler.nextLine());
+					System.out.println("\nNova cidade: ");
+					listaDeCliente.get(n).endereco.setCidade(ler.nextLine());
+					System.out.println("\nNovo estado (UF): ");
+					listaDeCliente.get(n).endereco.setEstado(ler.nextLine());
+					break;
+				case 5:
+					System.out.println("\nNovo DDD: ");
+					listaDeCliente.get(n).telefone.setdDD(ler.nextLine());
+					System.out.println("\nNovo número: ");
+					listaDeCliente.get(n).telefone.setNumero(ler.nextLine());
+					break;
+				case 6:
+					System.out.println("Retornando ao menu...\n");
+					break;
+				default:
+					System.out.println("Opção inválida!\n");
+					break;
+
+			}
+		} while (num != 6);
+
+	}
+	
+	public void deletar(int n) {
+		System.out.printf("Cliente '%s' deletado com sucesso!\n", listaDeCliente.get(n).getNome());
+		listaDeCliente.remove(listaDeCliente.get(n));
+	}
+
+	
+	public int selecionaCliente() {
+		int num;
+		
+		System.out.println("\nLista de clientes:");
+		for(int i=0; i<listaDeCliente.size(); i++) {
+			System.out.println("" + (i+1) + "- " +  listaDeCliente.get(i).getNome());
+		}
+		
+		do {
+			System.out.print("\nSelecione um cliente: ");
+			num = ler.nextInt();
+			
+			if(num < 1 || num > listaDeCliente.size())
+				System.out.println("Opção inválida, informe novamente.");
+			
+		}while (num < 1 || num > listaDeCliente.size());
+		
+		return num;
+	}
 	
 	public String getNome() {
 		return nome;

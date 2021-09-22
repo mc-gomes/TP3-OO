@@ -18,7 +18,6 @@ public abstract class Sapato {
 	public void deletar() {
 		
 	}
-	// PRECISA DOS CRUDs
 	
 	public String getMarca() {
 		return marca;
