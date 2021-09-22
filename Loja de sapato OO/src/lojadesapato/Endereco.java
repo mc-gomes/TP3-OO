@@ -15,6 +15,10 @@ public class Endereco {
 		estado = e;
 	}
 	
+	@Override
+	public String toString() {
+		return endereco + " - " + cidade + ", " + estado;
+	}
 	
 	public String getEndereco() {
 		return endereco;
