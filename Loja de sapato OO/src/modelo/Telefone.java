@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 public class Telefone {
 
@@ -14,11 +14,9 @@ public class Telefone {
 		numero = num;
 	}
 	
-	// PRECISA DOS CRUDs
-	
 	@Override
 	public String toString() {
-		return "Telefone: (" + DDD + ") " + numero;
+		return "(" + DDD + ") " + numero;
 	}
 	
 	public String getdDD() {
