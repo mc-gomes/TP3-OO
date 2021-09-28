@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;

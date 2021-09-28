@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 import java.util.*;
 
 public class Cliente {
@@ -9,7 +9,7 @@ public class Cliente {
 	private Telefone telefone;
 	
 	public Cliente() {
-		
+		preCadastrosCliente();
 	}
 	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
@@ -27,7 +27,7 @@ public class Cliente {
 				telefone.toString() +"\n";
 	}
 	
-	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+	public ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
 	
 	public void preCadastrosCliente(){
 		Endereco end1 = new Endereco("Gama", "Brasília", "DF");

@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 public class Telefone {
 

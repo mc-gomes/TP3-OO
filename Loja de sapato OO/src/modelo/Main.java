@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 import java.util.Scanner;
 
@@ -47,17 +47,14 @@ public class Main {
 				+ "\n10 - Sair do programa");
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		int opc, escolha, index;
 		
 		Cliente cliente = new Cliente();
-		cliente.preCadastrosCliente();
 		Bota bota = new Bota();
-		bota.preCadastrosBota();
 		Chinelo chinelo = new Chinelo();
 		Chuteira chuteira = new Chuteira();
-		chuteira.preCadastrosChuteira();
 		Salto salto = new Salto();
 		Tenis tenis = new Tenis();
 		
@@ -194,6 +191,6 @@ public class Main {
 			} // FIM DO SWITCH
 			
 		}while(opc != 10);
-	}
+	}*/
 
 }

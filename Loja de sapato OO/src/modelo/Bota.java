@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class Bota extends Sapato{
 	private String genero;
 	
 	public Bota() {
-		
+		preCadastrosBota();
 	}
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
