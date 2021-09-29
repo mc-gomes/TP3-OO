@@ -51,16 +51,15 @@ public class TelaDadosCliente implements ActionListener {
 		janela = new JFrame(s);
 
 		//Preenche com dados do cliente clicado
-		/*if (op == 2) {
+		if (op == 2) {
 			valorNome = new JTextField(cliente.getAlunos()[pos].getNome(), 200);
 			valorEnd = new JTextField(cliente.getAlunos()[pos].getEndereco(),200);
 			valorData = new JTextField(200);
 			valorCPF = new JTextField(String.valueOf(cliente.getAlunos()[pos].getCPF()), 200);
 			valorDDD = new JTextField(String.valueOf(cliente.getAlunos()[pos].getNumTel().getDDD()), 3);
 			valorTelefone = new JTextField(String.valueOf(cliente.getAlunos()[pos].getNumTel().getNumero()), 10);			
-		}
 
-		//} else { //Não preenche com dados*/
+		} else { //Não preenche com dados
 
 		valorNome = new JTextField(200);
 		valorCPF = new JTextField(200);
@@ -72,7 +71,7 @@ public class TelaDadosCliente implements ActionListener {
 		valorTelefone = new JTextField(10);
 
 		botaoSalvar.setBounds(245, 375, 115, 30);
-		//}
+		}
 
 		labelNome.setBounds(30, 20, 150, 25);
 		valorNome.setBounds(200, 20, 180, 25);
