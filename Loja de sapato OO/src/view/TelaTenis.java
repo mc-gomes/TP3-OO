@@ -6,6 +6,14 @@ import javax.swing.event.*;
 import modelo.*;
 
 
+public class TelaTenis implements ActionListener, ListSelectionListener package view;
+        import java.awt.*;
+        import java.awt.event.*;
+        import javax.swing.*;
+        import javax.swing.event.*;
+        import modelo.*;
+
+
 public class TelaTenis implements ActionListener, ListSelectionListener {
     private JFrame janela;
     private JLabel titulo;
@@ -13,18 +21,19 @@ public class TelaTenis implements ActionListener, ListSelectionListener {
     private JButton atualizaTenis;
     private JList<String> listaTenisCadastrados;
     private String[] listaNomes = new String[50];
-    Tenis t = new Tenis;
+    Tenis t = new Tenis();
+
+    public void listaTenis() {
+        listaNomes = t.listaNomesTenis();
+    }
 
     public void mostrarDados(){
+        t.preCadastrosTenis();
+        listaTenis();// listaNomes = t.listaNomesTenis();
 
-        for(int i=0; i< t.listaDeTenis.size(); i++) {
-            listaNomes[i] = t.listaDeTenis.get(i).getNome();
-        }
-
-        //listaNomes = t.listaDeTenis.get(0).getNome();
         listaTenisCadastrados = new JList<String>(listaNomes);
         janela = new JFrame("Loja de Sapatos - Tenis");
-        titulo = new JLabel("Teniss Cadastrados");
+        titulo = new JLabel("Tenis Cadastrados");
         cadastroTenis = new JButton("Cadastrar");
         atualizaTenis = new JButton("Atualizar");
 
@@ -51,7 +60,7 @@ public class TelaTenis implements ActionListener, ListSelectionListener {
         atualizaTenis.addActionListener(this);
         listaTenisCadastrados.addListSelectionListener(this);
 
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null,
+//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 //					JOptionPane.ERROR_MESSAGE);
 
     }
@@ -63,26 +72,35 @@ public class TelaTenis implements ActionListener, ListSelectionListener {
 
         //Cadastro de novo aluno
         if(src == cadastroTenis)
-            new TelaDadosTenis().cadastrarEditar(2, s, this, 0);
+            new TelaDadosTenis().cadastrarEditar(1, c, this, 0);
         //System.out.println("cadastro Tenis clicado");
 
-        // Atualiza a lista de nomes de alunos mostrada no JList*******
+        // Atualiza a lista de nomes de alunos mostrada no JList
         if(src == atualizaTenis) {
-            //listaTenisCadastrados.setListData(new ControleAluno(dados).getNomeAluno());*********
-            //listaTenisCadastrados.updateUI();
-            System.out.println("botao atualizar clicado");
+            listaTenis();
+            listaTenisCadastrados.setListData(listaNomes);
+            listaTenisCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
         }
-
-
     }
 
     //Captura eventos relacionados ao JList
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-        if(e.getValueIsAdjusting() && src == listaTenisCadastrados) {
-            new TelaDadosTenis().cadastrarEditar(2, dados, this,
-                    listaTenisCadastrados.getSelectedIndex());
+        try {
+            if(e.getValueIsAdjusting() && src == listaTenisCadastrados) {
+                new TelaDadosTenis().cadastrarEditar(2, c, this,
+                        listaTenisCadastrados.getSelectedIndex());
+            }
+        }catch (NullPointerException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Tenis não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
+        }catch (IndexOutOfBoundsException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Tenis não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }

@@ -13,18 +13,19 @@ public class TelaChinelo implements ActionListener, ListSelectionListener {
     private JButton atualizaChinelo;
     private JList<String> listaChineloCadastrados;
     private String[] listaNomes = new String[50];
-    Chinelo c = new Chinelo;
+    Chinelo c = new Chinelo();
+
+    public void listaChinelo() {
+        listaNomes = c.listaNomesChinelo();
+    }
 
     public void mostrarDados(){
+        c.preCadastrosChinelo();
+        listaChinelo();// listaNomes = c.listaNomesChinelo();
 
-        for(int i=0; i< c.listaDeChinelo.size(); i++) {
-            listaNomes[i] = c.listaDeChinelo.get(i).getNome();
-        }
-
-        //listaNomes = c.listaDeChinelo.get(0).getNome();
         listaChineloCadastrados = new JList<String>(listaNomes);
         janela = new JFrame("Loja de Sapatos - Chinelo");
-        titulo = new JLabel("Chinelos Cadastrados");
+        titulo = new JLabel("Chinelo Cadastrados");
         cadastroChinelo = new JButton("Cadastrar");
         atualizaChinelo = new JButton("Atualizar");
 
@@ -51,7 +52,7 @@ public class TelaChinelo implements ActionListener, ListSelectionListener {
         atualizaChinelo.addActionListener(this);
         listaChineloCadastrados.addListSelectionListener(this);
 
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null,
+//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 //					JOptionPane.ERROR_MESSAGE);
 
     }
@@ -63,26 +64,35 @@ public class TelaChinelo implements ActionListener, ListSelectionListener {
 
         //Cadastro de novo aluno
         if(src == cadastroChinelo)
-            new TelaDadosChinelo().cadastrarEditar(2, s, this, 0);
-        //System.out.println("cadastro chinelo clicado");
+            new TelaDadosChinelo().cadastrarEditar(1, c, this, 0);
+        //System.out.println("cadastro Chinelo clicado");
 
-        // Atualiza a lista de nomes de alunos mostrada no JList*******
+        // Atualiza a lista de nomes de alunos mostrada no JList
         if(src == atualizaChinelo) {
-            //listaChineloCadastrados.setListData(new ControleAluno(dados).getNomeAluno());*********
-            //listaChineloCadastrados.updateUI();
-            System.out.println("botao atualizar clicado");
+            listaChinelo();
+            listaChineloCadastrados.setListData(listaNomes);
+            listaChineloCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
         }
-
-
     }
 
     //Captura eventos relacionados ao JList
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-        if(e.getValueIsAdjusting() && src == listaChineloCadastrados) {
-            new TelaDadosChinelo().cadastrarEditar(2, dados, this,
-                    listaChineloCadastrados.getSelectedIndex());
+        try {
+            if(e.getValueIsAdjusting() && src == listaChineloCadastrados) {
+                new TelaDadosChinelo().cadastrarEditar(2, c, this,
+                        listaChineloCadastrados.getSelectedIndex());
+            }
+        }catch (NullPointerException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Chinelo não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
+        }catch (IndexOutOfBoundsException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Chinelo não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }

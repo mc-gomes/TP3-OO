@@ -6,6 +6,14 @@ import javax.swing.event.*;
 import modelo.*;
 
 
+public class TelaBota implements ActionListener, ListSelectionListener package view;
+        import java.awt.*;
+        import java.awt.event.*;
+        import javax.swing.*;
+        import javax.swing.event.*;
+        import modelo.*;
+
+
 public class TelaBota implements ActionListener, ListSelectionListener {
     private JFrame janela;
     private JLabel titulo;
@@ -13,18 +21,19 @@ public class TelaBota implements ActionListener, ListSelectionListener {
     private JButton atualizaBota;
     private JList<String> listaBotaCadastrados;
     private String[] listaNomes = new String[50];
-    Bota b = new Bota;
+    Bota b = new Bota();
+
+    public void listaBota() {
+        listaNomes = b.listaNomesBota();
+    }
 
     public void mostrarDados(){
+        b.preCadastrosBota();
+        listaBota();// listaNomes = b.listaNomesBota();
 
-        for(int i=0; i< b.listaDeBota.size(); i++) {
-            listaNomes[i] = b.listaDeBota.get(i).getNome();
-        }
-
-        //listaNomes = b.listaDeBota.get(0).getNome();
         listaBotaCadastrados = new JList<String>(listaNomes);
         janela = new JFrame("Loja de Sapatos - Bota");
-        titulo = new JLabel("Botas Cadastradas");
+        titulo = new JLabel("Bota Cadastrados");
         cadastroBota = new JButton("Cadastrar");
         atualizaBota = new JButton("Atualizar");
 
@@ -51,7 +60,7 @@ public class TelaBota implements ActionListener, ListSelectionListener {
         atualizaBota.addActionListener(this);
         listaBotaCadastrados.addListSelectionListener(this);
 
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null,
+//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 //					JOptionPane.ERROR_MESSAGE);
 
     }
@@ -63,26 +72,35 @@ public class TelaBota implements ActionListener, ListSelectionListener {
 
         //Cadastro de novo aluno
         if(src == cadastroBota)
-            new TelaDadosBota().cadastrarEditar(2, s, this, 0);
-        //System.out.println("cadastro bota clicado");
+            new TelaDadosBota().cadastrarEditar(1, c, this, 0);
+        //System.out.println("cadastro Bota clicado");
 
-        // Atualiza a lista de nomes de alunos mostrada no JList*******
+        // Atualiza a lista de nomes de alunos mostrada no JList
         if(src == atualizaBota) {
-            //listaBotaCadastrados.setListData(new ControleAluno(dados).getNomeAluno());*********
-            //listaBotaCadastrados.updateUI();
-            System.out.println("botao atualizar clicado");
+            listaBota();
+            listaBotaCadastrados.setListData(listaNomes);
+            listaBotaCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
         }
-
-
     }
 
     //Captura eventos relacionados ao JList
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-        if(e.getValueIsAdjusting() && src == listaBotaCadastrados) {
-            new TelaDadosBota().cadastrarEditar(2, dados, this,
-                    listaBotaCadastrados.getSelectedIndex());
+        try {
+            if(e.getValueIsAdjusting() && src == listaBotaCadastrados) {
+                new TelaDadosBota().cadastrarEditar(2, c, this,
+                        listaBotaCadastrados.getSelectedIndex());
+            }
+        }catch (NullPointerException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Bota não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
+        }catch (IndexOutOfBoundsException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Bota não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }

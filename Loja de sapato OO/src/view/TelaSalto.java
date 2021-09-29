@@ -6,6 +6,14 @@ import javax.swing.event.*;
 import modelo.*;
 
 
+public class TelaSalto implements ActionListener, ListSelectionListener package view;
+        import java.awt.*;
+        import java.awt.event.*;
+        import javax.swing.*;
+        import javax.swing.event.*;
+        import modelo.*;
+
+
 public class TelaSalto implements ActionListener, ListSelectionListener {
     private JFrame janela;
     private JLabel titulo;
@@ -13,18 +21,19 @@ public class TelaSalto implements ActionListener, ListSelectionListener {
     private JButton atualizaSalto;
     private JList<String> listaSaltoCadastrados;
     private String[] listaNomes = new String[50];
-    Salto s = new Salto;
+    Salto s = new Salto();
+
+    public void listaSalto() {
+        listaNomes = s.listaNomesSalto();
+    }
 
     public void mostrarDados(){
+        s.preCadastrosSalto();
+        listaSalto();// listaNomes = s.listaNomesSalto();
 
-        for(int i=0; i< s.listaDeSalto.size(); i++) {
-            listaNomes[i] = s.listaDeSalto.get(i).getNome();
-        }
-
-        //listaNomes = s.listaDeSalto.get(0).getNome();
         listaSaltoCadastrados = new JList<String>(listaNomes);
         janela = new JFrame("Loja de Sapatos - Salto");
-        titulo = new JLabel("Saltos Cadastrados");
+        titulo = new JLabel("Salto Cadastrados");
         cadastroSalto = new JButton("Cadastrar");
         atualizaSalto = new JButton("Atualizar");
 
@@ -51,7 +60,7 @@ public class TelaSalto implements ActionListener, ListSelectionListener {
         atualizaSalto.addActionListener(this);
         listaSaltoCadastrados.addListSelectionListener(this);
 
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null,
+//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 //					JOptionPane.ERROR_MESSAGE);
 
     }
@@ -63,26 +72,35 @@ public class TelaSalto implements ActionListener, ListSelectionListener {
 
         //Cadastro de novo aluno
         if(src == cadastroSalto)
-            new TelaDadosSalto().cadastrarEditar(2, s, this, 0);
+            new TelaDadosSalto().cadastrarEditar(1, c, this, 0);
         //System.out.println("cadastro Salto clicado");
 
-        // Atualiza a lista de nomes de alunos mostrada no JList*******
+        // Atualiza a lista de nomes de alunos mostrada no JList
         if(src == atualizaSalto) {
-            //listaSaltoCadastrados.setListData(new ControleAluno(dados).getNomeAluno());*********
-            //listaSaltoCadastrados.updateUI();
-            System.out.println("botao atualizar clicado");
+            listaSalto();
+            listaSaltoCadastrados.setListData(listaNomes);
+            listaSaltoCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
         }
-
-
     }
 
     //Captura eventos relacionados ao JList
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-        if(e.getValueIsAdjusting() && src == listaSaltoCadastrados) {
-            new TelaDadosSalto().cadastrarEditar(2, dados, this,
-                    listaSaltoCadastrados.getSelectedIndex());
+        try {
+            if(e.getValueIsAdjusting() && src == listaSaltoCadastrados) {
+                new TelaDadosSalto().cadastrarEditar(2, c, this,
+                        listaSaltoCadastrados.getSelectedIndex());
+            }
+        }catch (NullPointerException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Salto não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
+        }catch (IndexOutOfBoundsException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Salto não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }

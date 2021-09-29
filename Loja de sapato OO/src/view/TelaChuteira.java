@@ -6,6 +6,14 @@ import javax.swing.event.*;
 import modelo.*;
 
 
+public class TelaChuteira implements ActionListener, ListSelectionListener package view;
+        import java.awt.*;
+        import java.awt.event.*;
+        import javax.swing.*;
+        import javax.swing.event.*;
+        import modelo.*;
+
+
 public class TelaChuteira implements ActionListener, ListSelectionListener {
     private JFrame janela;
     private JLabel titulo;
@@ -13,18 +21,19 @@ public class TelaChuteira implements ActionListener, ListSelectionListener {
     private JButton atualizaChuteira;
     private JList<String> listaChuteiraCadastrados;
     private String[] listaNomes = new String[50];
-    Chuteira ch = new Chuteira;
+    Chuteira c = new Chuteira();
+
+    public void listaChuteira() {
+        listaNomes = c.listaNomesChuteira();
+    }
 
     public void mostrarDados(){
+        c.preCadastrosChuteira();
+        listaChuteira();// listaNomes = c.listaNomesChuteira();
 
-        for(int i=0; i< ch.listaDeChuteira.size(); i++) {
-            listaNomes[i] = ch.listaDeChuteira.get(i).getNome();
-        }
-
-        //listaNomes = ch.listaDeChuteira.get(0).getNome();
         listaChuteiraCadastrados = new JList<String>(listaNomes);
         janela = new JFrame("Loja de Sapatos - Chuteira");
-        titulo = new JLabel("Chuteiras Cadastradas");
+        titulo = new JLabel("Chuteira Cadastrados");
         cadastroChuteira = new JButton("Cadastrar");
         atualizaChuteira = new JButton("Atualizar");
 
@@ -51,7 +60,7 @@ public class TelaChuteira implements ActionListener, ListSelectionListener {
         atualizaChuteira.addActionListener(this);
         listaChuteiraCadastrados.addListSelectionListener(this);
 
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null,
+//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
 //					JOptionPane.ERROR_MESSAGE);
 
     }
@@ -63,26 +72,35 @@ public class TelaChuteira implements ActionListener, ListSelectionListener {
 
         //Cadastro de novo aluno
         if(src == cadastroChuteira)
-            new TelaDadosChuteira().cadastrarEditar(2, s, this, 0);
+            new TelaDadosChuteira().cadastrarEditar(1, c, this, 0);
         //System.out.println("cadastro Chuteira clicado");
 
-        // Atualiza a lista de nomes de alunos mostrada no JList*******
+        // Atualiza a lista de nomes de alunos mostrada no JList
         if(src == atualizaChuteira) {
-            //listaChuteiraCadastrados.setListData(new ControleAluno(dados).getNomeAluno());*********
-            //listaChuteiraCadastrados.updateUI();
-            System.out.println("Chuteirao atualizar clicado");
+            listaChuteira();
+            listaChuteiraCadastrados.setListData(listaNomes);
+            listaChuteiraCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
         }
-
-
     }
 
     //Captura eventos relacionados ao JList
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-        if(e.getValueIsAdjusting() && src == listaChuteiraCadastrados) {
-            new TelaDadosChuteira().cadastrarEditar(2, dados, this,
-                    listaChuteiraCadastrados.getSelectedIndex());
+        try {
+            if(e.getValueIsAdjusting() && src == listaChuteiraCadastrados) {
+                new TelaDadosChuteira().cadastrarEditar(2, c, this,
+                        listaChuteiraCadastrados.getSelectedIndex());
+            }
+        }catch (NullPointerException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Chuteira não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
+        }catch (IndexOutOfBoundsException exc) {
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+                            + "Chuteira não econtrado!", null,
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }
