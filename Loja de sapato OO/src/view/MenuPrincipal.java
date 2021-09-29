@@ -69,8 +69,11 @@ public class MenuPrincipal implements ActionListener {
 					"Ainda precisam ser implementadas as funcionalidades\n"
 					+ "relacionadas a curso e a matrícula", null, 
 					JOptionPane.INFORMATION_MESSAGE);*/
-		if (src == sair)
+		if (src == sair) {
 			janela.dispose();
+			//janela.getDefaultCloseOperation();
+			
+		}
 	}
 
 }

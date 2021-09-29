@@ -23,7 +23,6 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		c.preCadastrosCliente();
 		listaClientes();// listaNomes = c.listaNomesClientes();
 
-		//listaNomes = cli.listaDeCliente.get(0).getNome();
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Loja de Sapatos - Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
@@ -80,11 +79,21 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	//Captura eventos relacionados ao JList
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-
-		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			new TelaDadosCliente().cadastrarEditar(2, c, this, 
-					listaClientesCadastrados.getSelectedIndex());
-		}
+		
+		try {
+			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
+				new TelaDadosCliente().cadastrarEditar(2, c, this, 
+						listaClientesCadastrados.getSelectedIndex());
+			}
+		}catch (NullPointerException exc) {
+			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+					+ "Cliente não econtrado!", null, 
+					JOptionPane.ERROR_MESSAGE);
+		}catch (IndexOutOfBoundsException exc) {
+			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+					+ "Cliente não econtrado!", null, 
+					JOptionPane.ERROR_MESSAGE);
+	    }
 
 	}
 

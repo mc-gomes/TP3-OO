@@ -29,11 +29,10 @@ public class TelaDadosCliente implements ActionListener {
 	private JTextField valorTelefone;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private String[] novoDado = new String[9];
 	private static Cliente cliente = new Cliente();
 	
-	private String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", 
-			"Setembro", "Outubro", "Novembro", "Dezembro"};
+	//private String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", 
+	//		"Setembro", "Outubro", "Novembro", "Dezembro"};
 	private int posicao;
 	private int opcao;
 	private String s;
@@ -44,34 +43,43 @@ public class TelaDadosCliente implements ActionListener {
 		opcao = op;
 		posicao = pos;
 		cliente = c;
-
+		
 		if (op == 1) s = "Cadastro de Cliente";
 		if (op == 2) s = "Dados do Cliente";
 
 		janela = new JFrame(s);
 
+		if (op == 1) { //Não preenche com dados
+			
+			valorNome = new JTextField(200);
+			valorCPF = new JTextField(200);
+			valorData = new JTextField(200);
+			valorEnd = new JTextField(100);
+			valorCidade = new JTextField(100);
+			valorUF = new JTextField(50);
+			valorDDD = new JTextField(3);
+			valorTelefone = new JTextField(10);
+			
+			botaoSalvar.setBounds(265, 210, 115, 30);
+		}
 		//Preenche com dados do cliente clicado
 		if (op == 2) {
-			valorNome = new JTextField(cliente.getAlunos()[pos].getNome(), 200);
-			valorEnd = new JTextField(cliente.getAlunos()[pos].getEndereco(),200);
-			valorData = new JTextField(200);
-			valorCPF = new JTextField(String.valueOf(cliente.getAlunos()[pos].getCPF()), 200);
-			valorDDD = new JTextField(String.valueOf(cliente.getAlunos()[pos].getNumTel().getDDD()), 3);
-			valorTelefone = new JTextField(String.valueOf(cliente.getAlunos()[pos].getNumTel().getNumero()), 10);			
+			
+			valorNome = new JTextField(cliente.retornaDado(pos, 1), 200);
+			valorCPF = new JTextField(cliente.retornaDado(pos, 2), 200);
+			valorData = new JTextField(cliente.retornaDado(pos, 3), 200);
+			valorEnd = new JTextField(cliente.retornaDado(pos, 4), 200);
+			valorCidade = new JTextField(cliente.retornaDado(pos, 5), 200);
+			valorUF = new JTextField(cliente.retornaDado(pos, 6), 200);
+			valorDDD = new JTextField(cliente.retornaDado(pos, 7), 200);
+			valorTelefone = new JTextField(cliente.retornaDado(pos, 8), 200);
+			
+			botaoSalvar.setBounds(130, 210, 115, 30);
+			botaoExcluir.setBounds(265, 210, 115, 30);
+			this.janela.add(botaoExcluir);
 
-		} else { //Não preenche com dados
-
-		valorNome = new JTextField(200);
-		valorCPF = new JTextField(200);
-		valorData = new JTextField(200);
-		valorEnd = new JTextField(100);
-		valorCidade = new JTextField(100);
-		valorUF = new JTextField(50);
-		valorDDD = new JTextField(3);
-		valorTelefone = new JTextField(10);
-
-		botaoSalvar.setBounds(245, 375, 115, 30);
 		}
+	
 
 		labelNome.setBounds(30, 20, 150, 25);
 		valorNome.setBounds(200, 20, 180, 25);
@@ -86,36 +94,15 @@ public class TelaDadosCliente implements ActionListener {
 		valorEnd.setBounds(30, 140, 155, 25);
 
 		labelCidade.setBounds(200, 110, 78, 25);
-		valorCidade.setBounds(200, 140, 70, 25);
+		valorCidade.setBounds(200, 140, 140, 25);
 		
 		labelUF.setBounds(280, 110, 100, 25);
-		valorUF.setBounds(280, 140, 30, 25);
-		
+		valorUF.setBounds(350, 140, 30, 25);
 		
 		labelTelefone.setBounds(30, 170, 150, 25);
 		valorDDD.setBounds(200, 170, 28, 25);
-		valorTelefone.setBounds(230, 170, 65, 25);
-
-		//Coloca os campos relacionados a endereco se aluno
-//		if (op == 1 || op == 3 ) {
-//			this.janela.add(labelEnd);
-//			this.janela.add(valorEnd);
-//
-//		}
-
-		//Coloca campos relacionados a valor hora/aula se professor
-//		if (op == 2 || op == 4) {
-//
-//			this.janela.add(labelData);
-//			this.janela.add(valorData);
-//		}
-
-		//Coloca botoes de excluir e salvar
-		if (op == 2) {
-			botaoSalvar.setBounds(120, 175, 115, 30);
-			botaoExcluir.setBounds(245, 175, 115, 30);
-			this.janela.add(botaoExcluir);
-		}
+		valorTelefone.setBounds(235, 170, 145, 25);
+		
 
 		this.janela.add(labelNome);
 		this.janela.add(valorNome);
@@ -136,7 +123,7 @@ public class TelaDadosCliente implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(400, 450);
+		this.janela.setSize(400, 290);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
@@ -155,13 +142,7 @@ public class TelaDadosCliente implements ActionListener {
 			
 			try {
 				boolean res=true;
-				/*if(opcao == 1) //cadastro de novo aluno
-					/*novoDado[0] = Integer.toString(cliente.getQtdAlunos());
-				else if (opcao == 2) // cadastro de novo prof
-					novoDado[0] = Integer.toString(cliente.getQtdProfs());
-				else // edicao de dado existente
-					novoDado[0] = Integer.toString(posicao);*/
-
+				
 				nome = valorNome.getText();
 				cpf = valorCPF.getText();
 				dtNasc = valorData.getText();
@@ -176,77 +157,79 @@ public class TelaDadosCliente implements ActionListener {
 				num = valorTelefone.getText();
 				nvTel.setNumero(num);
 				
-//				if (nome == null || cpf == null || dtNasc == null || end == null ||
-//						cid == null || est == null || ddd == null || num == null) {
-//					//novoDado[2] =  valorEnd.getText();
-//					res = false;
-//				}
-
+				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
+				
+				// verifica se há algum campo vazio
 				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) || "".equals(cid) ||
 						"".equals(est) ||"".equals(ddd) || "".equals(num)) {
-					//novoDado[2] =  valorEnd.getText();
 					res = false;
-				} /*else {
-					novoDado[2] =  valorData.getText();
-					res = cliente.inserirEditarProf(novoDado);
-				}*/
-
-				if(res) {
-					Cliente novoCliente = new Cliente(nome, cpf, dtNasc, nvEnd, nvTel);
-					cliente.cadastrar(novoCliente);
-//					cliente.selecionaCliente();
-//					TelaCliente().listaClientes();
-//					listaNomes = cliente.listaClientes();
-					mensagemSucessoCadastro();
 				}
-				else {
-					System.out.println("erro defrgdbbt");
-					mensagemErroCadastro();
+				
+				if(opcao == 1) { //cadastro de novo cliente
+					
+					if(res) {
+						Cliente novoCliente = new Cliente(nome, cpf, dtNasc, nvEnd, nvTel);
+						cliente.cadastrar(novoCliente);
+						mensagemSucessoCadastro();
+					}
+					else {
+						mensagemErroCadastro();
+					}
+				}
+				else if (opcao == 2) {
+					// edição dados cliente
+					if(res){
+						for (int i=1; i< 9; i++) {
+							cliente.editar(posicao, dados[i-1], i);							
+						}
+						mensagemSucessoCadastro();
+					}
+					else mensagemErroCadastro();
 				}
 
 			} catch (NullPointerException exc1) {
-				System.out.println("erro 1");
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
 				mensagemErroCadastro();
-				System.out.println("erro 2");
 			}
 		}
 
-		/*if(src == botaoExcluir) {
+		if(src == botaoExcluir) {
 			boolean res = false;
 
-			if (opcao == 3) {//exclui aluno
-				res = cliente.removerAluno(posicao);
-				if (res) mensagemSucessoExclusao(); 
+	
+				cliente.deletar(posicao);
+				if (!res) mensagemSucessoExclusao(); 
 				else mensagemErroExclusaoAluno(); 
-			}
-				
-			if (opcao == 4){ //exclui professor
-				res = cliente.removerProfessor(posicao);
-				if (res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoProf(); 
-			}
-		}*/
+	
+		}
 	}
 
 	public void mensagemSucessoExclusao() {
-		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
+		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!\n"
+				+ "Lembre-se de atualizar a lista de cadastro!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
 
 	public void mensagemSucessoCadastro() {
-		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
+		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!\n"
+				+ "Lembre-se de atualizar a lista de cadastro!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
+	}
+	
+	public void mensagemErroDeAcesso() {
+		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR CLIENTE!\n\n"
+				+ "Cliente não econtrado!", null, 
+				JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
 				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
 				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. CPF, DDD e telefone não contém apenas números", null, 
+				+ "2. CPF, DDD ou telefone não contém apenas números", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 
