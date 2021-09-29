@@ -9,7 +9,7 @@ public class Cliente {
 	private Telefone telefone;
 	
 	public Cliente() {
-		preCadastrosCliente();
+
 	}
 	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
@@ -27,7 +27,8 @@ public class Cliente {
 				telefone.toString() +"\n";
 	}
 	
-	public ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+
 	
 	public void preCadastrosCliente(){
 		Endereco end1 = new Endereco("Gama", "Brasília", "DF");
@@ -46,33 +47,39 @@ public class Cliente {
 	
 	Scanner ler = new Scanner (System.in);
 	
-	public void cadastrar() {
-		String nome, dtNasc, cpf;
-		Endereco ender = new Endereco();
-		Telefone tel = new Telefone();
-				
-		System.out.print("Nome do cliente: ");
-		nome = ler.nextLine();
-		System.out.print("CPF do cliente (apenas números): ");
-		cpf = ler.nextLine();
-		System.out.print("Data de nascimento (DD/MM/AA): ");
-		dtNasc = ler.nextLine();
-		System.out.print("Endereço: ");
-		ender.setEndereco(ler.nextLine());
-		System.out.print("Cidade: ");
-		ender.setCidade(ler.nextLine());
-		System.out.print("Estado (UF): ");
-		ender.setEstado(ler.nextLine());
-		System.out.print("DDD do telefone: ");
-		tel.setdDD(ler.nextLine());
-		System.out.print("Número de telefone: ");
-		tel.setNumero(ler.nextLine());
+	public String retornaDado(int pos, int info) {
+		String dado = "";
 		
-		Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
+		if(info == 1) {
+			dado = listaDeCliente.get(pos).getNome();
+		}
+		else if(info == 2) {
+			dado = listaDeCliente.get(pos).getcPF();
+		}
+		else if(info == 3) {
+			dado = listaDeCliente.get(pos).getDtNascimento();
+		}
+		else if(info == 4) {
+			dado = listaDeCliente.get(pos).getEndereco().getEndereco();
+		}
+		else if(info == 5) {
+			dado = listaDeCliente.get(pos).getEndereco().getCidade();
+		}
+		else if(info == 6) {
+			dado = listaDeCliente.get(pos).getEndereco().getEstado();
+		}
+		else if(info == 7) {
+			dado = listaDeCliente.get(pos).getTelefone().getdDD();
+		}
+		else if(info == 8) {
+			dado = listaDeCliente.get(pos).getTelefone().getNumero();
+		}
+		
+		return dado;
+	}
+	
+	public void cadastrar(Cliente cliente) {
 		listaDeCliente.add(cliente);
-		
-		System.out.printf("Novo cliente '%s' cadastrado com sucesso!\n", nome);
-		
 	}
 	
 	public void visualizar() {
@@ -135,8 +142,36 @@ public class Cliente {
 		}while(modo != 3);
 	}
 	
-	public void editar(int n) {
-		int num = 0;
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeCliente.get(pos).setNome(dado);
+		}
+		else if(info == 2) {
+			listaDeCliente.get(pos).setcPF(dado);
+		}
+		else if(info == 3) {
+			listaDeCliente.get(pos).setDtNascimento(dado);
+		}
+		else if(info == 4) {
+			listaDeCliente.get(pos).getEndereco().setEndereco(dado);
+		}
+		else if(info == 5) {
+			listaDeCliente.get(pos).getEndereco().setCidade(dado);
+		}
+		else if(info == 6) {
+			listaDeCliente.get(pos).getEndereco().setEstado(dado);
+		}
+		else if(info == 7) {
+			listaDeCliente.get(pos).getTelefone().setdDD(dado);
+		}
+		else if(info == 8) {
+			listaDeCliente.get(pos).getTelefone().setNumero(dado);
+		}
+		
+	}
+		
+		/*int num = 0;
 		String nome = listaDeCliente.get(n).getNome();
 		
 		System.out.println("\n<<Alterar dados de '" + nome + "'>>");
@@ -190,13 +225,20 @@ public class Cliente {
 			}
 		} while (num != 6);
 
-	}
+	}*/
 	
 	public void deletar(int n) {
-		System.out.printf("Cliente '%s' deletado com sucesso!\n", listaDeCliente.get(n).getNome());
+		//System.out.printf("Cliente '%s' deletado com sucesso!\n", listaDeCliente.get(n).getNome());
 		listaDeCliente.remove(listaDeCliente.get(n));
 	}
 
+	public String[] listaNomesClientes() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeCliente.size(); i++) {
+			listaNomes[i] = listaDeCliente.get(i).getNome();
+		}
+		return listaNomes;
+	}
 	
 	public int selecionaCliente() {
 		int num;
