@@ -8,8 +8,9 @@ public class Cliente {
 	private Endereco endereco;
 	private Telefone telefone;
 	
+	
 	public Cliente() {
-		preCadastrosCliente();
+
 	}
 	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
@@ -27,7 +28,8 @@ public class Cliente {
 				telefone.toString() +"\n";
 	}
 	
-	public ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+	private String[] listaNomes = new String[200];
 	
 	public void preCadastrosCliente(){
 		Endereco end1 = new Endereco("Gama", "Brasília", "DF");
@@ -46,32 +48,36 @@ public class Cliente {
 	
 	Scanner ler = new Scanner (System.in);
 	
-	public void cadastrar() {
+	public String retornaDado(int pos, int dado) {
+		if(dado == 1) return listaDeCliente.get(pos).getNome();
+	}
+	
+	public void cadastrar(Cliente cliente) {
 		String nome, dtNasc, cpf;
 		Endereco ender = new Endereco();
 		Telefone tel = new Telefone();
 				
-		System.out.print("Nome do cliente: ");
-		nome = ler.nextLine();
-		System.out.print("CPF do cliente (apenas números): ");
-		cpf = ler.nextLine();
-		System.out.print("Data de nascimento (DD/MM/AA): ");
-		dtNasc = ler.nextLine();
-		System.out.print("Endereço: ");
-		ender.setEndereco(ler.nextLine());
-		System.out.print("Cidade: ");
-		ender.setCidade(ler.nextLine());
-		System.out.print("Estado (UF): ");
-		ender.setEstado(ler.nextLine());
-		System.out.print("DDD do telefone: ");
-		tel.setdDD(ler.nextLine());
-		System.out.print("Número de telefone: ");
-		tel.setNumero(ler.nextLine());
+//		System.out.print("Nome do cliente: ");
+//		nome = ler.nextLine();
+//		System.out.print("CPF do cliente (apenas números): ");
+//		cpf = ler.nextLine();
+//		System.out.print("Data de nascimento (DD/MM/AA): ");
+//		dtNasc = ler.nextLine();
+//		System.out.print("Endereço: ");
+//		ender.setEndereco(ler.nextLine());
+//		System.out.print("Cidade: ");
+//		ender.setCidade(ler.nextLine());
+//		System.out.print("Estado (UF): ");
+//		ender.setEstado(ler.nextLine());
+//		System.out.print("DDD do telefone: ");
+//		tel.setdDD(ler.nextLine());
+//		System.out.print("Número de telefone: ");
+//		tel.setNumero(ler.nextLine());
 		
-		Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
+		//Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
 		listaDeCliente.add(cliente);
 		
-		System.out.printf("Novo cliente '%s' cadastrado com sucesso!\n", nome);
+		//System.out.printf("Novo cliente '%s' cadastrado com sucesso!\n", nome);
 		
 	}
 	
@@ -197,6 +203,13 @@ public class Cliente {
 		listaDeCliente.remove(listaDeCliente.get(n));
 	}
 
+	public String[] listaNomesClientes() {
+		//preCadastrosCliente();
+		for(int i=0; i< listaDeCliente.size(); i++) {
+			listaNomes[i] = listaDeCliente.get(i).getNome();
+		}
+		return listaNomes;
+	}
 	
 	public int selecionaCliente() {
 		int num;

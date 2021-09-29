@@ -14,12 +14,14 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
+	
+	public void listaClientes() {
+		listaNomes = c.listaNomesClientes();
+	}
 
 	public void mostrarDados(){
-		
-		for(int i=0; i< c.listaDeCliente.size(); i++) {
-			listaNomes[i] = c.listaDeCliente.get(i).getNome();
-		}
+		c.preCadastrosCliente();
+		listaClientes();// listaNomes = c.listaNomesClientes();
 
 		//listaNomes = cli.listaDeCliente.get(0).getNome();
 		listaClientesCadastrados = new JList<String>(listaNomes);
@@ -63,17 +65,16 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo aluno
 		if(src == cadastroCliente)
-			new TelaDadosCliente().cadastrarEditar(2, c, this, 0);
+			new TelaDadosCliente().cadastrarEditar(1, c, this, 0);
 			//System.out.println("cadastro cliente clicado");
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaClientes) {
-			//listaClientesCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
-			//listaClientesCadastrados.updateUI();
-			System.out.println("botao atualizar clicado");
+			listaClientes();
+			listaClientesCadastrados.setListData(listaNomes);			
+			listaClientesCadastrados.updateUI();
+//			System.out.println("botao atualizar clicado");
 		}
-
-
 	}
 
 	//Captura eventos relacionados ao JList
@@ -81,7 +82,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			new TelaDadosCliente().cadastrarEditar(2, dados, this, 
+			new TelaDadosCliente().cadastrarEditar(2, c, this, 
 					listaClientesCadastrados.getSelectedIndex());
 		}
 
