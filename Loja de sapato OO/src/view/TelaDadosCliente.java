@@ -123,7 +123,8 @@ public class TelaDadosCliente implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(400, 290);
+		this.janela.setSize(400, 300);
+		janela.setLocationRelativeTo(null);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
@@ -160,8 +161,8 @@ public class TelaDadosCliente implements ActionListener {
 				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
 				
 				// verifica se há algum campo vazio
-				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) || "".equals(cid) ||
-						"".equals(est) ||"".equals(ddd) || "".equals(num)) {
+				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) ||
+						"".equals(cid) || "".equals(est) ||"".equals(ddd) || "".equals(num)) {
 					res = false;
 				}
 				
@@ -197,10 +198,9 @@ public class TelaDadosCliente implements ActionListener {
 		if(src == botaoExcluir) {
 			boolean res = false;
 
-	
-				cliente.deletar(posicao);
-				if (!res) mensagemSucessoExclusao(); 
-				else mensagemErroExclusaoAluno(); 
+			cliente.deletar(posicao);
+			if (!res) mensagemSucessoExclusao(); 
+			else mensagemErroExclusaoAluno(); 
 	
 		}
 	}
@@ -238,14 +238,6 @@ public class TelaDadosCliente implements ActionListener {
 				+ "Verifique se o aluno está matriculado\n"
 				+ "em alguma disciplina. Se sim, cancele\n "
 				+ "a matricula e tente novamente.", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-	
-	public void mensagemErroExclusaoProf() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o professor está responsável\n"
-				+ "por alguma disciplina. Se sim, substitua\n "
-				+ "o professor e tente novamente.", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 

@@ -6,12 +6,12 @@ import javax.swing.event.*;
 import modelo.*;
 
 
-public class TelaCliente implements ActionListener, ListSelectionListener {		
+public class TelaVenda implements ActionListener, ListSelectionListener {		
 	private JFrame janela;
 	private JLabel titulo;
-	private JButton cadastroCliente;
-	private JButton atualizaClientes;
-	private JButton voltar;
+	private JLabel subTit;
+	private JLabel msg = new JLabel("Selecione um cliente para cadastrar uma venda");
+	private JButton cancelar;
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
@@ -22,56 +22,49 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 
 	public void mostrarDados(){
 		c.preCadastrosCliente();
-		listaClientes();
+		listaClientes();// listaNomes = c.listaNomesClientes();
 
 		listaClientesCadastrados = new JList<String>(listaNomes);
-		janela = new JFrame("Loja de Sapatos - Clientes");
-		titulo = new JLabel("Clientes Cadastrados");
-		cadastroCliente = new JButton("Cadastrar");
-		atualizaClientes = new JButton("Atualizar");
+		janela = new JFrame("Loja de Sapatos - Venda");
+		titulo = new JLabel("Cadastro de Venda");
+		subTit = new JLabel("Lista de clientes:");
+		cancelar = new JButton("Cancelar");
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
-		titulo.setBounds(125, 10, 250, 30);
-		listaClientesCadastrados.setBounds(25, 50, 350, 120);
+		titulo.setBounds(120, 10, 250, 30);
+		subTit.setBounds(25, 45, 200, 20);
+		msg.setFont(new Font("Arial", Font.PLAIN, 10));
+		msg.setBounds(25, 195, 300, 10);
+		listaClientesCadastrados.setBounds(25, 70, 350, 120);
 		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		listaClientesCadastrados.setVisibleRowCount(10);
 		
-		cadastroCliente.setBounds(150, 177, 120, 30);
-		atualizaClientes.setBounds(275, 177, 100, 30);
+		cancelar.setBounds(260, 220, 115, 30); // 265, 210, 115, 30
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
+		janela.add(subTit);
+		janela.add(msg);
 		janela.add(listaClientesCadastrados);
-		janela.add(cadastroCliente);
-		janela.add(atualizaClientes);
+		janela.add(cancelar);
 		
-		janela.setSize(400, 260);
+		janela.setSize(400, 300);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		
-		cadastroCliente.addActionListener(this);
-		atualizaClientes.addActionListener(this);
+		cancelar.addActionListener(this);
 		listaClientesCadastrados.addListSelectionListener(this);
-		
-	}
 
+	}
 
 	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		//Cadastro de novo cliente
-		if(src == cadastroCliente)
-			new TelaDadosCliente().cadastrarEditar(1, c, this, 0);
-			//System.out.println("cadastro cliente clicado");
+		if(src == cancelar)
+			janela.dispose();
 
-		// Atualiza a lista de nomes de clientes mostrada no JList
-		if(src == atualizaClientes) {
-			listaClientes();
-			listaClientesCadastrados.setListData(listaNomes);			
-			listaClientesCadastrados.updateUI();
-		}
 	}
 
 	//Captura eventos relacionados ao JList
@@ -80,8 +73,9 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-				new TelaDadosCliente().cadastrarEditar(2, c, this, 
-						listaClientesCadastrados.getSelectedIndex());
+//				new TelaDadosCliente().cadastrarEditar(2, c, this, 
+//						listaClientesCadastrados.getSelectedIndex());
+				System.out.println("algum cliente foi clicado");
 			}
 		}catch (NullPointerException exc) {
 			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
