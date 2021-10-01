@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
-public class TelaDadosSapato implements ActionListener {
+public class TelaDadosBota implements ActionListener {
 
 	private JFrame janela;
 	private JLabel labelMarca = new JLabel("Marca:");
@@ -23,35 +23,61 @@ public class TelaDadosSapato implements ActionListener {
 	private JLabel labelCano = new JLabel("Altura do cano:");
 	private JTextField valorCano;
 	private JLabel labelGenero = new JLabel("Gênero:");
-	private JTextField valorGenero;
-	private JLabel labelEstilo = new JLabel("Estilo da tira:");
-	private JTextField valorEstilo;
-	
-	// CRIAR JLabels E JText PRA CADA TIPO DE SAPATO NO SEU SWITCH
-	
-	private JLabel labelCidade = new JLabel("Cidade:");
-	private JTextField valorCidade;
-	private JLabel labelUF = new JLabel("Estado (UF):");
-	private JTextField valorUF;
-	private JLabel labelTelefone = new JLabel("Telefone:");
-	private JTextField valorDDD;
-	private JTextField valorTelefone;
-	
+	private JTextField valorGenero;	
 	
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private static Cliente cliente = new Cliente();
+	private JButton botaoVoltar = new JButton("Voltar");
+	private static Bota bota = new Bota();
 	
 	private int posicao;
 	private int opcao;
-	private String s = "Dados do Produto";
+	private String s;
 
-	public void cadastrarEditar(int op,	TelaSapatos p, int pos) {
+	public void cadastrarEditar(int op, Bota b,	TelaSapatos p, int pos) {
 
 		opcao = op;
 		posicao = pos;
+		bota = b;
 		
 		if (op == 1) s = "Cadastro de Bota";
+		if (op == 2) s = "Dados do Produto";
+
+		janela = new JFrame(s);
+
+		if (op == 1) { //Não preenche com dados
+			
+			valorMarca = new JTextField(200);
+			valorPreco = new JTextField(200);
+			valorQtd = new JTextField(200);
+			valorCor = new JTextField(100);
+			valorCano = new JTextField(200);
+			valorGenero = new JTextField(200);
+
+			botaoSalvar.setBounds(265, 230, 115, 30);
+		}
+		//Preenche com dados do Bota clicado
+		if (op == 2) {
+			
+			valorMarca = new JTextField(bota.retornaDado(pos, 1), 200);
+			valorPreco = new JTextField(bota.retornaDado(pos, 2), 200);
+			valorQtd = new JTextField(bota.retornaDado(pos, 3), 200);
+			valorCor = new JTextField(bota.retornaDado(pos, 4), 200);
+			valorCano = new JTextField(bota.retornaDado(pos, 5), 200);
+			valorGenero = new JTextField(bota.retornaDado(pos, 6), 200);
+			
+			botaoSalvar.setBounds(145, 210, 115, 30);
+			botaoExcluir.setBounds(265, 210, 115, 30);
+			botaoVoltar.setBounds(30, 210, 100, 30);
+			this.janela.add(botaoExcluir);
+			this.janela.add(botaoVoltar);
+
+		}	
+	
+		opcao = op;
+		posicao = pos;
+		
+		/*if (op == 1) s = "Cadastro de Bota";
 		else if (op == 2) s = "Cadastro de Chinelo";
 		else if (op == 3) s = "Cadastro de Chuteira";
 		else if (op == 4) s = "Cadastro de Tênis";
@@ -59,29 +85,7 @@ public class TelaDadosSapato implements ActionListener {
 		
 		janela = new JFrame(s);
 
-		if (op == 1) { //Não preenche com dados
-			// Cadastra bota
-			valorMarca = new JTextField(200);
-			valorPreco = new JTextField(200);
-			valorQtd = new JTextField(200);
-			valorCor = new JTextField(100);
-			
-			valorCano = new JTextField(200);
-			labelCano.setBounds(30, 140, 150, 25);
-			valorCano.setBounds(220, 140, 160, 25);
-			
-			valorGenero = new JTextField(200);
-			labelGenero.setBounds(30, 170, 80, 25);
-			valorGenero.setBounds(220, 170, 160, 25);
-			
-			this.janela.add(labelCano);
-			this.janela.add(valorCano);
-			this.janela.add(labelGenero);
-			this.janela.add(valorGenero);
-
-			
-			botaoSalvar.setBounds(265, 230, 115, 30);
-		}
+		
 		if (op == 2) { //Não preenche com dados
 			// Cadastra chinelo
 			valorMarca = new JTextField(200);
@@ -97,25 +101,9 @@ public class TelaDadosSapato implements ActionListener {
 			this.janela.add(valorEstilo);
 			
 			botaoSalvar.setBounds(265, 230, 115, 30);
-		}
+		}*/
 		
-		//Preenche com dados do cliente clicado
-		if (op == 50) {
-			
-			valorMarca = new JTextField(cliente.retornaDado(pos, 1), 200);
-			valorPreco = new JTextField(cliente.retornaDado(pos, 2), 200);
-			valorQtd = new JTextField(cliente.retornaDado(pos, 3), 200);
-			valorCor = new JTextField(cliente.retornaDado(pos, 4), 200);
-			valorCidade = new JTextField(cliente.retornaDado(pos, 5), 200);
-			valorUF = new JTextField(cliente.retornaDado(pos, 6), 200);
-			valorDDD = new JTextField(cliente.retornaDado(pos, 7), 200);
-			valorTelefone = new JTextField(cliente.retornaDado(pos, 8), 200);
-			
-			botaoSalvar.setBounds(130, 210, 115, 30);
-			botaoExcluir.setBounds(265, 210, 115, 30);
-			this.janela.add(botaoExcluir);
-
-		}
+		//Preenche com dados do Bota clicado
 	
 
 		labelMarca.setBounds(30, 20, 150, 25);
@@ -130,6 +118,11 @@ public class TelaDadosSapato implements ActionListener {
 		labelCor.setBounds(30, 110, 80, 25);
 		valorCor.setBounds(220, 110, 160, 25);
 		
+		labelCano.setBounds(30, 140, 150, 25);
+		valorCano.setBounds(220, 140, 160, 25);
+		
+		labelGenero.setBounds(30, 170, 80, 25);
+		valorGenero.setBounds(220, 170, 160, 25);
 
 		this.janela.add(labelMarca);
 		this.janela.add(valorMarca);
@@ -139,6 +132,10 @@ public class TelaDadosSapato implements ActionListener {
 		this.janela.add(valorQtd);
 		this.janela.add(labelCor);
 		this.janela.add(valorCor);
+		this.janela.add(labelCano);
+		this.janela.add(valorCano);
+		this.janela.add(labelGenero);
+		this.janela.add(valorGenero);
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
@@ -157,40 +154,31 @@ public class TelaDadosSapato implements ActionListener {
 		
 		if(src == botaoSalvar) {
 			
-			String nome, dtNasc, cpf, end, cid, est, ddd, num;
-			Endereco nvEnd = new Endereco();
-			Telefone nvTel = new Telefone();
+			String marca, preco, qtd, cor, cano, genero;
 			
 			try {
 				boolean res=true;
 				
-				nome = valorMarca.getText();
-				cpf = valorPreco.getText();
-				dtNasc = valorQtd.getText();
-				end = valorCor.getText();
-				nvEnd.setEndereco(end);
-				cid = valorCidade.getText();
-				nvEnd.setCidade(cid);
-				est = valorUF.getText();
-				nvEnd.setEstado(est);
-				ddd = valorDDD.getText();
-				nvTel.setdDD(ddd);
-				num = valorTelefone.getText();
-				nvTel.setNumero(num);
+				marca = valorMarca.getText();
+				preco = valorPreco.getText();
+				qtd = valorQtd.getText();
+				cor = valorCor.getText();
+				cano = valorCano.getText();
+				genero = valorGenero.getText();
 				
-				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
+				String[] dados = {marca, preco, qtd, cor, cano, genero};
 				
 				// verifica se há algum campo vazio
-				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) ||
-						"".equals(cid) || "".equals(est) ||"".equals(ddd) || "".equals(num)) {
+				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
+						"".equals(cano) || "".equals(genero)) {
 					res = false;
 				}
 				
-				if(opcao == 1) { //cadastro de novo cliente
+				if(opcao == 1) { //cadastro de novo Bota
 					
 					if(res) {
-						Cliente novoCliente = new Cliente(nome, cpf, dtNasc, nvEnd, nvTel);
-						cliente.cadastrar(novoCliente);
+						Bota novoBota = new Bota(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, genero);
+						bota.cadastrar(novoBota);
 						mensagemSucessoCadastro();
 					}
 					else {
@@ -198,10 +186,10 @@ public class TelaDadosSapato implements ActionListener {
 					}
 				}
 				else if (opcao == 2) {
-					// edição dados cliente
+					// edição dados Bota
 					if(res){
-						for (int i=1; i< 9; i++) {
-							cliente.editar(posicao, dados[i-1], i);							
+						for (int i=1; i< 7; i++) {
+							bota.editar(posicao, dados[i-1], i);							
 						}
 						mensagemSucessoCadastro();
 					}
@@ -218,9 +206,8 @@ public class TelaDadosSapato implements ActionListener {
 		if(src == botaoExcluir) {
 			boolean res = false;
 
-			cliente.deletar(posicao);
-			if (!res) mensagemSucessoExclusao(); 
-			else mensagemErroExclusaoAluno(); 
+			bota.deletar(posicao);
+			if (!res) mensagemSucessoExclusao();
 	
 		}
 	}
@@ -240,8 +227,8 @@ public class TelaDadosSapato implements ActionListener {
 	}
 	
 	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR CLIENTE!\n\n"
-				+ "Cliente não econtrado!", null, 
+		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR Bota!\n\n"
+				+ "Produto não econtrado!", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 
@@ -249,15 +236,7 @@ public class TelaDadosSapato implements ActionListener {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
 				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
 				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. CPF, DDD ou telefone não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void mensagemErroExclusaoAluno() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o aluno está matriculado\n"
-				+ "em alguma disciplina. Se sim, cancele\n "
-				+ "a matricula e tente novamente.", null, 
+				+ "2. Preço ou Quantidade em estoque não contém apenas números", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 

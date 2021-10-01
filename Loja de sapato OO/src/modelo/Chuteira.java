@@ -9,7 +9,7 @@ public class Chuteira extends Sapato{
 	private String cano;
 	
 	public Chuteira() {
-		//preCadastrosChuteira();
+		
 	}
 	
 	public Chuteira(String n, String m, double p, int q,  String c, String t, String ca) {

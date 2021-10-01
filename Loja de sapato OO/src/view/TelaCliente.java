@@ -14,7 +14,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JButton atualizaClientes;
 	private JButton voltar;
 	private JPanel panel = new JPanel(new BorderLayout());
-	private JScrollPane ScrollPane_1 = new JScrollPane();
+	private JScrollPane barraScroll = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
@@ -58,30 +58,30 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 10));
 		atualizaClientes = new JButton("Atualizar lista");
 		atualizaClientes.setFont(new Font("Arial", Font.PLAIN, 11));
+		voltar = new JButton("Voltar");
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 250, 30);
-		//listaClientesCadastrados.setBounds(25, 50, 350, 120);
-		//listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		//listaClientesCadastrados.setVisibleRowCount(10);
+		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaClientesCadastrados.setVisibleRowCount(4);
 		panel.setBounds(25, 50, 350, 120);
-		ScrollPane_1.setSize(25, 50);
-		ScrollPane_1.getViewport().add(listaClientesCadastrados);
-		//ScrollPane_1.setViewportView(listaClientesCadastrados);
+		//barraScroll.setSize(25, 50);
 		listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
-        panel.add(ScrollPane_1);
+		barraScroll.getViewport().add(listaClientesCadastrados);
+        panel.add(barraScroll);
 		
 		cadastroCliente.setBounds(130, 177, 120, 30);
 		atualizaClientes.setBounds(255, 177, 120, 30);
+		voltar.setBounds(25, 177, 100, 30);
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
-//		janela.add(ScrollPane_1);
+//		janela.add(barraScroll);
 //		janela.add(listaClientesCadastrados);
 		janela.add(cadastroCliente);
 		janela.add(atualizaClientes);
-		
+		janela.add(voltar);
 
 		
 		janela.add(panel);
@@ -95,11 +95,11 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		listaClientesCadastrados.addListSelectionListener(this);
 		
 	}
-//	javax.swing.JScrollPane ScrollPane_1 = new javax.swing.JScrollPane();
+//	javax.swing.JScrollPane barraScroll = new javax.swing.JScrollPane();
 //	javax.swing.JList lista = new javax.swing.JList();
 //
-//	ScrollPane_1.setSize(40,60);
-//	ScrollPane_1.add(lista);
+//	barraScroll.setSize(40,60);
+//	barraScroll.add(lista);
 
 	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
