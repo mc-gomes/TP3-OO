@@ -55,21 +55,26 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		janela = new JFrame("Loja de Sapatos - Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
 		cadastroCliente = new JButton("Cadastrar cliente");
+		pesquisaCliente = new JButton("Buscar");
+		campoBusca = new JTextField(200);
+		pesquisaCliente.setFont(new Font("Arial", Font.PLAIN, 15));
 		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 10));
 		atualizaClientes = new JButton("Atualizar lista");
 		atualizaClientes.setFont(new Font("Arial", Font.PLAIN, 11));
 		voltar = new JButton("Voltar");
-		
+
+
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 250, 30);
 		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		listaClientesCadastrados.setVisibleRowCount(4);
 		panel.setBounds(25, 50, 350, 120);
+		campoBusca.setBounds(90, 70, 185, 25);
 		//barraScroll.setSize(25, 50);
 		listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 		barraScroll.getViewport().add(listaClientesCadastrados);
         panel.add(barraScroll);
-		
+
 		cadastroCliente.setBounds(130, 177, 120, 30);
 		atualizaClientes.setBounds(255, 177, 120, 30);
 		voltar.setBounds(25, 177, 100, 30);
@@ -81,6 +86,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 //		janela.add(listaClientesCadastrados);
 		janela.add(cadastroCliente);
 		janela.add(atualizaClientes);
+		janela.add(campoBusca);
 		janela.add(voltar);
 
 		
@@ -115,6 +121,24 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 			listaClientes();
 			listaClientesCadastrados.setListData(listaNomes);			
 			listaClientesCadastrados.updateUI();
+		}
+
+		/// Pesquisa para cliente;
+		if (src == pesquisaCliente) {
+			Cliente c = new Cliente();
+			cpf = campoBusca.getText();
+			p = cliente.retornaPos(cpf);
+			if (p == -1) {
+				c.produtoNaoEncontrado();
+				listaClientesCadastrados.setListData(c.visualizarNome());
+				listaClientesCadastrados.updateUI();
+			}
+			else {
+				for (int i = 0; i < p; i ++) c.cadastrarvazio();
+				c.cadastrar(cliente.buscar(cpf));
+				listaClientesCadastrados.setListData(c.visualizarNome());
+				listaClientesCadastrados.updateUI();
+			}
 		}
 	}
 
