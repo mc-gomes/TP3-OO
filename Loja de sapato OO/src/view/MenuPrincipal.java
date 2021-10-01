@@ -65,9 +65,8 @@ public class MenuPrincipal implements ActionListener {
 		if(src == venda)
 			//System.out.println("botao venda clicado");
 			new TelaVendaCliente().mostraClientes();
-			/*JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a curso e a matrícula", null, 
+			JOptionPane.showMessageDialog(null,
+					"Ainda precisam ser implementadas :(\n"+
 					JOptionPane.INFORMATION_MESSAGE);*/
 		if (src == sair) {
 			janela.dispose();

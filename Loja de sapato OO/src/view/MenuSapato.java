@@ -76,7 +76,7 @@ public class MenuPrincipal implements ActionListener {
         //new TelaChuteira().mostrarDados();
 
         if(src == tenis)
-            //System.out.println("botao cliente clicado");
+            //System.out.println("botao tenis clicado");
             new TelaTenis().mostrarDados();
 
         if(src == salto)

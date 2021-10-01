@@ -241,12 +241,4 @@ public class TelaDadosCliente implements ActionListener {
 				JOptionPane.ERROR_MESSAGE);
 	}
 
-	public void mensagemErroExclusaoAluno() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o aluno está matriculado\n"
-				+ "em alguma disciplina. Se sim, cancele\n "
-				+ "a matricula e tente novamente.", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
 }
