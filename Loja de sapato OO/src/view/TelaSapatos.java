@@ -49,7 +49,15 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			listaNomes = b.listaNomesSapatos();
 		}
 	}
-	
+	public void cadastrarvazio() {
+		TelaSapato tela = new TelaSapato("","", 0,"",0,0,false);
+		dadosSapato.add(dados);
+	}
+
+	public void produtoNaoEncontrado() {
+		TelaSapato tela = new TelaSapato("Não foram encontrados resultados...","", 0,"",0,0,false);
+		dadosSapato.add(dados);
+	}
 	public void menuDeOpcoes() {
 
         tituloMenu.setFont(new Font("Arial", Font.BOLD, 15));
@@ -277,11 +285,11 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 				titulo.setFont(new Font("Arial", Font.BOLD, 15));
 				titulo.setBounds(125, 10, 250, 30);
-				//listaSaltoCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-				//listaSaltoCadastradas.setVisibleRowCount(5);
+				//listaSaltosCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				//listaSaltosCadastradas.setVisibleRowCount(5);
 				panel.setBounds(25, 50, 350, 120);
 				barraScroll.getViewport().add(listaBotasCadastradas);
-				//listaSaltoCadastradas.setBounds(25, 50, 350, 120);
+				//listaSaltosCadastradas.setBounds(25, 50, 350, 120);
 				panel.add(barraScroll);
 
 				cadastroSalto.setBounds(130, 177, 120, 30);
