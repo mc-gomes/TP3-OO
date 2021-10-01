@@ -29,8 +29,8 @@ public class Chinelo extends Sapato{
 	public void preCadastrosChinelo(){
 
 		Chinelo chinelo1 = new Chinelo("Chinelo Nike",159.90, 50, "Preto","slide");
-		Chinelo chinelo2 = new Chinelo("Chinelo Colcci", 79.90, 50, "Preto e vermelho","de dedo");
-		Chinelo chinelo3 = new Chinelo("Chinelo Reserva",64.99, 50, "branco","de dedo");
+		Chinelo chinelo2 = new Chinelo("Chinelo Colcci", 79.90, 50, "Preto e vermelho","normal");
+		Chinelo chinelo3 = new Chinelo("Chinelo Reserva",64.99, 50, "branco","normal");
 		Chinelo chinelo4 = new Chinelo("Chinelo Vans", 179.99, 50, "Xadrez","slide");
 
 		listaDeChinelo.add(chinelo1);

@@ -91,6 +91,7 @@ public class TelaChinelo implements ActionListener, ListSelectionListener {
                     JOptionPane.ERROR_MESSAGE);
         }catch (IndexOutOfBoundsException exc) {
             JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+            JOptionPane.showMessageDialog(null,"ERRO!\n\n"
                             + "Chinelo não econtrado!", null,
                     JOptionPane.ERROR_MESSAGE);
         }
