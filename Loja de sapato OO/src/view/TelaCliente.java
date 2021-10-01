@@ -54,8 +54,8 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Loja de Sapatos - Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
-		cadastroCliente = new JButton("Cadastrar");
-		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 11));
+		cadastroCliente = new JButton("Cadastrar cliente");
+		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 10));
 		atualizaClientes = new JButton("Atualizar lista");
 		atualizaClientes.setFont(new Font("Arial", Font.PLAIN, 11));
 		
@@ -65,13 +65,13 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		//listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		//listaClientesCadastrados.setVisibleRowCount(10);
 		panel.setBounds(25, 50, 350, 120);
-		//ScrollPane_1.setSize(25, 50);
+		ScrollPane_1.setSize(25, 50);
 		ScrollPane_1.getViewport().add(listaClientesCadastrados);
 		//ScrollPane_1.setViewportView(listaClientesCadastrados);
 		listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
         panel.add(ScrollPane_1);
 		
-		cadastroCliente.setBounds(150, 177, 100, 30);
+		cadastroCliente.setBounds(130, 177, 120, 30);
 		atualizaClientes.setBounds(255, 177, 120, 30);
 		
 		janela.setLayout(null);

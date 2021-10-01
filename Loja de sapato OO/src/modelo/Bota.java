@@ -8,7 +8,7 @@ public class Bota extends Sapato{
 	private String genero;
 	
 	public Bota() {
-		preCadastrosBota();
+		//preCadastrosBota();
 	}
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
@@ -30,10 +30,10 @@ public class Bota extends Sapato{
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
 	public void preCadastrosBota(){
 		
-		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");
-		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
-		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "alto", "infantil");
-		Bota bota4 = new Bota("MADALE", 194.90, 10, "Marrom", "alto", "masculino");
+		Bota bota1 = new Bota("Bota MADALE", 199.60, 10, "Preto", "alto", "feminino");
+		Bota bota2 = new Bota("Bota WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
+		Bota bota3 = new Bota("Bota Tricae", 35.99, 13, "Branco", "alto", "infantil");
+		Bota bota4 = new Bota("Bota MADALE", 194.90, 10, "Marrom", "alto", "masculino");
 		
 		listaDeBota.add(bota1);
 		listaDeBota.add(bota2);
@@ -199,6 +199,14 @@ public class Bota extends Sapato{
 	public void deletar(int n) {
 		listaDeBota.remove(listaDeBota.get(n));
 		System.out.printf("Produto %d deletado com sucesso!\n", (n+1));
+	}
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeBota.size(); i++) {
+			listaNomes[i] = listaDeBota.get(i).getMarca();
+		}
+		return listaNomes;
 	}
 	
 	public int selecionaProduto() {

@@ -128,7 +128,14 @@ public class Salto extends Sapato{
 			}while(modo != 4);	
 		}
 	}
-
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeSalto.size(); i++) {
+			listaNomes[i] = listaDeSalto.get(i).getMarca();
+		}
+		return listaNomes;
+	}
 	
 	public int getTamDoSalto() {
 		return tamDoSalto;

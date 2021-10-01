@@ -6,7 +6,7 @@ import javax.swing.event.*;
 import modelo.*;
 
 
-public class TelaVenda implements ActionListener, ListSelectionListener {		
+public class TelaVendaCliente implements ActionListener, ListSelectionListener {		
 	private JFrame janela;
 	private JLabel titulo;
 	private JLabel subTit;
@@ -20,7 +20,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		listaNomes = c.listaNomesClientes();
 	}
 
-	public void mostrarDados(){
+	public void mostraClientes(){
 		c.preCadastrosCliente();
 		listaClientes();// listaNomes = c.listaNomesClientes();
 
@@ -56,7 +56,8 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		cancelar.addActionListener(this);
 		listaClientesCadastrados.addListSelectionListener(this);
 
-	}
+	}	
+	
 
 	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
@@ -73,7 +74,7 @@ public class TelaVenda implements ActionListener, ListSelectionListener {
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-//				new TelaDadosCliente().cadastrarEditar(2, c, this, 
+//				new TelaVendaSapato().cadastrarVenda(2, c, this, 
 //						listaClientesCadastrados.getSelectedIndex());
 				System.out.println("algum cliente foi clicado");
 			}

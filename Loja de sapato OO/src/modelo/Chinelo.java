@@ -24,6 +24,12 @@ public class Chinelo extends Sapato{
 				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n";
 	}
 	
+	public void preCadastrosChinelo() {
+		Chinelo chinelo1 = new Chinelo("Chinelo Rider", 39.90, 10, "Preto", "Normal");
+		
+		listaDeChinelo.add(chinelo1);
+	}
+	
 	
 	ArrayList<Chinelo> listaDeChinelo = new ArrayList<Chinelo>();
 	Scanner ler = new Scanner (System.in);
@@ -123,6 +129,14 @@ public class Chinelo extends Sapato{
 				
 			}while(modo != 4);	
 		}
+	}
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeChinelo.size(); i++) {
+			listaNomes[i] = listaDeChinelo.get(i).getMarca();
+		}
+		return listaNomes;
 	}
 	
 	public String getEstilo() {
