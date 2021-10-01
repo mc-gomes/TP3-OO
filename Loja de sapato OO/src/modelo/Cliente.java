@@ -34,8 +34,8 @@ public class Cliente {
 		Endereco end1 = new Endereco("Gama", "Brasília", "DF");
 		Endereco end2 = new Endereco("Gama", "Brasília", "DF");
 		
-		Telefone tel1 = new Telefone("61", "76842637");
-		Telefone tel2 = new Telefone("61", "992434155");
+		Telefone tel1 = new Telefone(61, 76842637);
+		Telefone tel2 = new Telefone(61, 992434155);
 		
 		Cliente cliente1 = new Cliente("Laura", "29/08/00", "19009090100", end1, tel1);
 		Cliente cliente2 = new Cliente("Matheus", "02/01/01", "19009333100", end2, tel2);
@@ -69,10 +69,10 @@ public class Cliente {
 			dado = listaDeCliente.get(pos).getEndereco().getEstado();
 		}
 		else if(info == 7) {
-			dado = listaDeCliente.get(pos).getTelefone().getdDD();
+			dado = String.valueOf(listaDeCliente.get(pos).getTelefone().getdDD());
 		}
 		else if(info == 8) {
-			dado = listaDeCliente.get(pos).getTelefone().getNumero();
+			dado = String.valueOf(listaDeCliente.get(pos).getTelefone().getNumero());
 		}
 		
 		return dado;
@@ -163,10 +163,10 @@ public class Cliente {
 			listaDeCliente.get(pos).getEndereco().setEstado(dado);
 		}
 		else if(info == 7) {
-			listaDeCliente.get(pos).getTelefone().setdDD(dado);
+			listaDeCliente.get(pos).getTelefone().setdDD(Integer.parseInt(dado));
 		}
 		else if(info == 8) {
-			listaDeCliente.get(pos).getTelefone().setNumero(dado);
+			listaDeCliente.get(pos).getTelefone().setNumero(Integer.parseInt(dado));
 		}
 		
 	}

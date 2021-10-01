@@ -32,8 +32,7 @@ public class TelaDadosCliente implements ActionListener {
 	private JButton botaoVoltar = new JButton("Voltar");
 	private static Cliente cliente = new Cliente();
 	
-	//private String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", 
-	//		"Setembro", "Outubro", "Novembro", "Dezembro"};
+
 	private int posicao;
 	private int opcao;
 	private String s;
@@ -158,9 +157,9 @@ public class TelaDadosCliente implements ActionListener {
 				est = valorUF.getText();
 				nvEnd.setEstado(est);
 				ddd = valorDDD.getText();
-				nvTel.setdDD(ddd);
+				nvTel.setdDD(Integer.parseInt(ddd));
 				num = valorTelefone.getText();
-				nvTel.setNumero(num);
+				nvTel.setNumero(Integer.parseInt(num));
 				
 				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
 				
@@ -203,8 +202,7 @@ public class TelaDadosCliente implements ActionListener {
 			boolean res = false;
 
 			cliente.deletar(posicao);
-			if (!res) mensagemSucessoExclusao(); 
-			else mensagemErroExclusaoAluno(); 
+			if (!res) mensagemSucessoExclusao();
 	
 		}
 		
@@ -226,26 +224,12 @@ public class TelaDadosCliente implements ActionListener {
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
-	
-	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR CLIENTE!\n\n"
-				+ "Cliente não econtrado!", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
 
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
 				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
 				+ "1. Nem todos os campos foram preenchidos \n"
 				+ "2. CPF, DDD ou telefone não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void mensagemErroExclusaoAluno() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o aluno está matriculado\n"
-				+ "em alguma disciplina. Se sim, cancele\n "
-				+ "a matricula e tente novamente.", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 

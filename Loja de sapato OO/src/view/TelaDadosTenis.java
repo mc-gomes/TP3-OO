@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
-public class TelaDadosBota implements ActionListener {
+public class TelaDadosTenis implements ActionListener {
 
 	private JFrame janela;
 	private JLabel labelMarca = new JLabel("Marca:");
@@ -20,27 +20,25 @@ public class TelaDadosBota implements ActionListener {
 	private JTextField valorQtd;
 	private JLabel labelCor = new JLabel("Cor:");
 	private JTextField valorCor;
-	private JLabel labelCano = new JLabel("Altura do cano:");
-	private JTextField valorCano;
-	private JLabel labelGenero = new JLabel("Gênero:");
-	private JTextField valorGenero;	
+	private JLabel labelTipo = new JLabel("Tipo do tênis:");
+	private JTextField valorTipo;
 	
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoVoltar = new JButton("Voltar");
-	private static Bota bota = new Bota();
+	private static Tenis tenis = new Tenis();
 	
 	private int posicao;
 	private int opcao;
 	private String s;
 
-	public void cadastrarEditar(int op, Bota b,	TelaSapatos p, int pos) {
+	public void cadastrarEditar(int op, Tenis t, TelaSapatos p, int pos) {
 
 		opcao = op;
 		posicao = pos;
-		bota = b;
+		tenis = t;
 		
-		if (op == 1) s = "Cadastro de Bota";
+		if (op == 1) s = "Cadastro de Tênis";
 		if (op == 2) s = "Dados do Produto";
 
 		janela = new JFrame(s);
@@ -51,20 +49,19 @@ public class TelaDadosBota implements ActionListener {
 			valorPreco = new JTextField(200);
 			valorQtd = new JTextField(200);
 			valorCor = new JTextField(100);
-			valorCano = new JTextField(200);
-			valorGenero = new JTextField(200);
+			valorTipo = new JTextField(200);
 
 			botaoSalvar.setBounds(265, 230, 115, 30);
 		}
-		//Preenche com dados do Bota clicada
+		//Preenche com dados do Tenis clicada
 		if (op == 2) {
 			
-			valorMarca = new JTextField(bota.retornaDado(pos, 1), 200);
-			valorPreco = new JTextField(bota.retornaDado(pos, 2), 200);
-			valorQtd = new JTextField(bota.retornaDado(pos, 3), 200);
-			valorCor = new JTextField(bota.retornaDado(pos, 4), 200);
-			valorCano = new JTextField(bota.retornaDado(pos, 5), 200);
-			valorGenero = new JTextField(bota.retornaDado(pos, 6), 200);
+			valorMarca = new JTextField(tenis.retornaDado(pos, 1), 200);
+			valorPreco = new JTextField(tenis.retornaDado(pos, 2), 200);
+			valorQtd = new JTextField(tenis.retornaDado(pos, 3), 200);
+			valorCor = new JTextField(tenis.retornaDado(pos, 4), 200);
+			valorTipo = new JTextField(tenis.retornaDado(pos, 5), 200);
+			
 			
 			botaoSalvar.setBounds(145, 210, 115, 30);
 			botaoExcluir.setBounds(265, 210, 115, 30);
@@ -86,11 +83,9 @@ public class TelaDadosBota implements ActionListener {
 		labelCor.setBounds(30, 110, 80, 25);
 		valorCor.setBounds(220, 110, 160, 25);
 		
-		labelCano.setBounds(30, 140, 150, 25);
-		valorCano.setBounds(220, 140, 160, 25);
+		labelTipo.setBounds(30, 140, 150, 25);
+		valorTipo.setBounds(220, 140, 160, 25);
 		
-		labelGenero.setBounds(30, 170, 80, 25);
-		valorGenero.setBounds(220, 170, 160, 25);
 
 		this.janela.add(labelMarca);
 		this.janela.add(valorMarca);
@@ -100,10 +95,8 @@ public class TelaDadosBota implements ActionListener {
 		this.janela.add(valorQtd);
 		this.janela.add(labelCor);
 		this.janela.add(valorCor);
-		this.janela.add(labelCano);
-		this.janela.add(valorCano);
-		this.janela.add(labelGenero);
-		this.janela.add(valorGenero);
+		this.janela.add(labelTipo);
+		this.janela.add(valorTipo);
 		this.janela.add(botaoSalvar);
 
 		this.janela.setLayout(null);
@@ -123,7 +116,7 @@ public class TelaDadosBota implements ActionListener {
 		
 		if(src == botaoSalvar) {
 			
-			String marca, preco, qtd, cor, cano, genero;
+			String marca, preco, qtd, cor, tipo;
 			
 			try {
 				boolean res=true;
@@ -132,22 +125,21 @@ public class TelaDadosBota implements ActionListener {
 				preco = valorPreco.getText();
 				qtd = valorQtd.getText();
 				cor = valorCor.getText();
-				cano = valorCano.getText();
-				genero = valorGenero.getText();
+				tipo = valorTipo.getText();
 				
-				String[] dados = {marca, preco, qtd, cor, cano, genero};
+				String[] dados = {marca, preco, qtd, cor, tipo};
 				
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
-						"".equals(cano) || "".equals(genero)) {
+						"".equals(tipo)) {
 					res = false;
 				}
 				
-				if(opcao == 1) { //cadastro de novo Bota
+				if(opcao == 1) { //cadastro de novo Tenis
 					
 					if(res) {
-						Bota novoBota = new Bota(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, genero);
-						bota.cadastrar(novoBota);
+						Tenis novoTenis = new Tenis(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, tipo);
+						tenis.cadastrar(novoTenis);
 						mensagemSucessoCadastro();
 					}
 					else {
@@ -155,10 +147,10 @@ public class TelaDadosBota implements ActionListener {
 					}
 				}
 				else if (opcao == 2) {
-					// edição dados Bota
+					// edição dados Tenis
 					if(res){
-						for (int i=1; i< 7; i++) {
-							bota.editar(posicao, dados[i-1], i);							
+						for (int i=1; i< 6; i++) {
+							tenis.editar(posicao, dados[i-1], i);							
 						}
 						mensagemSucessoCadastro();
 					}
@@ -175,7 +167,7 @@ public class TelaDadosBota implements ActionListener {
 		if(src == botaoExcluir) {
 			boolean res = false;
 
-			bota.deletar(posicao);
+			tenis.deletar(posicao);
 			if (!res) mensagemSucessoExclusao();
 	
 		}
@@ -199,7 +191,7 @@ public class TelaDadosBota implements ActionListener {
 	}
 	
 	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR Bota!\n\n"
+		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR TÊNIS!\n\n"
 				+ "Produto não econtrado!", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}

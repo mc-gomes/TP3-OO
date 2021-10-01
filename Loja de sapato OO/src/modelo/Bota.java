@@ -73,79 +73,6 @@ public class Bota extends Sapato{
 		listaDeBota.add(bota);
 		
 	}
-
-	public void visualizar() {
-		int modo;
-		
-		if(listaDeBota.size() == 0) System.out.print("\nNão há nenhuma bota cadastrada.\n");
-		
-		else {
-			do {
-				boolean check = false;
-				System.out.println("-> VISUALIZAÇÃO DE BOTA");
-				System.out.println("\nDeseja visualizar por:"
-						+ "\n1- Faixa de preço"
-						+ "\n2- Marca"
-						+ "\n3- Visualizar todos"
-						+ "\n4- Sair da visualização");
-				System.out.print(">> ");
-				modo = ler.nextInt();
-				ler.nextLine();
-				
-				
-				if(modo == 1) {
-					int precoMin, precoMax;
-					System.out.print("\nInforme o preço mínimo (valor inteiro): ");
-					precoMin = ler.nextInt();
-					System.out.print("Informe o preço máximo (valor inteiro): ");
-					precoMax = ler.nextInt();
-					
-					for(int i=0; i<listaDeBota.size(); i++) {
-						if(precoMin < listaDeBota.get(i).getPreco() && listaDeBota.get(i).getPreco() < precoMax){
-							check = true;
-							System.out.println("\n-> PRODUTO " + (i+1));
-							System.out.println(listaDeBota.get(i).toString());
-						}
-					}
-					
-					if(!check) {
-						System.out.println("Não há nenhum produto nessa faixa de preço!\n");
-					}
-				}
-				else if(modo == 2) {
-					String marca;
-					System.out.print("\nInforme o nome da marca: ");
-					marca = ler.nextLine();
-					
-					
-					for(int i=0; i<listaDeBota.size(); i++) {
-						if(marca.equals(listaDeBota.get(i).getMarca())) {
-							check = true;
-							System.out.println("\n-> PRODUTO " + (i+1));
-							System.out.println(listaDeBota.get(i).toString());
-						}
-					}
-					if(!check) {
-						System.out.println("Marca não encontrada!");
-					}
-				}
-				else if(modo == 3) {
-					for(int i=0; i<listaDeBota.size(); i++) {
-						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeBota.get(i).toString());
-					}
-				}
-				else if(modo == 4) {
-					System.out.println("\nEncerrando visualização...");
-					break;
-				}
-				else {
-					System.out.println("Opção inválida!");
-				}
-				
-			}while(modo != 4);	
-		}
-	}
 	
 	public void editar(int pos, String dado, int info) {
 		
@@ -167,13 +94,11 @@ public class Bota extends Sapato{
 		else if(info == 6) {
 			listaDeBota.get(pos).setGenero(dado);
 		}
-
 		
 	}
 	
 	public void deletar(int n) {
 		listaDeBota.remove(listaDeBota.get(n));
-		System.out.printf("Produto %d deletado com sucesso!\n", (n+1));
 	}
 	
 	public String[] listaNomesSapatos() {

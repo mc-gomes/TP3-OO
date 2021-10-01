@@ -22,12 +22,14 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	private JButton atualizaBota;
 	private JButton cadastroChinelo;
 	private JButton atualizaChinelo;
-	private JButton cadastroChuteria;
-	private JButton atualizaChuteria;
+	private JButton cadastroChuteira;
+	private JButton atualizaChuteira;
 	private JButton cadastroSalto;
 	private JButton atualizaSalto;
 	private JButton cadastroTenis;
 	private JButton atualizaTenis;
+	
+	private JButton botaoVoltar = new JButton("Voltar");
 	private JList<String> listaBotasCadastradas;
 	private JList<String> listaChinelosCadastrados;
 	private JList<String> listaChuteirasCadastradas;
@@ -42,13 +44,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	Salto s = new Salto();
 	Tenis t = new Tenis();
 	
-	private String[] listaNomes = new String[50];
-	
-	public void listaSapatos(int op) {
-		if(op == 1) {
-			listaNomes = b.listaNomesSapatos();
-		}
-	}
 	
 	public void menuDeOpcoes() {
 
@@ -57,8 +52,8 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
         bota.setBounds(135, 50, 100, 30);
         chinelo.setBounds(135, 100, 100, 30);
         chuteira.setBounds(135, 150, 100, 30);
-        tenis.setBounds(135, 200, 100, 30);
-        salto.setBounds(135, 250, 100, 30);
+        salto.setBounds(135, 200, 100, 30);
+        tenis.setBounds(135, 250, 100, 30);
         sair.setBounds(135, 300, 100, 30);
 
         janelaMenu.setLayout(null);
@@ -80,7 +75,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		sair.addActionListener(this);
 		
         janelaMenu.setSize(400, 400);
-        //janelaMenu.pack();
         janelaMenu.setLocationRelativeTo(null);
         janelaMenu.setVisible(true);
     }
@@ -90,7 +84,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		switch (op) {
 		case 1:// Mostrar dados de botas cadastradas (JList)
 			String[] listaBota = new String[50];
-//			Bota bota = new Bota();
 			b.preCadastrosBota();
 			
 			listaBota = b.listaNomesSapatos();
@@ -104,23 +97,21 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(125, 10, 250, 30);
-			//listaBotasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			//listaBotasCadastradas.setVisibleRowCount(5);
 			panel.setBounds(25, 50, 350, 120);
 			barraScroll.getViewport().add(listaBotasCadastradas);
-			//listaBotasCadastradas.setBounds(25, 50, 350, 120);
 			panel.add(barraScroll);
 
 			cadastroBota.setBounds(130, 177, 120, 30);
 			atualizaBota.setBounds(255, 177, 120, 30);
+			botaoVoltar.setBounds(25, 177, 100, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			//janela.add(listaBotasCadastradas);
 			janela.add(panel);
 			janela.add(cadastroBota);
 			janela.add(atualizaBota);
+			janela.add(botaoVoltar);
 			
 
 			janela.setSize(400, 250);
@@ -128,16 +119,16 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			cadastroBota.addActionListener(this);
 			atualizaBota.addActionListener(this);
+			botaoVoltar.addActionListener(this);
 			listaBotasCadastradas.addListSelectionListener(this);
 
 			break;
 
 		case 2:// Mostrar dados de chinelos cadastradas (JList)
 			String[] listaChinelo = new String[50];
-			Chinelo chinelo = new Chinelo();
-			chinelo.preCadastrosChinelo();
+			c.preCadastrosChinelo();
 			
-			listaChinelo = chinelo.listaNomesSapatos();
+			listaChinelo = c.listaNomesSapatos();
 			listaChinelosCadastrados = new JList<String>(listaChinelo);
 			janela = new JFrame("Loja de Sapatos - Chinelos");
 			titulo = new JLabel("Chinelos Cadastrados");
@@ -151,13 +142,10 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			panel.setBounds(25, 50, 350, 120);
 			barraScroll.getViewport().add(listaChinelosCadastrados);
 			panel.add(barraScroll);
-			
-			//listaChinelosCadastrados.setBounds(25, 50, 350, 120);
-//			listaChinelosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//			listaChinelosCadastrados.setVisibleRowCount(10);
 
 			cadastroChinelo.setBounds(130, 177, 120, 30);
 			atualizaChinelo.setBounds(255, 177, 120, 30);
+			botaoVoltar.setBounds(25, 177, 100, 30);
 
 			janela.setLayout(null);
 
@@ -165,29 +153,30 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			janela.add(panel);
 			janela.add(cadastroChinelo);
 			janela.add(atualizaChinelo);
+			janela.add(botaoVoltar);
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
 			cadastroChinelo.addActionListener(this);
 			atualizaChinelo.addActionListener(this);
+			botaoVoltar.addActionListener(this);
 			listaChinelosCadastrados.addListSelectionListener(this);
 
 			break;
 			
 		case 3:
 			String[] listaChuteira = new String[50];
-//			Bota bota = new Bota();
 			ch.preCadastrosChuteira();
 			
 			listaChuteira = ch.listaNomesSapatos();
 			listaChuteirasCadastradas = new JList<String>(listaChuteira);
 			janela = new JFrame("Loja de Sapatos - Chuteiras");
 			titulo = new JLabel("Chuteiras Cadastradas");
-			cadastroChuteria = new JButton("Cadastrar chuteira");
-			cadastroChuteria.setFont(new Font("Arial", Font.PLAIN, 10));
-			atualizaChuteria = new JButton("Atualizar lista");
-			atualizaChuteria.setFont(new Font("Arial", Font.PLAIN, 11));
+			cadastroChuteira = new JButton("Cadastrar chuteira");
+			cadastroChuteira.setFont(new Font("Arial", Font.PLAIN, 10));
+			atualizaChuteira = new JButton("Atualizar lista");
+			atualizaChuteira.setFont(new Font("Arial", Font.PLAIN, 11));
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(125, 10, 250, 30);
@@ -195,126 +184,111 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			barraScroll.getViewport().add(listaChuteirasCadastradas);
 			panel.add(barraScroll);
 			
-//			listaChuteirasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//			listaChuteirasCadastradas.setVisibleRowCount(10);
-
-			cadastroChuteria.setBounds(120, 177, 130, 30);
-			atualizaChuteria.setBounds(255, 177, 120, 30);
+			cadastroChuteira.setBounds(120, 177, 130, 30);
+			atualizaChuteira.setBounds(255, 177, 120, 30);
+			botaoVoltar.setBounds(25, 177, 80, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
 			janela.add(panel);
-			janela.add(cadastroChuteria);
-			janela.add(atualizaChuteria);
+			janela.add(cadastroChuteira);
+			janela.add(atualizaChuteira);
+			janela.add(botaoVoltar);
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
-			cadastroChuteria.addActionListener(this);
-			atualizaChuteria.addActionListener(this);
+			cadastroChuteira.addActionListener(this);
+			atualizaChuteira.addActionListener(this);
+			botaoVoltar.addActionListener(this);
 			listaChuteirasCadastradas.addListSelectionListener(this);
 
 			break;
 		
-		/*case 1:// Mostrar dados de alunos cadastrados (JList)
-			listaNomes = new ControleAluno(dados).getNomeAluno();
-			listaAlunosCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Alunos");
-			titulo = new JLabel("Alunos Cadastrados");
-			cadastroBota = new JButton("Cadastrar");
-			atualizaBota = new JButton("Refresh");
+		case 4:// Mostrar dados de saltos cadastrados (JList)
+			String[] listaSalto = new String[50];
+			s.preCadastrosSalto();
 
-			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(90, 10, 250, 30);
-			listaAlunosCadastrados.setBounds(20, 50, 350, 120);
-			listaAlunosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaAlunosCadastrados.setVisibleRowCount(10);
+			listaSalto = s.listaNomesSapatos();
+			listaSaltosCadastrados = new JList<String>(listaSalto);
+			janela = new JFrame("Loja de Sapatos - Saltos");
+			titulo = new JLabel("Saltos Cadastrados");
+			cadastroSalto = new JButton("Cadastrar salto");
+			cadastroSalto.setFont(new Font("Arial", Font.PLAIN, 11));
+			atualizaSalto = new JButton("Atualizar lista");
+			atualizaSalto.setFont(new Font("Arial", Font.PLAIN, 11));
 
-			cadastroBota.setBounds(70, 177, 100, 30);
-			atualizaBota.setBounds(200, 177, 100, 30);
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaSaltosCadastrados);
+			panel.add(barraScroll);
+
+			cadastroSalto.setBounds(130, 177, 130, 30);
+			atualizaSalto.setBounds(265, 177, 110, 30);
+			botaoVoltar.setBounds(25, 177, 100, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaAlunosCadastrados);
-			janela.add(cadastroBota);
-			janela.add(atualizaBota);
+			janela.add(panel);
+			janela.add(cadastroSalto);
+			janela.add(atualizaSalto);
+			janela.add(botaoVoltar);
+
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
-			cadastroBota.addActionListener(this);
-			atualizaBota.addActionListener(this);
-			listaAlunosCadastrados.addListSelectionListener(this);
+			cadastroSalto.addActionListener(this);
+			atualizaSalto.addActionListener(this);
+			botaoVoltar.addActionListener(this);
+			listaSaltosCadastrados.addListSelectionListener(this);
 
 			break;
 		
-		case 1:// Mostrar dados de alunos cadastrados (JList)
-			listaNomes = new ControleAluno(dados).getNomeAluno();
-			listaAlunosCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Alunos");
-			titulo = new JLabel("Alunos Cadastrados");
-			cadastroBota = new JButton("Cadastrar");
-			atualizaBota = new JButton("Refresh");
+		case 5:// Mostrar dados de tenis cadastrados (JList)
+			String[] listaTenis = new String[50];
+			t.preCadastrosTenis();
 
-			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(90, 10, 250, 30);
-			listaAlunosCadastrados.setBounds(20, 50, 350, 120);
-			listaAlunosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaAlunosCadastrados.setVisibleRowCount(10);
+			listaTenis = t.listaNomesSapatos();
+			listaTenisCadastrados = new JList<String>(listaTenis);
+			janela = new JFrame("Loja de Sapatos - Tenis");
+			titulo = new JLabel("Botas Cadastradas");
+			cadastroTenis = new JButton("Cadastrar tênis");
+			cadastroTenis.setFont(new Font("Arial", Font.PLAIN, 11));
+			atualizaTenis = new JButton("Atualizar lista");
+			atualizaTenis.setFont(new Font("Arial", Font.PLAIN, 11));
 
-			cadastroBota.setBounds(70, 177, 100, 30);
-			atualizaBota.setBounds(200, 177, 100, 30);
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaTenisCadastrados);
+			panel.add(barraScroll);
+
+			cadastroTenis.setBounds(130, 177, 130, 30);
+			atualizaTenis.setBounds(265, 177, 110, 30);
+			botaoVoltar.setBounds(25, 177, 100, 30);
 
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaAlunosCadastrados);
-			janela.add(cadastroBota);
-			janela.add(atualizaBota);
+			janela.add(panel);
+			janela.add(cadastroTenis);
+			janela.add(atualizaTenis);
+			janela.add(botaoVoltar);
+
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
 
-			cadastroBota.addActionListener(this);
-			atualizaBota.addActionListener(this);
-			listaAlunosCadastrados.addListSelectionListener(this);
+			cadastroTenis.addActionListener(this);
+			atualizaTenis.addActionListener(this);
+			botaoVoltar.addActionListener(this);
+			listaTenisCadastrados.addListSelectionListener(this);
 
 			break;
-			
-		case 1:// Mostrar dados de alunos cadastrados (JList)
-			listaNomes = new ControleAluno(dados).getNomeAluno();
-			listaAlunosCadastrados = new JList<String>(listaNomes);
-			janela = new JFrame("Alunos");
-			titulo = new JLabel("Alunos Cadastrados");
-			cadastroBota = new JButton("Cadastrar");
-			atualizaBota = new JButton("Refresh");
-
-			titulo.setFont(new Font("Arial", Font.BOLD, 20));
-			titulo.setBounds(90, 10, 250, 30);
-			listaAlunosCadastrados.setBounds(20, 50, 350, 120);
-			listaAlunosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaAlunosCadastrados.setVisibleRowCount(10);
-
-			cadastroBota.setBounds(70, 177, 100, 30);
-			atualizaBota.setBounds(200, 177, 100, 30);
-
-			janela.setLayout(null);
-
-			janela.add(titulo);
-			janela.add(listaAlunosCadastrados);
-			janela.add(cadastroBota);
-			janela.add(atualizaBota);
-
-			janela.setSize(400, 250);
-			janela.setVisible(true);
-
-			cadastroBota.addActionListener(this);
-			atualizaBota.addActionListener(this);
-			listaAlunosCadastrados.addListSelectionListener(this);
-
-			break;*/
 			
 		default:
 			JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
@@ -326,86 +300,73 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		//Cadastro de novo aluno
+		//Botas
 		if(src == cadastroBota)
 			new TelaDadosBota().cadastrarEditar(1, b, this, 0);
-			//System.out.println("cadastro sapato clicado");
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaBota) {
 			listaBotasCadastradas.setListData(b.listaNomesSapatos());			
 			listaBotasCadastradas.updateUI();
-			//System.out.println("atualiza sapato clicado");
 		}
 		
-		
+		//Chinelos
 		if(src == cadastroChinelo)
-			//new TelaDadosSapato().cadastrarEditar(2, this, 0);
-			System.out.println("cadastro sapato clicado");
+			new TelaDadosChinelo().cadastrarEditar(1, c, this, 0);
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaChinelo) {
 			listaBotasCadastradas.setListData(c.listaNomesSapatos());			
 			listaBotasCadastradas.updateUI();
-			//System.out.println("atualiza sapato clicado");
 		}
 		
-		
-		/*if(src == cadastroChuteira)
-			//new TelaDadosSapatos().cadastrarEditar(1, dados, this, 0);
-			System.out.println("cadastro sapato clicado");
+		//Chuteiras
+		if(src == cadastroChuteira)
+			new TelaDadosChuteira().cadastrarEditar(1, ch, this, 0);
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
-		if(src == atualizaBota) {
-//			listaAlunosCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
-//			listaAlunosCadastrados.updateUI();
+		if(src == atualizaChuteira) {
+			listaChuteirasCadastradas.setListData(ch.listaNomesSapatos());			
+			listaChuteirasCadastradas.updateUI();
 			System.out.println("atualiza sapato clicado");
 		}
 		
 		if(src == cadastroSalto)
-			//new TelaDadosSapatos().cadastrarEditar(1, dados, this, 0);
-			System.out.println("cadastro sapato clicado");
+			new TelaDadosSalto().cadastrarEditar(1, s, this, 0);
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
-		if(src == atualizaBota) {
-//			listaAlunosCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
-//			listaAlunosCadastrados.updateUI();
-			System.out.println("atualiza sapato clicado");
+		if(src == atualizaSalto) {
+			listaSaltosCadastrados.setListData(s.listaNomesSapatos());			
+			listaSaltosCadastrados.updateUI();
+
 		}
 		
-		
+		// Tenis
 		if(src == cadastroTenis)
-			//new TelaDadosSapatos().cadastrarEditar(1, dados, this, 0);
-			System.out.println("cadastro sapato clicado");
+			new TelaDadosTenis().cadastrarEditar(1, t, this, 0);
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
-		if(src == atualizaBota) {
-//			listaAlunosCadastrados.setListData(new ControleAluno(dados).getNomeAluno());			
-//			listaAlunosCadastrados.updateUI();
-			System.out.println("atualiza sapato clicado");
-		}*/
-
+		if(src == atualizaTenis) {
+			listaTenisCadastrados.setListData(t.listaNomesSapatos());			
+			listaTenisCadastrados.updateUI();
+		}
+		
+		if(src == botaoVoltar)
+			this.janela.dispose();
+		
+		
 		// Atualiza a lista de nomes de professores mostrada no JList
 		if(src == bota) {
 			mostrarSapatos(1);
-			//System.out.println("botao bota clicado");
 		}
-			
 		if(src == chinelo) {
 			mostrarSapatos(2);
-			//System.out.println("botao chinelo clicado");
 		}
 		if(src == chuteira) {
 			mostrarSapatos(3);
-			//System.out.println("botao chuteira clicado");
-		}
-		if(src == tenis) {
-//			mostrarSapatos(4);
-			System.out.println("botao tenis clicado");
 		}
 		if(src == salto) {
-//			mostrarSapatos(5);
-			System.out.println("botao salto clicado");
+			mostrarSapatos(4);
+		}
+		if(src == tenis) {
+			mostrarSapatos(5);
 		}
 		if(src == sair) {
 			janelaMenu.dispose();
@@ -421,7 +382,23 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			if(e.getValueIsAdjusting() && src == listaBotasCadastradas) {
 				new TelaDadosBota().cadastrarEditar(2, b, this, 
 						listaBotasCadastradas.getSelectedIndex());
-			}	
+			}
+			if(e.getValueIsAdjusting() && src == listaChinelosCadastrados) {
+				new TelaDadosChinelo().cadastrarEditar(2, c, this, 
+						listaChinelosCadastrados.getSelectedIndex());
+			}
+			if(e.getValueIsAdjusting() && src == listaChuteirasCadastradas) {
+				new TelaDadosChuteira().cadastrarEditar(2, ch, this, 
+						listaChuteirasCadastradas.getSelectedIndex());
+			}
+			if(e.getValueIsAdjusting() && src == listaSaltosCadastrados) {
+				new TelaDadosSalto().cadastrarEditar(2, s, this, 
+						listaSaltosCadastrados.getSelectedIndex());
+			}
+			if(e.getValueIsAdjusting() && src == listaTenisCadastrados) {
+				new TelaDadosTenis().cadastrarEditar(2, t, this, 
+						listaTenisCadastrados.getSelectedIndex());
+			}
 		}catch (NullPointerException exc) {
 			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
 					+ "Produto não econtrado!", null, 
@@ -432,10 +409,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 					JOptionPane.ERROR_MESSAGE);
 	    }
 
-		/*if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(4, dados, this, 
-					listaProfsCadastrados.getSelectedIndex());
-		}*/
 	}
 
 }

@@ -12,7 +12,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JLabel titulo;
 	private JButton cadastroCliente;
 	private JButton atualizaClientes;
-	private JButton voltar;
+	private JButton botaoVoltar;
 	private JPanel panel = new JPanel(new BorderLayout());
 	private JScrollPane barraScroll = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
@@ -22,29 +22,6 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	public void listaClientes() {
 		listaNomes = c.listaNomesClientes();
 	}
-
-	/*public BuscaCliente {
-
-	    JFrame frame = new JFrame("");
-	    AutoCompleteDecorator decorator;
-	    JComboBox combobox;
-
-	    public BuscaCliente() {
-	        combobox = new JComboBox(new listaClientesCadastrados[]{});
-	        AutoCompleteDecorator.decorate(combobox);
-	        frame.setSize(400,400);
-	        frame.setLocationRelativeTo(null);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        frame.setLayout(new FlowLayout());
-
-	        frame.add(combobox);
-	        frame.setVisible(true);
-	    }
-
-	    public static void main(String[] args) {
-	       BuscaCliente bc = new BuscaCliente();
-	    }
-	}*/
 	
 	
 	public void mostrarDados(){
@@ -58,48 +35,41 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 10));
 		atualizaClientes = new JButton("Atualizar lista");
 		atualizaClientes.setFont(new Font("Arial", Font.PLAIN, 11));
-		voltar = new JButton("Voltar");
+		botaoVoltar = new JButton("Voltar");
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 250, 30);
 		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		listaClientesCadastrados.setVisibleRowCount(4);
 		panel.setBounds(25, 50, 350, 120);
-		//barraScroll.setSize(25, 50);
 		listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
 		barraScroll.getViewport().add(listaClientesCadastrados);
         panel.add(barraScroll);
 		
 		cadastroCliente.setBounds(130, 177, 120, 30);
 		atualizaClientes.setBounds(255, 177, 120, 30);
-		voltar.setBounds(25, 177, 100, 30);
+		botaoVoltar.setBounds(25, 177, 100, 30);
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
-//		janela.add(barraScroll);
-//		janela.add(listaClientesCadastrados);
 		janela.add(cadastroCliente);
 		janela.add(atualizaClientes);
-		janela.add(voltar);
+		janela.add(botaoVoltar);
 
 		
 		janela.add(panel);
-//		janela.pack();
+		janela.pack();
 		janela.setSize(400, 260);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		
 		cadastroCliente.addActionListener(this);
 		atualizaClientes.addActionListener(this);
+		botaoVoltar.addActionListener(this);
 		listaClientesCadastrados.addListSelectionListener(this);
 		
 	}
-//	javax.swing.JScrollPane barraScroll = new javax.swing.JScrollPane();
-//	javax.swing.JList lista = new javax.swing.JList();
-//
-//	barraScroll.setSize(40,60);
-//	barraScroll.add(lista);
 
 	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
@@ -116,6 +86,9 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 			listaClientesCadastrados.setListData(listaNomes);			
 			listaClientesCadastrados.updateUI();
 		}
+		
+		if(src == botaoVoltar)
+			janela.dispose();
 	}
 
 	//Captura eventos relacionados ao JList

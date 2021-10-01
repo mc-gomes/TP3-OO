@@ -2,14 +2,14 @@ package modelo;
 
 public class Telefone {
 
-	private String DDD;
-	private String numero;
+	private int DDD;
+	private int numero;
 	
 	public Telefone() {
 		
 	}
 	
-	public Telefone(String cod, String num) {
+	public Telefone(int cod, int num) {
 		DDD = cod;
 		numero = num;
 	}
@@ -19,16 +19,16 @@ public class Telefone {
 		return "(" + DDD + ") " + numero;
 	}
 	
-	public String getdDD() {
+	public int getdDD() {
 		return DDD;
 	}
-	public void setdDD(String dDD) {
+	public void setdDD(int dDD) {
 		this.DDD = dDD;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	

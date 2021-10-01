@@ -74,14 +74,14 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-//				new TelaVendaSapato().cadastrarVenda(2, c, this, 
-//						listaClientesCadastrados.getSelectedIndex());
-				System.out.println("algum cliente foi clicado");
+				JOptionPane.showMessageDialog(null,"As medidas de cadastro de venda\n "
+						+ "ainda precisam ser implementadas", null, 
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}catch (NullPointerException exc) {
-			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
-					+ "Cliente não econtrado!", null, 
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"As medidas de cadastro de venda\n"
+					+ "ainda precisam ser implementadas", null, 
+					JOptionPane.INFORMATION_MESSAGE);
 		}catch (IndexOutOfBoundsException exc) {
 			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
 					+ "Cliente não econtrado!", null, 

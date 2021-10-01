@@ -59,16 +59,10 @@ public class MenuPrincipal implements ActionListener {
 		
 		if(src == sapato)
 			new TelaSapatos().menuDeOpcoes();
-			//System.out.println("botao sapato clicado");
-		//new TelaPessoa().mostrarDados(dados, 2);
 		
 		if(src == venda)
-			//System.out.println("botao venda clicado");
 			new TelaVendaCliente().mostraClientes();
-			/*JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n"
-					+ "relacionadas a curso e a matrícula", null, 
-					JOptionPane.INFORMATION_MESSAGE);*/
+		
 		if (src == sair) {
 			janela.dispose();
 			
