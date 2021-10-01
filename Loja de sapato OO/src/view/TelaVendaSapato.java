@@ -1,5 +1,4 @@
 package view;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -9,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
-public class TelaDadosCliente implements ActionListener {
+public class TelaVendaSapato implements ActionListener {
 
 	private JFrame janela;
 	private JLabel labelNome = new JLabel("Nome:");
@@ -29,16 +28,13 @@ public class TelaDadosCliente implements ActionListener {
 	private JTextField valorTelefone;
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
-	private JButton botaoVoltar = new JButton("Voltar");
 	private static Cliente cliente = new Cliente();
 	
-	//private String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", 
-	//		"Setembro", "Outubro", "Novembro", "Dezembro"};
 	private int posicao;
 	private int opcao;
 	private String s;
 
-	public void cadastrarEditar(int op, Cliente c, 
+	public void cadastrarVenda(int op, Cliente c, 
 			TelaCliente p, int pos) {
 
 		opcao = op;
@@ -75,11 +71,9 @@ public class TelaDadosCliente implements ActionListener {
 			valorDDD = new JTextField(cliente.retornaDado(pos, 7), 200);
 			valorTelefone = new JTextField(cliente.retornaDado(pos, 8), 200);
 			
-			botaoSalvar.setBounds(145, 210, 115, 30);
+			botaoSalvar.setBounds(130, 210, 115, 30);
 			botaoExcluir.setBounds(265, 210, 115, 30);
-			botaoVoltar.setBounds(30, 210, 100, 30);
 			this.janela.add(botaoExcluir);
-			this.janela.add(botaoVoltar);
 
 		}
 	
@@ -132,7 +126,6 @@ public class TelaDadosCliente implements ActionListener {
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
-		botaoVoltar.addActionListener(this);
 	}
 
 
@@ -206,10 +199,6 @@ public class TelaDadosCliente implements ActionListener {
 			if (!res) mensagemSucessoExclusao(); 
 			else mensagemErroExclusaoAluno(); 
 	
-		}
-		
-		if(src == botaoVoltar) {
-			this.janela.dispose();
 		}
 	}
 

@@ -7,7 +7,6 @@ import modelo.*;
 public class MenuPrincipal implements ActionListener {
 	
 	private static JFrame janela = new JFrame("Loja de Sapato");
-	//private static JPanel fundo = new JPanel();
 	private static JLabel titulo = new JLabel("Menu Principal");
 	private static JButton cliente = new JButton("Cliente");
 	private static JButton sapato = new JButton("Sapato");
@@ -20,7 +19,7 @@ public class MenuPrincipal implements ActionListener {
 		
 		int width = 400, height = 300;
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
-		titulo.setBounds(120, 10, 150, 30);
+		titulo.setBounds(125, 10, 150, 30);
 		cliente.setBounds(135, 50, 100, 30);
 		venda.setBounds(135, 150, 100, 30);
 		sapato.setBounds(135, 100, 100, 30);
@@ -56,22 +55,22 @@ public class MenuPrincipal implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == cliente)
-			//System.out.println("botao cliente clicado");
 			new TelaCliente().mostrarDados();
 		
 		if(src == sapato)
-			System.out.println("botao sapato clicado");
+			new TelaSapatos().menuDeOpcoes();
+			//System.out.println("botao sapato clicado");
 		//new TelaPessoa().mostrarDados(dados, 2);
 		
 		if(src == venda)
-			System.out.println("botao venda clicado");
+			//System.out.println("botao venda clicado");
+			new TelaVendaCliente().mostraClientes();
 			/*JOptionPane.showMessageDialog(null, 
 					"Ainda precisam ser implementadas as funcionalidades\n"
 					+ "relacionadas a curso e a matrícula", null, 
 					JOptionPane.INFORMATION_MESSAGE);*/
 		if (src == sair) {
 			janela.dispose();
-			//janela.getDefaultCloseOperation();
 			
 		}
 	}

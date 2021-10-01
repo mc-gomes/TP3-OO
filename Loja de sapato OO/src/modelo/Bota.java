@@ -8,7 +8,7 @@ public class Bota extends Sapato{
 	private String genero;
 	
 	public Bota() {
-		preCadastrosBota();
+		//preCadastrosBota();
 	}
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
@@ -30,10 +30,10 @@ public class Bota extends Sapato{
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
 	public void preCadastrosBota(){
 		
-		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");
-		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
-		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "alto", "infantil");
-		Bota bota4 = new Bota("MADALE", 194.90, 10, "Marrom", "alto", "masculino");
+		Bota bota1 = new Bota("Bota MADALE", 199.60, 10, "Preto", "alto", "feminino");
+		Bota bota2 = new Bota("Bota WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
+		Bota bota3 = new Bota("Bota Tricae", 35.99, 13, "Branco", "alto", "infantil");
+		Bota bota4 = new Bota("Bota MADALE", 194.90, 10, "Marrom", "alto", "masculino");
 		
 		listaDeBota.add(bota1);
 		listaDeBota.add(bota2);
@@ -41,31 +41,35 @@ public class Bota extends Sapato{
 		listaDeBota.add(bota4);
 
 	}
+	
+	public String retornaDado(int pos, int info) {
+		String dado = "";
+		
+		if(info == 1) {
+			dado = listaDeBota.get(pos).getMarca();
+		}
+		else if(info == 2) {
+			dado = String.valueOf(listaDeBota.get(pos).getPreco());
+		}
+		else if(info == 3) {
+			dado = String.valueOf(listaDeBota.get(pos).getQuantidade());
+		}
+		else if(info == 4) {
+			dado = listaDeBota.get(pos).getCor();
+		}
+		else if(info == 5) {
+			dado = listaDeBota.get(pos).getCano();
+		}
+		else if(info == 6) {
+			dado = listaDeBota.get(pos).getGenero();
+		}
+		
+		return dado;
+	}
 
 	Scanner ler = new Scanner (System.in);
 	
-	public void cadastrar() {
-		String marca, cor, cano, genero;
-		double preco;
-		int qtd;
-		
-		System.out.println("-> CADASTRO DE BOTA");
-				
-		System.out.print("Marca: ");
-		marca = ler.nextLine();
-		System.out.print("Preço R$ ");
-		preco = ler.nextDouble();
-		System.out.print("Quantidade a ser cadastrada: ");
-		qtd = ler.nextInt();
-		ler.nextLine();
-		System.out.print("Cor: ");
-		cor = ler.nextLine();
-		System.out.print("Altura do cano (alto/baixo): ");
-		cano = ler.nextLine();
-		System.out.print("Gênero [M/F]: ");
-		genero = ler.nextLine();
-		
-		Bota bota = new Bota(marca, preco, qtd, cor, cano, genero);
+	public void cadastrar(Bota bota) {
 		listaDeBota.add(bota);
 		
 	}
@@ -143,62 +147,41 @@ public class Bota extends Sapato{
 		}
 	}
 	
-	public void editar(int n) {
-		int num = 0;
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeBota.get(pos).setMarca(dado);
+		}
+		else if(info == 2) {
+			listaDeBota.get(pos).setPreco(Double.parseDouble(dado));
+		}
+		else if(info == 3) {
+			listaDeBota.get(pos).setQuantidade(Integer.parseInt(dado));
+		}
+		else if(info == 4) {
+			listaDeBota.get(pos).setCor(dado);
+		}
+		else if(info == 5) {
+			listaDeBota.get(pos).setCano(dado);
+		}
+		else if(info == 6) {
+			listaDeBota.get(pos).setGenero(dado);
+		}
 
-		do {
-			System.out.println("\n-> PRODUTO " + (n+1));
-			System.out.println("Selecione o que deseja alterar:"
-					+ "\n1- Nome da marca (Atual: "+listaDeBota.get(n).getMarca()+")"
-					+ "\n2- Preço (Atual: R$ "+listaDeBota.get(n).getPreco()+")"
-					+ "\n3- Quantidade no estoque (Atual: "+listaDeBota.get(n).getQuantidade()+")"
-					+ "\n4- Cor (Atual: "+listaDeBota.get(n).getCor()+")"
-					+ "\n5- Gênero (Atual: "+listaDeBota.get(n).getGenero()+")"
-					+ "\n6- Altura do cano (Atual: "+listaDeBota.get(n).getCano()+")"
-					+ "\n7- Sair");
-			System.out.print(">> ");
-			num = ler.nextInt();
-			ler.nextLine();
-
-
-			switch (num) {
-				case 1:
-					System.out.println("\nDigite a nova marca: ");
-					listaDeBota.get(n).setMarca(ler.nextLine());
-					break;
-				case 2:
-					System.out.println("\nInforme o novo preço R$ ");
-					listaDeBota.get(n).setPreco(ler.nextDouble());
-					break;
-				case 3:
-					System.out.println("\nInforme a nova quantidade: ");
-					listaDeBota.get(n).setQuantidade(ler.nextInt());
-					break;
-				case 4:
-					System.out.println("\nDigite a nova cor: ");
-					listaDeBota.get(n).setCor(ler.nextLine());
-					break;
-				case 5:
-					System.out.println("\nDigite o novo gênero (masculino,feminino ou infantil): ");
-					listaDeBota.get(n).setGenero(ler.nextLine());
-					break;
-				case 6:
-					System.out.println("\nDigite a nova altura do cano (alto/baixo): ");
-					listaDeBota.get(n).setCano(ler.nextLine());
-					break;
-				case 7:
-					System.out.println("Retornando ao menu...\n");
-					break;
-				default:
-					System.out.println("Opção inválida!\n");
-					break;
-			}
-		} while (num != 7);
+		
 	}
 	
 	public void deletar(int n) {
 		listaDeBota.remove(listaDeBota.get(n));
 		System.out.printf("Produto %d deletado com sucesso!\n", (n+1));
+	}
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeBota.size(); i++) {
+			listaNomes[i] = listaDeBota.get(i).getMarca();
+		}
+		return listaNomes;
 	}
 	
 	public int selecionaProduto() {

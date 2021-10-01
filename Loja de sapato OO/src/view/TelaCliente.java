@@ -2,6 +2,7 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.event.*;
 import modelo.*;
 
@@ -11,6 +12,9 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private JLabel titulo;
 	private JButton cadastroCliente;
 	private JButton atualizaClientes;
+	private JButton voltar;
+	private JPanel panel = new JPanel(new BorderLayout());
+	private JScrollPane barraScroll = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
@@ -19,60 +23,98 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		listaNomes = c.listaNomesClientes();
 	}
 
+	/*public BuscaCliente {
+
+	    JFrame frame = new JFrame("");
+	    AutoCompleteDecorator decorator;
+	    JComboBox combobox;
+
+	    public BuscaCliente() {
+	        combobox = new JComboBox(new listaClientesCadastrados[]{});
+	        AutoCompleteDecorator.decorate(combobox);
+	        frame.setSize(400,400);
+	        frame.setLocationRelativeTo(null);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.setLayout(new FlowLayout());
+
+	        frame.add(combobox);
+	        frame.setVisible(true);
+	    }
+
+	    public static void main(String[] args) {
+	       BuscaCliente bc = new BuscaCliente();
+	    }
+	}*/
+	
+	
 	public void mostrarDados(){
 		c.preCadastrosCliente();
-		listaClientes();// listaNomes = c.listaNomesClientes();
+		listaClientes();
 
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Loja de Sapatos - Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
-		cadastroCliente = new JButton("Cadastrar");
-		atualizaClientes = new JButton("Atualizar");
+		cadastroCliente = new JButton("Cadastrar cliente");
+		cadastroCliente.setFont(new Font("Arial", Font.PLAIN, 10));
+		atualizaClientes = new JButton("Atualizar lista");
+		atualizaClientes.setFont(new Font("Arial", Font.PLAIN, 11));
+		voltar = new JButton("Voltar");
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
-		titulo.setBounds(90, 10, 250, 30);
-		listaClientesCadastrados.setBounds(20, 50, 350, 120);
+		titulo.setBounds(125, 10, 250, 30);
 		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listaClientesCadastrados.setVisibleRowCount(10);
+		listaClientesCadastrados.setVisibleRowCount(4);
+		panel.setBounds(25, 50, 350, 120);
+		//barraScroll.setSize(25, 50);
+		listaClientesCadastrados.setLayoutOrientation(JList.VERTICAL);
+		barraScroll.getViewport().add(listaClientesCadastrados);
+        panel.add(barraScroll);
 		
-		cadastroCliente.setBounds(70, 177, 120, 30);
-		atualizaClientes.setBounds(200, 177, 100, 30);
+		cadastroCliente.setBounds(130, 177, 120, 30);
+		atualizaClientes.setBounds(255, 177, 120, 30);
+		voltar.setBounds(25, 177, 100, 30);
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
-		janela.add(listaClientesCadastrados);
+//		janela.add(barraScroll);
+//		janela.add(listaClientesCadastrados);
 		janela.add(cadastroCliente);
 		janela.add(atualizaClientes);
+		janela.add(voltar);
+
 		
-		janela.setSize(400, 250);
+		janela.add(panel);
+//		janela.pack();
+		janela.setSize(400, 260);
+		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		
 		cadastroCliente.addActionListener(this);
 		atualizaClientes.addActionListener(this);
 		listaClientesCadastrados.addListSelectionListener(this);
 		
-//		JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
-//					JOptionPane.ERROR_MESSAGE);
-
 	}
-
+//	javax.swing.JScrollPane barraScroll = new javax.swing.JScrollPane();
+//	javax.swing.JList lista = new javax.swing.JList();
+//
+//	barraScroll.setSize(40,60);
+//	barraScroll.add(lista);
 
 	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		//Cadastro de novo aluno
+		//Cadastro de novo cliente
 		if(src == cadastroCliente)
 			new TelaDadosCliente().cadastrarEditar(1, c, this, 0);
 			//System.out.println("cadastro cliente clicado");
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
+		// Atualiza a lista de nomes de clientes mostrada no JList
 		if(src == atualizaClientes) {
 			listaClientes();
 			listaClientesCadastrados.setListData(listaNomes);			
 			listaClientesCadastrados.updateUI();
-//			System.out.println("botao atualizar clicado");
 		}
 	}
 

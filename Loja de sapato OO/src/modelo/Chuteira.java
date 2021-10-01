@@ -9,7 +9,7 @@ public class Chuteira extends Sapato{
 	private String cano;
 	
 	public Chuteira() {
-		preCadastrosChuteira();
+		
 	}
 	
 	public Chuteira(String n, String m, double p, int q,  String c, String t, String ca) {
@@ -144,6 +144,14 @@ public class Chuteira extends Sapato{
 				
 			} while(modo != 4);	
 		}
+	}
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeChuteira.size(); i++) {
+			listaNomes[i] = listaDeChuteira.get(i).getNome();
+		}
+		return listaNomes;
 	}
 	
 	public String getNome() {

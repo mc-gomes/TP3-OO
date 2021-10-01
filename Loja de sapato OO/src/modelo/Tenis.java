@@ -136,6 +136,14 @@ public class Tenis extends Sapato{
 			}while(modo != 4);
 		}
 	}
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeTenis.size(); i++) {
+			listaNomes[i] = listaDeTenis.get(i).getMarca();
+		}
+		return listaNomes;
+	}
 
 	public String getMarca() {
 		return marca;
