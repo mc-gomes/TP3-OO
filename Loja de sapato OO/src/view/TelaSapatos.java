@@ -24,15 +24,18 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	private JButton atualizaChinelo;
 	private JButton cadastroChuteria;
 	private JButton atualizaChuteria;
-	private JButton cadastroTenis;
-	private JButton atualizaTenis;
 	private JButton cadastroSalto;
 	private JButton atualizaSalto;
+	private JButton cadastroTenis;
+	private JButton atualizaTenis;
 	private JList<String> listaBotasCadastradas;
 	private JList<String> listaChinelosCadastrados;
 	private JList<String> listaChuteirasCadastradas;
-	private JList<String> listaTenisCadastrados;
 	private JList<String> listaSaltosCadastrados;
+	private JList<String> listaTenisCadastrados;
+	
+	private JPanel panel = new JPanel(new BorderLayout());
+	private JScrollPane barraScroll = new JScrollPane();
 	Bota b = new Bota();
 	Chinelo c = new Chinelo();
 	Chuteira ch = new Chuteira();
@@ -101,9 +104,12 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(125, 10, 250, 30);
-			listaBotasCadastradas.setBounds(25, 50, 350, 120);
-			listaBotasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaBotasCadastradas.setVisibleRowCount(10);
+			//listaBotasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			//listaBotasCadastradas.setVisibleRowCount(5);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaBotasCadastradas);
+			//listaBotasCadastradas.setBounds(25, 50, 350, 120);
+			panel.add(barraScroll);
 
 			cadastroBota.setBounds(130, 177, 120, 30);
 			atualizaBota.setBounds(255, 177, 120, 30);
@@ -111,9 +117,11 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaBotasCadastradas);
+			//janela.add(listaBotasCadastradas);
+			janela.add(panel);
 			janela.add(cadastroBota);
 			janela.add(atualizaBota);
+			
 
 			janela.setSize(400, 250);
 			janela.setVisible(true);
@@ -140,9 +148,13 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(125, 10, 250, 30);
-			listaChinelosCadastrados.setBounds(25, 50, 350, 120);
-			listaChinelosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaChinelosCadastrados.setVisibleRowCount(10);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaChinelosCadastrados);
+			panel.add(barraScroll);
+			
+			//listaChinelosCadastrados.setBounds(25, 50, 350, 120);
+//			listaChinelosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//			listaChinelosCadastrados.setVisibleRowCount(10);
 
 			cadastroChinelo.setBounds(130, 177, 120, 30);
 			atualizaChinelo.setBounds(255, 177, 120, 30);
@@ -150,7 +162,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaChinelosCadastrados);
+			janela.add(panel);
 			janela.add(cadastroChinelo);
 			janela.add(atualizaChinelo);
 
@@ -179,9 +191,12 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			titulo.setFont(new Font("Arial", Font.BOLD, 15));
 			titulo.setBounds(125, 10, 250, 30);
-			listaChuteirasCadastradas.setBounds(25, 50, 350, 120);
-			listaChuteirasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			listaChuteirasCadastradas.setVisibleRowCount(10);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaChuteirasCadastradas);
+			panel.add(barraScroll);
+			
+//			listaChuteirasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//			listaChuteirasCadastradas.setVisibleRowCount(10);
 
 			cadastroChuteria.setBounds(120, 177, 130, 30);
 			atualizaChuteria.setBounds(255, 177, 120, 30);
@@ -189,7 +204,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			janela.setLayout(null);
 
 			janela.add(titulo);
-			janela.add(listaChuteirasCadastradas);
+			janela.add(panel);
 			janela.add(cadastroChuteria);
 			janela.add(atualizaChuteria);
 
@@ -313,7 +328,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo aluno
 		if(src == cadastroBota)
-			new TelaDadosSapato().cadastrarEditar(1, this, 0);
+			new TelaDadosBota().cadastrarEditar(1, b, this, 0);
 			//System.out.println("cadastro sapato clicado");
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
@@ -325,8 +340,8 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		
 		if(src == cadastroChinelo)
-			new TelaDadosSapato().cadastrarEditar(2, this, 0);
-			//System.out.println("cadastro sapato clicado");
+			//new TelaDadosSapato().cadastrarEditar(2, this, 0);
+			System.out.println("cadastro sapato clicado");
 
 		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaChinelo) {
@@ -401,16 +416,26 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	//Captura eventos relacionados ao JList
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
+		
+		try {
+			if(e.getValueIsAdjusting() && src == listaBotasCadastradas) {
+				new TelaDadosBota().cadastrarEditar(2, b, this, 
+						listaBotasCadastradas.getSelectedIndex());
+			}	
+		}catch (NullPointerException exc) {
+			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+					+ "Produto não econtrado!", null, 
+					JOptionPane.ERROR_MESSAGE);
+		}catch (IndexOutOfBoundsException exc) {
+			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
+					+ "Produto não econtrado!", null, 
+					JOptionPane.ERROR_MESSAGE);
+	    }
 
-		if(e.getValueIsAdjusting() && src == listaAlunosCadastrados) {
-			new TelaDetalhePessoa().inserirEditar(3, dados, this, 
-					listaAlunosCadastrados.getSelectedIndex());
-		}
-
-		if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
+		/*if(e.getValueIsAdjusting() && src == listaProfsCadastrados) {
 			new TelaDetalhePessoa().inserirEditar(4, dados, this, 
 					listaProfsCadastrados.getSelectedIndex());
-		}
+		}*/
 	}
 
 }
