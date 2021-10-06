@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Chuteira extends Sapato{
 	private String nome;
@@ -30,6 +29,7 @@ public class Chuteira extends Sapato{
 	}
 	
 	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
+	
 	public void preCadastrosChuteira(){
 		
 		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "Society", "baixo");
@@ -43,8 +43,6 @@ public class Chuteira extends Sapato{
 		listaDeChuteira.add(chuteira4);	
 
 	}
-	
-	Scanner ler = new Scanner (System.in);
 	
 	public void cadastrar(Chuteira chuteira) {
 		listaDeChuteira.add(chuteira);	

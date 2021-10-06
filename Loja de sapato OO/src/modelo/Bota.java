@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Bota extends Sapato{
 	private String cano;
@@ -28,6 +27,7 @@ public class Bota extends Sapato{
 	}
 	
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
+	
 	public void preCadastrosBota(){
 		
 		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");

@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Tenis extends Sapato{
 	private String tipo;
@@ -24,7 +23,6 @@ public class Tenis extends Sapato{
 				+ quantidade  + "\n-Cor: " + cor + "\n-Tipo do Tenis: " + tipo + "\n";
 	}
 	ArrayList<Tenis> listaDeTenis = new ArrayList<Tenis>();
-	Scanner ler = new Scanner (System.in);
 	
 	public void preCadastrosTenis(){
 
