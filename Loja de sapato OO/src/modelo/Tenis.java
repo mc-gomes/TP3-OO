@@ -40,29 +40,8 @@ public class Tenis extends Sapato{
 
 	}
 	
-	
 	public void cadastrar(Tenis tenis) {
 		listaDeTenis.add(tenis);	
-	}
-	
-	public void editar(int pos, String dado, int info) {
-		
-		if(info == 1) {
-			listaDeTenis.get(pos).setMarca(dado);
-		}
-		else if(info == 2) {
-			listaDeTenis.get(pos).setPreco(Double.parseDouble(dado));
-		}
-		else if(info == 3) {
-			listaDeTenis.get(pos).setQuantidade(Integer.parseInt(dado));
-		}
-		else if(info == 4) {
-			listaDeTenis.get(pos).setCor(dado);
-		}
-		else if(info == 5) {
-			listaDeTenis.get(pos).setTipo(dado);
-		}
-		
 	}
 	
 	public String retornaDado(int pos, int info) {
@@ -85,6 +64,26 @@ public class Tenis extends Sapato{
 		}
 		
 		return dado;
+	}
+	
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeTenis.get(pos).setMarca(dado);
+		}
+		else if(info == 2) {
+			listaDeTenis.get(pos).setPreco(Double.parseDouble(dado));
+		}
+		else if(info == 3) {
+			listaDeTenis.get(pos).setQuantidade(Integer.parseInt(dado));
+		}
+		else if(info == 4) {
+			listaDeTenis.get(pos).setCor(dado);
+		}
+		else if(info == 5) {
+			listaDeTenis.get(pos).setTipo(dado);
+		}
+		
 	}
 	
 	public void deletar(int n) {

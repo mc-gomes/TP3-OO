@@ -8,7 +8,7 @@ public class Bota extends Sapato{
 	private String genero;
 	
 	public Bota() {
-		//preCadastrosBota();
+		
 	}
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
@@ -30,16 +30,20 @@ public class Bota extends Sapato{
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
 	public void preCadastrosBota(){
 		
-		Bota bota1 = new Bota("Bota MADALE", 199.60, 10, "Preto", "alto", "feminino");
-		Bota bota2 = new Bota("Bota WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
-		Bota bota3 = new Bota("Bota Tricae", 35.99, 13, "Branco", "alto", "infantil");
-		Bota bota4 = new Bota("Bota MADALE", 194.90, 10, "Marrom", "alto", "masculino");
+		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");
+		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
+		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "alto", "infantil");
+		Bota bota4 = new Bota("MADALE", 194.90, 10, "Marrom", "alto", "masculino");
 		
 		listaDeBota.add(bota1);
 		listaDeBota.add(bota2);
 		listaDeBota.add(bota3);
 		listaDeBota.add(bota4);
 
+	}
+	
+	public void cadastrar(Bota bota) {
+		listaDeBota.add(bota);
 	}
 	
 	public String retornaDado(int pos, int info) {
@@ -66,13 +70,6 @@ public class Bota extends Sapato{
 		
 		return dado;
 	}
-
-	Scanner ler = new Scanner (System.in);
-	
-	public void cadastrar(Bota bota) {
-		listaDeBota.add(bota);
-		
-	}
 	
 	public void editar(int pos, String dado, int info) {
 		
@@ -94,7 +91,6 @@ public class Bota extends Sapato{
 		else if(info == 6) {
 			listaDeBota.get(pos).setGenero(dado);
 		}
-		
 	}
 	
 	public void deletar(int n) {
@@ -107,26 +103,6 @@ public class Bota extends Sapato{
 			listaNomes[i] = listaDeBota.get(i).getMarca();
 		}
 		return listaNomes;
-	}
-	
-	public int selecionaProduto() {
-		int num;
-		System.out.println("<<BOTAS CADASTRADAS>>\n");
-		for(int i=0; i<listaDeBota.size(); i++) {
-			System.out.println("-> PRODUTO " + (i+1));
-			System.out.println(listaDeBota.get(i).toString());
-		}
-		
-		do {
-			System.out.print("Selecione um produto: ");
-			num = ler.nextInt();
-			
-			if(num < 1 || num > listaDeBota.size())
-				System.out.println("Opção inválida, informe novamente.\n");
-			
-		}while (num < 1 || num > listaDeBota.size());
-		
-		return num;
 	}
 	
 	public String getMarca() {

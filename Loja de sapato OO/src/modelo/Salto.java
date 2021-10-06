@@ -47,29 +47,6 @@ public class Salto extends Sapato{
 		listaDeSalto.add(salto);	
 	}
 	
-	public void editar(int pos, String dado, int info) {
-		
-		if(info == 1) {
-			listaDeSalto.get(pos).setMarca(dado);
-		}
-		else if(info == 2) {
-			listaDeSalto.get(pos).setPreco(Double.parseDouble(dado));
-		}
-		else if(info == 3) {
-			listaDeSalto.get(pos).setQuantidade(Integer.parseInt(dado));
-		}
-		else if(info == 4) {
-			listaDeSalto.get(pos).setCor(dado);
-		}
-		else if(info == 5) {
-			listaDeSalto.get(pos).setTamDoSalto(Integer.parseInt(dado));
-		}
-		else if(info == 6) {
-			listaDeSalto.get(pos).setTipoDoSalto(dado);
-		}
-		
-	}
-	
 	public String retornaDado(int pos, int info) {
 		String dado = "";
 		
@@ -93,6 +70,29 @@ public class Salto extends Sapato{
 		}
 		
 		return dado;
+	}
+	
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeSalto.get(pos).setMarca(dado);
+		}
+		else if(info == 2) {
+			listaDeSalto.get(pos).setPreco(Double.parseDouble(dado));
+		}
+		else if(info == 3) {
+			listaDeSalto.get(pos).setQuantidade(Integer.parseInt(dado));
+		}
+		else if(info == 4) {
+			listaDeSalto.get(pos).setCor(dado);
+		}
+		else if(info == 5) {
+			listaDeSalto.get(pos).setTamDoSalto(Integer.parseInt(dado));
+		}
+		else if(info == 6) {
+			listaDeSalto.get(pos).setTipoDoSalto(dado);
+		}
+		
 	}
 	
 	public void deletar(int n) {

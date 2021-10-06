@@ -50,29 +50,6 @@ public class Chuteira extends Sapato{
 		listaDeChuteira.add(chuteira);	
 	}
 	
-	public void editar(int pos, String dado, int info) {
-		
-		if(info == 1) {
-			listaDeChuteira.get(pos).setMarca(dado);
-		}
-		else if(info == 2) {
-			listaDeChuteira.get(pos).setPreco(Double.parseDouble(dado));
-		}
-		else if(info == 3) {
-			listaDeChuteira.get(pos).setQuantidade(Integer.parseInt(dado));
-		}
-		else if(info == 4) {
-			listaDeChuteira.get(pos).setCor(dado);
-		}
-		else if(info == 5) {
-			listaDeChuteira.get(pos).setCano(dado);
-		}
-		else if(info == 6) {
-			listaDeChuteira.get(pos).setTipo(dado);
-		}
-		
-	}
-	
 	public String retornaDado(int pos, int info) {
 		String dado = "";
 		
@@ -99,6 +76,29 @@ public class Chuteira extends Sapato{
 		}
 		
 		return dado;
+	}
+	
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeChuteira.get(pos).setMarca(dado);
+		}
+		else if(info == 2) {
+			listaDeChuteira.get(pos).setPreco(Double.parseDouble(dado));
+		}
+		else if(info == 3) {
+			listaDeChuteira.get(pos).setQuantidade(Integer.parseInt(dado));
+		}
+		else if(info == 4) {
+			listaDeChuteira.get(pos).setCor(dado);
+		}
+		else if(info == 5) {
+			listaDeChuteira.get(pos).setCano(dado);
+		}
+		else if(info == 6) {
+			listaDeChuteira.get(pos).setTipo(dado);
+		}
+		
 	}
 	
 	public void deletar(int n) {
