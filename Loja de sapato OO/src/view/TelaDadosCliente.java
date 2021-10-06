@@ -30,16 +30,15 @@ public class TelaDadosCliente implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoVoltar = new JButton("Voltar");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private static Cliente cliente = new Cliente();
 	
-	//private String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", 
-	//		"Setembro", "Outubro", "Novembro", "Dezembro"};
+
 	private int posicao;
 	private int opcao;
 	private String s;
 
-	public void cadastrarEditar(int op, Cliente c, 
-			TelaCliente p, int pos) {
+	public void cadastrarEditar(int op, Cliente c, TelaCliente p, int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -61,7 +60,9 @@ public class TelaDadosCliente implements ActionListener {
 			valorDDD = new JTextField(3);
 			valorTelefone = new JTextField(10);
 			
-			botaoSalvar.setBounds(265, 210, 115, 30);
+			botaoSalvar.setBounds(145, 210, 110, 30);
+			botaoCancelar.setBounds(265, 210, 115, 30);
+			this.janela.add(botaoCancelar);
 		}
 		//Preenche com dados do cliente clicado
 		if (op == 2) {
@@ -133,6 +134,7 @@ public class TelaDadosCliente implements ActionListener {
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltar.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -158,9 +160,9 @@ public class TelaDadosCliente implements ActionListener {
 				est = valorUF.getText();
 				nvEnd.setEstado(est);
 				ddd = valorDDD.getText();
-				nvTel.setdDD(ddd);
+				nvTel.setdDD(Integer.parseInt(ddd));
 				num = valorTelefone.getText();
-				nvTel.setNumero(num);
+				nvTel.setNumero(Integer.parseInt(num));
 				
 				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
 				
@@ -208,7 +210,7 @@ public class TelaDadosCliente implements ActionListener {
 					}
 					else mensagemErroCadastro();
 				}
-
+				
 			} catch (NullPointerException exc1) {
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
@@ -217,17 +219,12 @@ public class TelaDadosCliente implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-			boolean res = false;
-
 			cliente.deletar(posicao);
-			if (!res) mensagemSucessoExclusao(); 
-			else mensagemErroExclusaoAluno(); 
-	
+			mensagemSucessoExclusao();
 		}
 		
-		if(src == botaoVoltar) {
+		if(src == botaoVoltar || src == botaoCancelar)
 			this.janela.dispose();
-		}
 	}
 
 	public void mensagemSucessoExclusao() {
@@ -242,12 +239,6 @@ public class TelaDadosCliente implements ActionListener {
 				+ "Lembre-se de atualizar a lista de cadastro!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
-	}
-	
-	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR CLIENTE!\n\n"
-				+ "Cliente não econtrado!", null, 
-				JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void mensagemErroCadastro() {

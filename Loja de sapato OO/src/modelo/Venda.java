@@ -18,10 +18,11 @@ public class Venda {
 	}
 	
 	
+	//PRECISA TER OS CRUDs
 	ArrayList<Venda> vendas = new ArrayList<Venda>();
-	Scanner ler = new Scanner(System.in);
 	
 	public void cadastrarVenda(Cliente client, Sapato produt, int qtd){
+//		Scanner ler = new Scanner(System.in);
 //		
 //		String nomeCliente = client.getNome();
 		
