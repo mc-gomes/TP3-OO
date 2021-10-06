@@ -12,7 +12,6 @@ public class Chuteira extends Sapato{
 		
 	}
 	
-	
 	public Chuteira(String n, String m, double p, int q,  String c, String t, String ca) {
 		nome = n;
 		this.marca = m;
@@ -25,116 +24,94 @@ public class Chuteira extends Sapato{
 
 	@Override
 	public String toString() {
-		return "-Nome da chuteira: " + nome + "-\nMarca: " + marca + "Tipo: " + tipo +
+		return "-Nome da chuteira: " + nome + "\n-Marca: " + marca + "\n-Tipo: " + tipo +
 				"\n-Preço R$ " + preco + "\n-Quantidade em estoque: " + quantidade  +
 				"\n-Cor: " + cor + "\n-Altura do cano: " + cano + "\n";
 	}
+	
 	ArrayList<Chuteira> listaDeChuteira = new ArrayList<Chuteira>();
-	public ArrayList<Chuteira> preencher(){
+	public void preCadastrosChuteira(){
 		
-		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "Society", "cano baixo");
-		Chuteira chuteira2 = new Chuteira("Predator 19.4", "Adidas", 139.90, 50, "Preta", "Campo", "cano alto");
-		Chuteira chuteira3 = new Chuteira("Morelia Club IN", "Mizuno", 109.99, 50, "Preta", "Futsal", "cano baixo");
-		Chuteira chuteira4 = new Chuteira("Deportivo", "Adidas", 169.99, 50, "Verde", "Futsal", "cano baixo");
+		Chuteira chuteira1 = new Chuteira("Beco 2 TF", "Nike", 139.90, 50, "Vermelha", "Society", "baixo");
+		Chuteira chuteira2 = new Chuteira("Predator 19.4", "Adidas", 139.90, 50, "Preta", "Campo", "alto");
+		Chuteira chuteira3 = new Chuteira("Morelia Club IN", "Mizuno", 109.99, 50, "Preta", "Futsal", "baixo");
+		Chuteira chuteira4 = new Chuteira("Deportivo", "Adidas", 169.99, 50, "Verde", "Futsal", "baixo");
 		
 		listaDeChuteira.add(chuteira1);
 		listaDeChuteira.add(chuteira2);
 		listaDeChuteira.add(chuteira3);
 		listaDeChuteira.add(chuteira4);	
 
-		return listaDeChuteira;
 	}
 	
 	Scanner ler = new Scanner (System.in);
 	
+	public void cadastrar(Chuteira chuteira) {
+		listaDeChuteira.add(chuteira);	
+	}
 	
-	public void cadastrar() {
-		String nome, marca, cor, cano, tipo;
-		double preco;
-		int qtd;
+	public void editar(int pos, String dado, int info) {
 		
-		System.out.print("Nome da chuteira: ");
-		nome = ler.nextLine();
-		System.out.print("Marca: ");
-		marca = ler.nextLine();
-		System.out.print("Tipo da chuteira: ");
-		tipo = ler.nextLine();
-		System.out.print("Preço R$ ");
-		preco = ler.nextDouble();
-		System.out.print("Quantidade a ser cadastrada: ");
-		qtd = ler.nextInt();
-		ler.nextLine();
-		System.out.print("Cor: ");
-		cor = ler.nextLine();
-		System.out.print("Altura do cano: ");
-		cano = ler.nextLine();
-		
-		Chuteira chuteira = new Chuteira(nome, marca, preco, qtd, cor, tipo, cano);
-		listaDeChuteira.add(chuteira);
+		if(info == 1) {
+			listaDeChuteira.get(pos).setMarca(dado);
+		}
+		else if(info == 2) {
+			listaDeChuteira.get(pos).setPreco(Double.parseDouble(dado));
+		}
+		else if(info == 3) {
+			listaDeChuteira.get(pos).setQuantidade(Integer.parseInt(dado));
+		}
+		else if(info == 4) {
+			listaDeChuteira.get(pos).setCor(dado);
+		}
+		else if(info == 5) {
+			listaDeChuteira.get(pos).setCano(dado);
+		}
+		else if(info == 6) {
+			listaDeChuteira.get(pos).setTipo(dado);
+		}
 		
 	}
-
-	public void visualizar() {
-		int modo;
+	
+	public String retornaDado(int pos, int info) {
+		String dado = "";
 		
-		do {
-			System.out.println("Deseja visualizar por:"
-					+ "\n1- Faixa de preço"
-					+ "\n2- Marca"
-					+ "\n3- Visualizar todos"
-					+ "\n4- Sair da visualização");
-			System.out.print(">> ");
-			modo = ler.nextInt();
-			
-			
-			if(modo == 1) {
-				// mostrar faixa de preco
-				int precoMin, precoMax;
-				System.out.print("\nInforme o preço mínimo (valor inteiro): ");
-				precoMin = ler.nextInt();
-				System.out.print("Informe o preço máximo (valor inteiro): ");
-				precoMax = ler.nextInt();
-				
-				for(int i=0; i<listaDeChuteira.size(); i++) {
-					if(precoMin < listaDeChuteira.get(i).getPreco() && listaDeChuteira.get(i).getPreco() < precoMax){
-						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeChuteira.get(i).toString());
-					}
-				}
-			}
-			else if(modo == 2) {
-				// mostrar pela marca
-				String marca;
-				boolean check = false;
-				System.out.print("\nInforme o nome da marca: ");
-				marca = ler.nextLine();
-				
-				for(int i=0; i<listaDeChuteira.size(); i++) {
-					if(marca.equals(listaDeChuteira.get(i).getMarca())) {
-						check = true;
-						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeChuteira.get(i).toString());
-					}
-				}
-				if(!check) {
-					System.out.println("Marca não encontrada!");
-				}
-			}
-			else if(modo == 3) {
-				for(int i=0; i<listaDeChuteira.size(); i++) {
-					System.out.println("\n-> PRODUTO " + (i+1));
-					System.out.println(listaDeChuteira.get(i).toString());
-				}
-			}
-			else if(modo == 4) {
-				System.out.println("Encerrando visualização...");
-				break;
-			}
-			else {
-				System.out.println("Opção inválida!");
-			}
-			
-		}while(modo != 4);
+		if(info == 1) {
+			dado = listaDeChuteira.get(pos).getNome();
+		}
+		else if(info == 2) {
+			dado = listaDeChuteira.get(pos).getMarca();
+		}
+		else if(info == 3) {
+			dado = String.valueOf(listaDeChuteira.get(pos).getPreco());
+		}
+		else if(info == 4) {
+			dado = String.valueOf(listaDeChuteira.get(pos).getQuantidade());
+		}
+		else if(info == 5) {
+			dado = listaDeChuteira.get(pos).getCor();
+		}
+		else if(info == 6) {
+			dado = listaDeChuteira.get(pos).getCano();
+		}
+		else if(info == 7) {
+			dado = listaDeChuteira.get(pos).getTipo();
+		}
+		
+		return dado;
+	}
+	
+	public void deletar(int n) {
+		listaDeChuteira.remove(listaDeChuteira.get(n));
+	}
+
+	
+	public String[] listaNomesSapatos() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeChuteira.size(); i++) {
+			listaNomes[i] = listaDeChuteira.get(i).getNome();
+		}
+		return listaNomes;
 	}
 	
 	public String getNome() {
@@ -170,6 +147,14 @@ public class Chuteira extends Sapato{
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public String getCano() {
+		return cano;
+	}
+
+	public void setCano(String cano) {
+		this.cano = cano;
 	}
 
 	public String getTipo() {

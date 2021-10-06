@@ -19,7 +19,6 @@ public abstract class Sapato {
 		
 	}
 	
-	
 	public String getMarca() {
 		return marca;
 	}

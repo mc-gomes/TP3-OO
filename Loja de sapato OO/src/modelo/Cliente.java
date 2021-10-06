@@ -9,8 +9,9 @@ public class Cliente {
 	private Telefone telefone;
 	
 	public Cliente() {
-		
+
 	}
+	
 	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
 		nome = n;
@@ -20,65 +21,169 @@ public class Cliente {
 		telefone = t;
 	}
 	
-	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
-	Scanner ler = new Scanner (System.in);
+	@Override
+	public String toString() {
+		return "-Nome do cliente: " + nome + "\n-CPF: " + cPF + "\n-Data de nascimento: "
+				+ dtNascimento + "\n-Endereço: " + endereco.toString() + "\n-Telefone: "+
+				telefone.toString() +"\n";
+	}
 	
-	public void cadastrar() {
-		String nome, dtNasc, cpf;
-		Endereco ender = new Endereco();
-		Telefone tel = new Telefone();
-				
-		System.out.print("Nome do cliente: ");
-		nome = ler.nextLine();
-		System.out.print("Data de nascimento (D/M/AA): ");
-		dtNasc = ler.nextLine();
-		System.out.print("Informe o CPF: ");
-		cpf = ler.nextLine();
-		System.out.print("Endereço: ");
-		ender.setEndereco(ler.nextLine());
-		System.out.print("Cidade: ");
-		ender.setCidade(ler.nextLine());
-		System.out.print("Estado: ");
-		ender.setEstado(ler.nextLine());
-		System.out.print("DDD do telefone: ");
-		tel.setdDD(ler.nextLine());
-		System.out.print("Número de telefone: ");
-		tel.setNumero(ler.nextLine());
+	ArrayList<Cliente> listaDeCliente = new ArrayList<Cliente>();
+
+	
+	public void preCadastrosCliente(){
+		Endereco end1 = new Endereco("Gama", "Brasília", "DF");
+		Endereco end2 = new Endereco("Gama", "Brasília", "DF");
 		
-		Cliente cliente = new Cliente(nome, dtNasc, cpf, ender, tel);
-		listaDeCliente.add(cliente);
+		Telefone tel1 = new Telefone(61, 76842637);
+		Telefone tel2 = new Telefone(61, 992434155);
+		
+		Cliente cliente1 = new Cliente("Laura", "29/08/00", "19009090100", end1, tel1);
+		Cliente cliente2 = new Cliente("Matheus", "02/01/01", "19009333100", end2, tel2);
+		
+		listaDeCliente.add(cliente1);
+		listaDeCliente.add(cliente2);
 		
 	}
 	
-	//Dados dos Clientes
-//	public ArrayList<Cliente> preencher(){
-//		String[]nomeCadastrado= {"Freddy Krueger","Michael Myers","Caleb Quinn" ,"Anna Bear", "Lisa Sherwood","Max Thompson Jr","Amanda Young","Kazan Yamaoka","Kenneth Chase","Philip Ojomo","Herman Carter","Sally Smithson"};
-//		String[]dtnascimentoCadastrado= {"02/09/1938","30/01/1962","09/10/1985","06/08/1974","13/04/1968","20/01/1998","07/08/1997","10/04/1999","25/11/1948","27/12/1967","02/07/2000","910/07/1974"};
-//		String[]cPFCadastrado= {"96722590003","87492471076","04890332022","57118790060","25682175026","20734172052","89073252008","28847699002","37314576017","16357756040","09677245031","60477583040"};
-//		String[]enderecoCadastrado= {"Elm Street, Escola Primaria de Badham","Haddonfield, Travessa Lampkin","Tumulo de Glenvale,Salao Dead Dawg","Floresta Vermelha, Refugio da Cacadora","Pantano do Remanso, Despensa Cruel","Fazenda Coldwind, Abatedouro Asqueroso","Fabrica de Embalagem de Carnes Gideon","Propriedade dos Yamaoka,Santuario da Ira","Hospicio Crotus Prenn,Capela do Padre Campbell","Ferro Velho Autohaven, Abrigo Sangrento","Instituto Memorial Lery,Centro de Tratamento","Hospicio Crotus Prenn, Enfermeira Conturbada"};
-//		String[]CEPCadastrado= {"61942330","69265970","78659970","98385970","71258135","58475972","79442970","76940970","72545509","35200970","68633971","45657308"};
-//		String[]bairroCadastrado= {"Outra Banda","Centro","Centro Metropolitano","Areal","Setor Norte (Vila Estrutural - Guará)","Mandacaru","Bom Fim","Cruzeiro","Vargem","Centro A","Interlagos","Lourdes"};
-//		int[]numeroCadastrado= {20,547,68,32,785,346,81,1242,5789,101,13,1501};
-//		String[]cidadeCadastrado= {"Maranguape","Apuí","Nova Primavera","Dois Irmãos das Missões","Brasília","Queimadas","Bom Fim","Rolim de Moura","Santa Maria","Aimorés","Dom Eliseu","Ilhéus"};
-//		String[]estadoCadastrado= {"CE","AM","MT","RS","DF","PB","MS","BA","DF","MG","PA","BA"};
-//		String[]telefoneCadastrado= {"954214507","945874632","985652366","987452136","985846521","963625415","912451232","985263140","915487542","926598653","931649746","939281795"};
-//		String[]dDDCadastrado= {"92","68","65","27","41","53","49","61","41","77","34","68"};
-//
-//		for (int i=0;i<12;i++){
-//			Cliente cliente = new Cliente(nomeCadastrado[i],dtnascimentoCadastrado[i],cPFCadastrado[i], enderecoCadastrado[i],CEPCadastrado[i],bairroCadastrado[i],numeroCadastrado[i],cidadeCadastrado[i],estadoCadastrado[i],telefoneCadastrado[i],dDDCadastrado[i]);
-//
-//			listaDeCliente.add(cliente);
-//		}
-//		return listaDeCliente;
-//	}
-//		
-//	// FUNCOES RELACIONADAS AO CLIENTE
-//	public static ArrayList<Cliente> cadastraCliente(ArrayList<Cliente> listaDeCliente, String nome, Date dtnascimento, String cPF, String endereco, String CEP, String bairro,int numero, String cidade, String estado, String telefone, String dDD) {
-//		Cliente novoCliente= new Cliente(nome,dtnascimento,cPF, endereco,CEP,bairro,numero, cidade, estado,telefone,dDD);
-//		listaDeCliente.add(novoCliente);
-//		return listaDeCliente;
-//	}
+	Scanner ler = new Scanner (System.in);
 	
+	public String retornaDado(int pos, int info) {
+		String dado = "";
+		
+		if(info == 1) {
+			dado = listaDeCliente.get(pos).getNome();
+		}
+		else if(info == 2) {
+			dado = listaDeCliente.get(pos).getcPF();
+		}
+		else if(info == 3) {
+			dado = listaDeCliente.get(pos).getDtNascimento();
+		}
+		else if(info == 4) {
+			dado = listaDeCliente.get(pos).getEndereco().getEndereco();
+		}
+		else if(info == 5) {
+			dado = listaDeCliente.get(pos).getEndereco().getCidade();
+		}
+		else if(info == 6) {
+			dado = listaDeCliente.get(pos).getEndereco().getEstado();
+		}
+		else if(info == 7) {
+			dado = String.valueOf(listaDeCliente.get(pos).getTelefone().getdDD());
+		}
+		else if(info == 8) {
+			dado = String.valueOf(listaDeCliente.get(pos).getTelefone().getNumero());
+		}
+		
+		return dado;
+	}
+	
+	public void cadastrar(Cliente cliente) {
+		listaDeCliente.add(cliente);
+	}
+	
+	public void visualizar() {
+		int modo;
+		
+		do {
+			boolean check = false;
+			System.out.println("Deseja visualizar por:"
+					+ "\n1- Nome"
+					+ "\n2- CPF"
+					+ "\n3- Sair da visualização");
+			System.out.print(">> ");
+			modo = ler.nextInt();
+			ler.nextLine();
+			
+			
+			if(modo == 1) {
+				String nome;
+				System.out.print("\nInforme o nome completo do cliente: ");
+				nome = ler.nextLine();
+				
+				for(int i=0; i<listaDeCliente.size(); i++) {
+					if(nome.equals(listaDeCliente.get(i).getNome())){
+						check = true;
+						System.out.println();
+						System.out.println(listaDeCliente.get(i).toString());
+						break;
+					}
+				}
+				
+				if(!check) {
+					System.out.println("Cliente não encontrado!\n");
+				}
+			}
+			else if(modo == 2) {
+				String cpf;
+				System.out.print("\nInforme o CPF (apenas números): ");
+				cpf = ler.nextLine();
+				
+
+				for(int i=0; i<listaDeCliente.size(); i++) {
+					if(cpf.equals(listaDeCliente.get(i).getcPF())) {
+						check = true;
+						System.out.println();
+						System.out.println(listaDeCliente.get(i).toString());
+					}
+				}
+				if(!check) {
+					System.out.println("Cliente não encontrado!\n");
+				}
+			}
+			else if(modo == 3) {
+				System.out.println("\nEncerrando visualização...");
+				break;
+			}
+			else {
+				System.out.println("Opção inválida!");
+			}
+			
+		}while(modo != 3);
+	}
+	
+	public void editar(int pos, String dado, int info) {
+		
+		if(info == 1) {
+			listaDeCliente.get(pos).setNome(dado);
+		}
+		else if(info == 2) {
+			listaDeCliente.get(pos).setcPF(dado);
+		}
+		else if(info == 3) {
+			listaDeCliente.get(pos).setDtNascimento(dado);
+		}
+		else if(info == 4) {
+			listaDeCliente.get(pos).getEndereco().setEndereco(dado);
+		}
+		else if(info == 5) {
+			listaDeCliente.get(pos).getEndereco().setCidade(dado);
+		}
+		else if(info == 6) {
+			listaDeCliente.get(pos).getEndereco().setEstado(dado);
+		}
+		else if(info == 7) {
+			listaDeCliente.get(pos).getTelefone().setdDD(Integer.parseInt(dado));
+		}
+		else if(info == 8) {
+			listaDeCliente.get(pos).getTelefone().setNumero(Integer.parseInt(dado));
+		}
+		
+	}
+
+	
+	public void deletar(int n) {
+		listaDeCliente.remove(listaDeCliente.get(n));
+	}
+
+	public String[] listaNomesClientes() {
+		String[] listaNomes = new String[200];
+		for(int i=0; i< listaDeCliente.size(); i++) {
+			listaNomes[i] = listaDeCliente.get(i).getNome();
+		}
+		return listaNomes;
+	}
 	
 	public String getNome() {
 		return nome;
