@@ -46,7 +46,9 @@ public class Cliente {
 		
 	}
 	
-	Scanner ler = new Scanner (System.in);
+	public void cadastrar(Cliente cliente) {
+		listaDeCliente.add(cliente);
+	}
 	
 	public String retornaDado(int pos, int info) {
 		String dado = "";
@@ -79,69 +81,66 @@ public class Cliente {
 		return dado;
 	}
 	
-	public void cadastrar(Cliente cliente) {
-		listaDeCliente.add(cliente);
-	}
 	
-	public void visualizar() {
-		int modo;
-		
-		do {
-			boolean check = false;
-			System.out.println("Deseja visualizar por:"
-					+ "\n1- Nome"
-					+ "\n2- CPF"
-					+ "\n3- Sair da visualização");
-			System.out.print(">> ");
-			modo = ler.nextInt();
-			ler.nextLine();
-			
-			
-			if(modo == 1) {
-				String nome;
-				System.out.print("\nInforme o nome completo do cliente: ");
-				nome = ler.nextLine();
-				
-				for(int i=0; i<listaDeCliente.size(); i++) {
-					if(nome.equals(listaDeCliente.get(i).getNome())){
-						check = true;
-						System.out.println();
-						System.out.println(listaDeCliente.get(i).toString());
-						break;
-					}
-				}
-				
-				if(!check) {
-					System.out.println("Cliente não encontrado!\n");
-				}
-			}
-			else if(modo == 2) {
-				String cpf;
-				System.out.print("\nInforme o CPF (apenas números): ");
-				cpf = ler.nextLine();
-				
-
-				for(int i=0; i<listaDeCliente.size(); i++) {
-					if(cpf.equals(listaDeCliente.get(i).getcPF())) {
-						check = true;
-						System.out.println();
-						System.out.println(listaDeCliente.get(i).toString());
-					}
-				}
-				if(!check) {
-					System.out.println("Cliente não encontrado!\n");
-				}
-			}
-			else if(modo == 3) {
-				System.out.println("\nEncerrando visualização...");
-				break;
-			}
-			else {
-				System.out.println("Opção inválida!");
-			}
-			
-		}while(modo != 3);
-	}
+//	public void visualizar() {
+//		int modo;
+//		
+//		do {
+//			boolean check = false;
+//			System.out.println("Deseja visualizar por:"
+//					+ "\n1- Nome"
+//					+ "\n2- CPF"
+//					+ "\n3- Sair da visualização");
+//			System.out.print(">> ");
+//			modo = ler.nextInt();
+//			ler.nextLine();
+//			
+//			
+//			if(modo == 1) {
+//				String nome;
+//				System.out.print("\nInforme o nome completo do cliente: ");
+//				nome = ler.nextLine();
+//				
+//				for(int i=0; i<listaDeCliente.size(); i++) {
+//					if(nome.equals(listaDeCliente.get(i).getNome())){
+//						check = true;
+//						System.out.println();
+//						System.out.println(listaDeCliente.get(i).toString());
+//						break;
+//					}
+//				}
+//				
+//				if(!check) {
+//					System.out.println("Cliente não encontrado!\n");
+//				}
+//			}
+//			else if(modo == 2) {
+//				String cpf;
+//				System.out.print("\nInforme o CPF (apenas números): ");
+//				cpf = ler.nextLine();
+//				
+//
+//				for(int i=0; i<listaDeCliente.size(); i++) {
+//					if(cpf.equals(listaDeCliente.get(i).getcPF())) {
+//						check = true;
+//						System.out.println();
+//						System.out.println(listaDeCliente.get(i).toString());
+//					}
+//				}
+//				if(!check) {
+//					System.out.println("Cliente não encontrado!\n");
+//				}
+//			}
+//			else if(modo == 3) {
+//				System.out.println("\nEncerrando visualização...");
+//				break;
+//			}
+//			else {
+//				System.out.println("Opção inválida!");
+//			}
+//			
+//		}while(modo != 3);
+//	}
 	
 	public void editar(int pos, String dado, int info) {
 		
@@ -171,7 +170,6 @@ public class Cliente {
 		}
 		
 	}
-
 	
 	public void deletar(int n) {
 		listaDeCliente.remove(listaDeCliente.get(n));

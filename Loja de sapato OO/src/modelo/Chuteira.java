@@ -44,8 +44,6 @@ public class Chuteira extends Sapato{
 
 	}
 	
-	Scanner ler = new Scanner (System.in);
-	
 	public void cadastrar(Chuteira chuteira) {
 		listaDeChuteira.add(chuteira);	
 	}
@@ -104,7 +102,6 @@ public class Chuteira extends Sapato{
 	public void deletar(int n) {
 		listaDeChuteira.remove(listaDeChuteira.get(n));
 	}
-
 	
 	public String[] listaNomesSapatos() {
 		String[] listaNomes = new String[200];

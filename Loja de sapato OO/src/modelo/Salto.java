@@ -27,7 +27,6 @@ public class Salto extends Sapato{
 				"\n-Tipo do salto: " + tipoDoSalto + "\n";
 	}
 	ArrayList<Salto> listaDeSalto = new ArrayList<Salto>();
-	Scanner ler = new Scanner (System.in);
 	
 	public void preCadastrosSalto(){
 
