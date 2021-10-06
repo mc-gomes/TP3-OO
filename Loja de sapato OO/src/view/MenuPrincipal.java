@@ -17,7 +17,6 @@ public class MenuPrincipal implements ActionListener {
 	public MenuPrincipal() {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		int width = 400, height = 300;
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 150, 30);
 		cliente.setBounds(135, 50, 100, 30);
@@ -25,8 +24,7 @@ public class MenuPrincipal implements ActionListener {
 		sapato.setBounds(135, 100, 100, 30);
 		sair.setBounds(135, 200, 100, 30);
 		
-		//fundo.setPreferredSize(new Dimension(600,400));
-		janela.setLayout(null); //new BorderLayout()
+		janela.setLayout(null);
 		
 		janela.add(titulo);
 		janela.add(cliente);
@@ -34,10 +32,8 @@ public class MenuPrincipal implements ActionListener {
 		janela.add(venda);
 		janela.add(sair);
 		
-		//janela.add(fundo);
 		
-		janela.setSize(width, height);
-		//janela.pack();
+		janela.setSize(400, 300);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 	}
