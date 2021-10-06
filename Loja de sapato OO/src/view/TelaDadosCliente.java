@@ -169,7 +169,24 @@ public class TelaDadosCliente implements ActionListener {
 						"".equals(cid) || "".equals(est) ||"".equals(ddd) || "".equals(num)) {
 					res = false;
 				}
-				
+
+				if (src == pesquisaCliente) {
+					Cliente c = new Cliente();
+					cpf = campoBusca.getText().replaceAll("[\\D]", "");
+					pos = cliente.retornaPos(cpf);
+					if (pos == -1) {
+						c.clienteNaoEncontrado();
+						listaDeCliente.setListData(c.visualizarNome());
+						listaDeClientes.updateUI();
+					}
+					else {
+						for (int i = 0; i < pos; i ++) c.cadastrarvazio();
+						c.cadastrar(cliente.buscar(cpf));
+						listaDeCliente.setListData(c.visualizarNome());
+						listaDeCliente.updateUI();
+					}
+				}
+
 				if(opcao == 1) { //cadastro de novo cliente
 					
 					if(res) {

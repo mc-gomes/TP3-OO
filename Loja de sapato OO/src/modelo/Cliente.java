@@ -44,6 +44,14 @@ public class Cliente {
 		listaDeCliente.add(cliente2);
 		
 	}
+
+	public Cliente buscar(String cpf) {
+		for(int i = 0; i < listaDeCliente.size(); i ++)
+			if(cpf.equals(listaDeCliente.get(i).getCpf().replaceAll("[\\D]", ""))) {
+				return listaDeCliente.get(i);
+			}
+		return null;
+	}
 	
 	Scanner ler = new Scanner (System.in);
 	
