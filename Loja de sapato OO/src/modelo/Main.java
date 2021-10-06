@@ -1,4 +1,4 @@
-package lojadesapato;
+package modelo;
 
 import java.util.Scanner;
 
@@ -43,7 +43,7 @@ public class Main {
 				+ "\n6 - Sair do programa");
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		int opc, escolha;
 		Cliente cliente = new Cliente();
@@ -176,7 +176,7 @@ public class Main {
 				sleep(1500);
 				
 				break;
-			}*/
+			}
 			case 3: {
 				titulo("Cadastro de Novo Produto");
 				
@@ -609,7 +609,6 @@ public class Main {
 				System.out.println("FIM");
 				break;
 			}
-			*/
 			case 6:
 				System.out.println("\nEncerrando o programa...");
 				sleep(1500);
@@ -628,7 +627,7 @@ public class Main {
 		}while(opc != 6);
 		
 	
-	}
+	}*/
 
 
 

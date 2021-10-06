@@ -1,40 +1,58 @@
-package lojadesapato;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Salto extends Sapato{
-	private int tamDoSalto;
-	private String tipoDoSalto;
-
-	public Salto() {
+public class Bota extends Sapato{
+	private String cano;
+	private String genero;
+	
+	public Bota() {
 		
 	}
 	
-	public Salto(String m, double p, int q, String c, int tam, String tipo){
+	public Bota(String m, double p, int q, String c, String ca, String g) {
 		this.marca = m;
 		this.preco = p;
 		this.quantidade = q;
 		this.cor = c;
-		this.tamDoSalto = tam;
-		this.tipoDoSalto = tipo;
+		cano = ca;
+		genero = g;
 	}
 	
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
-				+ quantidade  + "\n-Cor: " + cor + "\n-Altura do salto (cm): " + tamDoSalto + 
-				"\n-Tipo do salto: " + tipoDoSalto + "\n";
+				+ quantidade  + "\n-Cor: " + cor + "\n-Gênero: " + genero +
+				"\n-Altura do cano: " + cano + "\n";
 	}
-	ArrayList<Salto> listaDeSalto = new ArrayList<Salto>();
+	
+	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
+	public void preencheBota(){
+		
+		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "cano alto", "feminino");
+		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "cano alto", "infantil");
+		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "cano alto", "infantil");
+		Bota bota4 = new Bota("MADALE", 199.60, 10, "Marrom", "cano alto", "masculino");
+		
+		listaDeBota.add(bota1);
+		listaDeBota.add(bota2);
+		listaDeBota.add(bota3);
+		listaDeBota.add(bota4);	
+
+		//return listaDeBota;
+	}
+
+
+	
 	Scanner ler = new Scanner (System.in);
 	
 	
 	public void cadastrar() {
-		String marca, cor, tipo;
+		String marca, cor, cano, genero;
 		double preco;
-		int qtd, tam;
-		
+		int qtd;
+				
 		System.out.print("Marca: ");
 		marca = ler.nextLine();
 		System.out.print("Preço R$ ");
@@ -44,14 +62,13 @@ public class Salto extends Sapato{
 		ler.nextLine();
 		System.out.print("Cor: ");
 		cor = ler.nextLine();
-		System.out.print("Altura do salto (cm): ");
-		tam = ler.nextInt();
-		ler.nextLine();
-		System.out.print("Tipo do salto: ");
-		tipo = ler.nextLine();
+		System.out.print("Altura do cano: ");
+		cano = ler.nextLine();
+		System.out.print("Gênero [M/F]: ");
+		genero = ler.nextLine();
 		
-		Salto salto = new Salto(marca, preco, qtd, cor, tam, tipo);
-		listaDeSalto.add(salto);
+		Bota bota = new Bota(marca, preco, qtd, cor, cano, genero);
+		listaDeBota.add(bota);
 		
 	}
 
@@ -66,6 +83,7 @@ public class Salto extends Sapato{
 					+ "\n4- Sair da visualização");
 			System.out.print(">> ");
 			modo = ler.nextInt();
+			ler.nextLine();
 			
 			
 			if(modo == 1) {
@@ -76,10 +94,10 @@ public class Salto extends Sapato{
 				System.out.print("Informe o preço máximo (valor inteiro): ");
 				precoMax = ler.nextInt();
 				
-				for(int i=0; i<listaDeSalto.size(); i++) {
-					if(precoMin < listaDeSalto.get(i).getPreco() && listaDeSalto.get(i).getPreco() < precoMax){
+				for(int i=0; i<listaDeBota.size(); i++) {
+					if(precoMin < listaDeBota.get(i).getPreco() && listaDeBota.get(i).getPreco() < precoMax){
 						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeSalto.get(i).toString());
+						System.out.println(listaDeBota.get(i).toString());
 					}
 				}
 			}
@@ -90,11 +108,12 @@ public class Salto extends Sapato{
 				System.out.print("\nInforme o nome da marca: ");
 				marca = ler.nextLine();
 				
-				for(int i=0; i<listaDeSalto.size(); i++) {
-					if(marca.equals(listaDeSalto.get(i).getMarca())) {
+
+				for(int i=0; i<listaDeBota.size(); i++) {
+					if(marca.equals(listaDeBota.get(i).getMarca())) {
 						check = true;
 						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeSalto.get(i).toString());
+						System.out.println(listaDeBota.get(i).toString());
 					}
 				}
 				if(!check) {
@@ -102,9 +121,9 @@ public class Salto extends Sapato{
 				}
 			}
 			else if(modo == 3) {
-				for(int i=0; i<listaDeSalto.size(); i++) {
+				for(int i=0; i<listaDeBota.size(); i++) {
 					System.out.println("\n-> PRODUTO " + (i+1));
-					System.out.println(listaDeSalto.get(i).toString());
+					System.out.println(listaDeBota.get(i).toString());
 				}
 			}
 			else if(modo == 4) {
@@ -117,23 +136,8 @@ public class Salto extends Sapato{
 			
 		}while(modo != 4);
 	}
-
-	public int getTamDoSalto() {
-		return tamDoSalto;
-	}
-
-	public void setTamDoSalto(int tamDoSalto) {
-		this.tamDoSalto = tamDoSalto;
-	}
-
-	public String getTipoDoSalto() {
-		return tipoDoSalto;
-	}
-
-	public void setTipoDoSalto(String tipoDoSalto) {
-		this.tipoDoSalto = tipoDoSalto;
-	}
-
+	
+	
 	public String getMarca() {
 		return marca;
 	}
@@ -164,6 +168,20 @@ public class Salto extends Sapato{
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+	public void setTipo(String genero) {
+		this.genero = genero;
+	}
+	
+	public String getcano() {
+		return cano;
+	}
+	public void setCano(String cano) {
+		this.cano = cano;
 	}
 
 }

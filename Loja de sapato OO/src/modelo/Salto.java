@@ -1,37 +1,39 @@
-package lojadesapato;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Tenis extends Sapato{
-	private String tipo;
+public class Salto extends Sapato{
+	private int tamDoSalto;
+	private String tipoDoSalto;
 
-	public Tenis() {
+	public Salto() {
 		
 	}
 	
-	public Tenis(String m, double p, int q, String c, String t){
+	public Salto(String m, double p, int q, String c, int tam, String tipo){
 		this.marca = m;
 		this.preco = p;
 		this.quantidade = q;
 		this.cor = c;
-		this.tipo = t;
+		this.tamDoSalto = tam;
+		this.tipoDoSalto = tipo;
 	}
 	
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
-				+ quantidade  + "\n-Cor: " + cor + "\n-Tipo do Tenis: " + tipo + "\n";
+				+ quantidade  + "\n-Cor: " + cor + "\n-Altura do salto (cm): " + tamDoSalto + 
+				"\n-Tipo do salto: " + tipoDoSalto + "\n";
 	}
-	ArrayList<Tenis> listaDeTenis = new ArrayList<Tenis>();
+	ArrayList<Salto> listaDeSalto = new ArrayList<Salto>();
 	Scanner ler = new Scanner (System.in);
-	
 	
 	
 	public void cadastrar() {
 		String marca, cor, tipo;
 		double preco;
-		int qtd;
+		int qtd, tam;
 		
 		System.out.print("Marca: ");
 		marca = ler.nextLine();
@@ -42,11 +44,14 @@ public class Tenis extends Sapato{
 		ler.nextLine();
 		System.out.print("Cor: ");
 		cor = ler.nextLine();
-		System.out.print("Tipo do Tenis: ");
+		System.out.print("Altura do salto (cm): ");
+		tam = ler.nextInt();
+		ler.nextLine();
+		System.out.print("Tipo do salto: ");
 		tipo = ler.nextLine();
 		
-		Tenis Tenis = new Tenis(marca, preco, qtd, cor, tipo);
-		listaDeTenis.add(Tenis);
+		Salto salto = new Salto(marca, preco, qtd, cor, tam, tipo);
+		listaDeSalto.add(salto);
 		
 	}
 
@@ -71,10 +76,10 @@ public class Tenis extends Sapato{
 				System.out.print("Informe o preço máximo (valor inteiro): ");
 				precoMax = ler.nextInt();
 				
-				for(int i=0; i<listaDeTenis.size(); i++) {
-					if(precoMin < listaDeTenis.get(i).getPreco() && listaDeTenis.get(i).getPreco() < precoMax){
+				for(int i=0; i<listaDeSalto.size(); i++) {
+					if(precoMin < listaDeSalto.get(i).getPreco() && listaDeSalto.get(i).getPreco() < precoMax){
 						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeTenis.get(i).toString());
+						System.out.println(listaDeSalto.get(i).toString());
 					}
 				}
 			}
@@ -85,11 +90,11 @@ public class Tenis extends Sapato{
 				System.out.print("\nInforme o nome da marca: ");
 				marca = ler.nextLine();
 				
-				for(int i=0; i<listaDeTenis.size(); i++) {
-					if(marca.equals(listaDeTenis.get(i).getMarca())) {
+				for(int i=0; i<listaDeSalto.size(); i++) {
+					if(marca.equals(listaDeSalto.get(i).getMarca())) {
 						check = true;
 						System.out.println("\n-> PRODUTO " + (i+1));
-						System.out.println(listaDeTenis.get(i).toString());
+						System.out.println(listaDeSalto.get(i).toString());
 					}
 				}
 				if(!check) {
@@ -97,9 +102,9 @@ public class Tenis extends Sapato{
 				}
 			}
 			else if(modo == 3) {
-				for(int i=0; i<listaDeTenis.size(); i++) {
+				for(int i=0; i<listaDeSalto.size(); i++) {
 					System.out.println("\n-> PRODUTO " + (i+1));
-					System.out.println(listaDeTenis.get(i).toString());
+					System.out.println(listaDeSalto.get(i).toString());
 				}
 			}
 			else if(modo == 4) {
@@ -111,7 +116,22 @@ public class Tenis extends Sapato{
 			}
 			
 		}while(modo != 4);
-		
+	}
+
+	public int getTamDoSalto() {
+		return tamDoSalto;
+	}
+
+	public void setTamDoSalto(int tamDoSalto) {
+		this.tamDoSalto = tamDoSalto;
+	}
+
+	public String getTipoDoSalto() {
+		return tipoDoSalto;
+	}
+
+	public void setTipoDoSalto(String tipoDoSalto) {
+		this.tipoDoSalto = tipoDoSalto;
 	}
 
 	public String getMarca() {
@@ -144,14 +164,6 @@ public class Tenis extends Sapato{
 
 	public void setCor(String cor) {
 		this.cor = cor;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 }
