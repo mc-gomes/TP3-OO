@@ -38,8 +38,7 @@ public class TelaDadosCliente implements ActionListener {
 	private int opcao;
 	private String s;
 
-	public void cadastrarEditar(int op, Cliente c, 
-			TelaCliente p, int pos) {
+	public void cadastrarEditar(int op, Cliente c, TelaCliente p, int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -194,7 +193,7 @@ public class TelaDadosCliente implements ActionListener {
 					}
 					else mensagemErroCadastro();
 				}
-
+				
 			} catch (NullPointerException exc1) {
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
@@ -203,10 +202,8 @@ public class TelaDadosCliente implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-
 			cliente.deletar(posicao);
 			mensagemSucessoExclusao();
-	
 		}
 		
 		if(src == botaoVoltar || src == botaoCancelar)

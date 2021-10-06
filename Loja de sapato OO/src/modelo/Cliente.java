@@ -1,6 +1,8 @@
 package modelo;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Cliente {
 	private String nome;
 	private String dtNascimento;
@@ -12,13 +14,16 @@ public class Cliente {
 
 	}
 	
-	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
 		nome = n;
 		dtNascimento = dt;
 		cPF = _cpf;
 		endereco = e;
 		telefone = t;
+	}
+	
+	public Cliente(String n) {
+		nome = n;
 	}
 	
 	@Override
@@ -44,9 +49,27 @@ public class Cliente {
 		listaDeCliente.add(cliente1);
 		listaDeCliente.add(cliente2);
 		
+	}	
+	
+	public int posicaoClienteCPF(String cpf) {
+		for(int i = 0; i < listaDeCliente.size(); i ++) 
+			if(cpf.equals(listaDeCliente.get(i).getcPF().replaceAll("[\\D]", ""))) {
+				return i;
+			}
+		return -1;
 	}
 	
-	Scanner ler = new Scanner (System.in);
+	public String[] buscarClienteCPF(int pos) {
+		String[] listaNomes = new String[200];
+		Cliente c = new Cliente("");
+		for(int i =0; i< pos; i++) {
+			listaDeCliente.add(c);
+		}
+		listaNomes[pos] = listaDeCliente.get(pos).getNome();
+	
+		return listaNomes;
+
+	}
 	
 	public String retornaDado(int pos, int info) {
 		String dado = "";
@@ -81,66 +104,6 @@ public class Cliente {
 	
 	public void cadastrar(Cliente cliente) {
 		listaDeCliente.add(cliente);
-	}
-	
-	public void visualizar() {
-		int modo;
-		
-		do {
-			boolean check = false;
-			System.out.println("Deseja visualizar por:"
-					+ "\n1- Nome"
-					+ "\n2- CPF"
-					+ "\n3- Sair da visualização");
-			System.out.print(">> ");
-			modo = ler.nextInt();
-			ler.nextLine();
-			
-			
-			if(modo == 1) {
-				String nome;
-				System.out.print("\nInforme o nome completo do cliente: ");
-				nome = ler.nextLine();
-				
-				for(int i=0; i<listaDeCliente.size(); i++) {
-					if(nome.equals(listaDeCliente.get(i).getNome())){
-						check = true;
-						System.out.println();
-						System.out.println(listaDeCliente.get(i).toString());
-						break;
-					}
-				}
-				
-				if(!check) {
-					System.out.println("Cliente não encontrado!\n");
-				}
-			}
-			else if(modo == 2) {
-				String cpf;
-				System.out.print("\nInforme o CPF (apenas números): ");
-				cpf = ler.nextLine();
-				
-
-				for(int i=0; i<listaDeCliente.size(); i++) {
-					if(cpf.equals(listaDeCliente.get(i).getcPF())) {
-						check = true;
-						System.out.println();
-						System.out.println(listaDeCliente.get(i).toString());
-					}
-				}
-				if(!check) {
-					System.out.println("Cliente não encontrado!\n");
-				}
-			}
-			else if(modo == 3) {
-				System.out.println("\nEncerrando visualização...");
-				break;
-			}
-			else {
-				System.out.println("Opção inválida!");
-			}
-			
-		}while(modo != 3);
 	}
 	
 	public void editar(int pos, String dado, int info) {
@@ -214,6 +177,12 @@ public class Cliente {
 	}
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
+	}
+	
+	public void clienteNaoEncontrado() {
+		JOptionPane.showMessageDialog(null,"CLIENTE NÃO ENCONTRADO!\n "
+                + "Não há nenhum cliente que possui o CPF indicado", null,
+        JOptionPane.ERROR_MESSAGE);
 	}
 	
 }
