@@ -30,6 +30,7 @@ public class TelaDadosChuteira implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoVoltar = new JButton("Voltar");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private static Chuteira chuteira = new Chuteira();
 	
 	private int posicao;
@@ -57,7 +58,9 @@ public class TelaDadosChuteira implements ActionListener {
 			valorCano = new JTextField(200);
 			valorTipo = new JTextField(200);
 
-			botaoSalvar.setBounds(265, 230, 115, 30);
+			botaoSalvar.setBounds(145, 250, 110, 30);
+			botaoCancelar.setBounds(265, 250, 115, 30);
+			this.janela.add(botaoCancelar);
 		}
 		//Preenche com dados do Chuteira clicada
 		if (op == 2) {
@@ -70,9 +73,9 @@ public class TelaDadosChuteira implements ActionListener {
 			valorCano = new JTextField(chuteira.retornaDado(pos, 6), 200);
 			valorTipo = new JTextField(chuteira.retornaDado(pos, 7), 200);
 			
-			botaoSalvar.setBounds(145, 210, 115, 30);
-			botaoExcluir.setBounds(265, 210, 115, 30);
-			botaoVoltar.setBounds(30, 210, 100, 30);
+			botaoSalvar.setBounds(145, 250, 115, 30);
+			botaoExcluir.setBounds(265, 250, 115, 30);
+			botaoVoltar.setBounds(30, 250, 100, 30);
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoVoltar);
 
@@ -117,13 +120,14 @@ public class TelaDadosChuteira implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(400, 350);
+		this.janela.setSize(400, 340);
 		janela.setLocationRelativeTo(null);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltar.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -183,14 +187,12 @@ public class TelaDadosChuteira implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-			boolean res = false;
-
 			chuteira.deletar(posicao);
-			if (!res) mensagemSucessoExclusao();
+			mensagemSucessoExclusao();
 	
 		}
 		
-		if(src == botaoVoltar)
+		if(src == botaoVoltar || src == botaoCancelar)
 			this.janela.dispose();
 	}
 
@@ -216,10 +218,14 @@ public class TelaDadosChuteira implements ActionListener {
 
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
-				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. Preço ou Quantidade em estoque não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
+                + "Pode ter ocorrido um dos erros a seguir:  \n"
+                + "1. Nem todos os campos foram preenchidos\n"
+                + "2. Preço ou Quantidade em estoque não são\n"
+                + " apenas números\n"
+                + "3. Quantidade em estoque não é um valor inteiro\n"
+                + "4. Valor decimal de Preço preenchido com\n"
+                + " vírgula ao invés de ponto", null,
+        JOptionPane.ERROR_MESSAGE);
 	}
 
 }

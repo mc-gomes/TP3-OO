@@ -254,8 +254,8 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			listaTenis = t.listaNomesSapatos();
 			listaTenisCadastrados = new JList<String>(listaTenis);
-			janela = new JFrame("Loja de Sapatos - Tenis");
-			titulo = new JLabel("Botas Cadastradas");
+			janela = new JFrame("Loja de Sapatos - Tênis");
+			titulo = new JLabel("Tênis Cadastrados");
 			cadastroTenis = new JButton("Cadastrar tênis");
 			cadastroTenis.setFont(new Font("Arial", Font.PLAIN, 11));
 			atualizaTenis = new JButton("Atualizar lista");
@@ -325,24 +325,21 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		if(src == atualizaChuteira) {
 			listaChuteirasCadastradas.setListData(ch.listaNomesSapatos());			
 			listaChuteirasCadastradas.updateUI();
-			System.out.println("atualiza sapato clicado");
 		}
 		
+		//Saltos
 		if(src == cadastroSalto)
 			new TelaDadosSalto().cadastrarEditar(1, s, this, 0);
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaSalto) {
 			listaSaltosCadastrados.setListData(s.listaNomesSapatos());			
 			listaSaltosCadastrados.updateUI();
-
 		}
 		
 		// Tenis
 		if(src == cadastroTenis)
 			new TelaDadosTenis().cadastrarEditar(1, t, this, 0);
 
-		// Atualiza a lista de nomes de alunos mostrada no JList
 		if(src == atualizaTenis) {
 			listaTenisCadastrados.setListData(t.listaNomesSapatos());			
 			listaTenisCadastrados.updateUI();

@@ -30,6 +30,7 @@ public class TelaDadosCliente implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoVoltar = new JButton("Voltar");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private static Cliente cliente = new Cliente();
 	
 
@@ -60,7 +61,9 @@ public class TelaDadosCliente implements ActionListener {
 			valorDDD = new JTextField(3);
 			valorTelefone = new JTextField(10);
 			
-			botaoSalvar.setBounds(265, 210, 115, 30);
+			botaoSalvar.setBounds(145, 210, 110, 30);
+			botaoCancelar.setBounds(265, 210, 115, 30);
+			this.janela.add(botaoCancelar);
 		}
 		//Preenche com dados do cliente clicado
 		if (op == 2) {
@@ -132,6 +135,7 @@ public class TelaDadosCliente implements ActionListener {
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltar.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -199,16 +203,14 @@ public class TelaDadosCliente implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-			boolean res = false;
 
 			cliente.deletar(posicao);
-			if (!res) mensagemSucessoExclusao();
+			mensagemSucessoExclusao();
 	
 		}
 		
-		if(src == botaoVoltar) {
+		if(src == botaoVoltar || src == botaoCancelar)
 			this.janela.dispose();
-		}
 	}
 
 	public void mensagemSucessoExclusao() {

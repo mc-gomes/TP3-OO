@@ -77,21 +77,24 @@ public class Chuteira extends Sapato{
 		String dado = "";
 		
 		if(info == 1) {
-			dado = listaDeChuteira.get(pos).getMarca();
+			dado = listaDeChuteira.get(pos).getNome();
 		}
 		else if(info == 2) {
-			dado = String.valueOf(listaDeChuteira.get(pos).getPreco());
+			dado = listaDeChuteira.get(pos).getMarca();
 		}
 		else if(info == 3) {
-			dado = String.valueOf(listaDeChuteira.get(pos).getQuantidade());
+			dado = String.valueOf(listaDeChuteira.get(pos).getPreco());
 		}
 		else if(info == 4) {
-			dado = listaDeChuteira.get(pos).getCor();
+			dado = String.valueOf(listaDeChuteira.get(pos).getQuantidade());
 		}
 		else if(info == 5) {
-			dado = listaDeChuteira.get(pos).getCano();
+			dado = listaDeChuteira.get(pos).getCor();
 		}
 		else if(info == 6) {
+			dado = listaDeChuteira.get(pos).getCano();
+		}
+		else if(info == 7) {
 			dado = listaDeChuteira.get(pos).getTipo();
 		}
 		

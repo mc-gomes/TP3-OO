@@ -28,6 +28,7 @@ public class TelaDadosBota implements ActionListener {
 	private JButton botaoExcluir = new JButton("Excluir");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private JButton botaoVoltar = new JButton("Voltar");
+	private JButton botaoCancelar = new JButton("Cancelar");
 	private static Bota bota = new Bota();
 	
 	private int posicao;
@@ -54,7 +55,9 @@ public class TelaDadosBota implements ActionListener {
 			valorCano = new JTextField(200);
 			valorGenero = new JTextField(200);
 
-			botaoSalvar.setBounds(265, 230, 115, 30);
+			botaoSalvar.setBounds(145, 230, 110, 30);
+			botaoCancelar.setBounds(265, 230, 115, 30);
+			this.janela.add(botaoCancelar);
 		}
 		//Preenche com dados do Bota clicada
 		if (op == 2) {
@@ -66,9 +69,9 @@ public class TelaDadosBota implements ActionListener {
 			valorCano = new JTextField(bota.retornaDado(pos, 5), 200);
 			valorGenero = new JTextField(bota.retornaDado(pos, 6), 200);
 			
-			botaoSalvar.setBounds(145, 210, 115, 30);
-			botaoExcluir.setBounds(265, 210, 115, 30);
-			botaoVoltar.setBounds(30, 210, 100, 30);
+			botaoSalvar.setBounds(150, 230, 110, 30);
+			botaoExcluir.setBounds(265, 230, 115, 30);
+			botaoVoltar.setBounds(30, 230, 100, 30);
 			this.janela.add(botaoExcluir);
 			this.janela.add(botaoVoltar);
 
@@ -108,13 +111,14 @@ public class TelaDadosBota implements ActionListener {
 
 		this.janela.setLayout(null);
 
-		this.janela.setSize(400, 350);
+		this.janela.setSize(400, 320);
 		janela.setLocationRelativeTo(null);
 		this.janela.setVisible(true);
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
 		botaoVoltar.addActionListener(this);
+		botaoCancelar.addActionListener(this);
 	}
 
 
@@ -173,14 +177,13 @@ public class TelaDadosBota implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-			boolean res = false;
 
 			bota.deletar(posicao);
-			if (!res) mensagemSucessoExclusao();
+			mensagemSucessoExclusao();
 	
 		}
 		
-		if(src == botaoVoltar)
+		if(src == botaoVoltar || src == botaoCancelar)
 			this.janela.dispose();
 	}
 
@@ -199,17 +202,21 @@ public class TelaDadosBota implements ActionListener {
 	}
 	
 	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR Bota!\n\n"
+		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR BOTA!\n\n"
 				+ "Produto não econtrado!", null, 
 				JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
-				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. Preço ou Quantidade em estoque não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
+                + "Pode ter ocorrido um dos erros a seguir:  \n"
+                + "1. Nem todos os campos foram preenchidos\n"
+                + "2. Preço ou Quantidade em estoque não são\n"
+                + " apenas números\n"
+                + "3. Quantidade em estoque não é um valor inteiro\n"
+                + "4. Valor decimal de Preço preenchido com\n"
+                + " vírgula ao invés de ponto", null,
+        JOptionPane.ERROR_MESSAGE);
 	}
 
 }

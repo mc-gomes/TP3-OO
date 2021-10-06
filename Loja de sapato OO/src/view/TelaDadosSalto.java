@@ -27,6 +27,7 @@ public class TelaDadosSalto implements ActionListener {
     private JButton botaoExcluir = new JButton("Excluir");
     private JButton botaoSalvar = new JButton("Salvar");
     private JButton botaoVoltar = new JButton("Voltar");
+	private JButton botaoCancelar = new JButton("Cancelar");
     private static Salto salto = new Salto();
     
     private int posicao;
@@ -54,7 +55,9 @@ public class TelaDadosSalto implements ActionListener {
             valorTam = new JTextField(100);
             valorTipo = new JTextField(100);
 
-            botaoSalvar.setBounds(265, 210, 115, 30);
+            botaoSalvar.setBounds(145, 210, 110, 30);
+			botaoCancelar.setBounds(265, 210, 115, 30);
+			this.janela.add(botaoCancelar);
         }
         //Preenche com dados do bota clicado
         if (op == 2) {
@@ -66,7 +69,7 @@ public class TelaDadosSalto implements ActionListener {
             valorTam = new JTextField(salto.retornaDado(pos, 5), 200);
             valorTipo = new JTextField(salto.retornaDado(pos, 6), 200);
 
-            botaoSalvar.setBounds(130, 210, 115, 30);
+            botaoSalvar.setBounds(150, 210, 110, 30);
             botaoExcluir.setBounds(265, 210, 115, 30);
             botaoVoltar.setBounds(30, 210, 100, 30);
             this.janela.add(botaoExcluir);
@@ -76,22 +79,22 @@ public class TelaDadosSalto implements ActionListener {
 
 
         labelMarca.setBounds(30, 20, 150, 25);
-        valorMarca.setBounds(200, 20, 180, 25);
+		valorMarca.setBounds(220, 20, 160, 25);
+		
+		labelPreco.setBounds(30, 50, 150, 25);
+		valorPreco.setBounds(220, 50, 160, 25);
+		
+		labelQtd.setBounds(30, 80, 180, 25);
+		valorQtd.setBounds(350, 80, 30, 25);
+		
+		labelCor.setBounds(30, 110, 80, 25);
+		valorCor.setBounds(220, 110, 160, 25);
 
-        labelPreco.setBounds(30, 50, 150, 25);
-        valorPreco.setBounds(200, 50, 180, 25);
-
-        labelQtd.setBounds(30, 80, 150, 25);
-        valorQtd.setBounds(200, 80, 180, 25);
-
-        labelCor.setBounds(30, 110, 80, 25);
-        valorCor.setBounds(30, 140, 155, 25);
-
-        labelTam.setBounds(200, 110, 78, 25);
-        valorTam.setBounds(200, 140, 140, 25);
+        labelTam.setBounds(30, 140, 170, 25);
+        valorTam.setBounds(220, 140, 160, 25);
         
-        labelTipo.setBounds(200, 110, 78, 25);
-        valorTipo.setBounds(200, 140, 140, 25);
+        labelTipo.setBounds(30, 170, 170, 25);
+        valorTipo.setBounds(220, 170, 160, 25);
 
 
         this.janela.add(labelMarca);
@@ -117,6 +120,7 @@ public class TelaDadosSalto implements ActionListener {
         botaoSalvar.addActionListener(this);
         botaoExcluir.addActionListener(this);
         botaoVoltar.addActionListener(this);
+		botaoCancelar.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -174,13 +178,12 @@ public class TelaDadosSalto implements ActionListener {
         }
 
         if(src == botaoExcluir) {
-            boolean res = false;
 
             salto.deletar(posicao);
-            if (!res) mensagemSucessoExclusao();
+            mensagemSucessoExclusao();
         }
         
-        if(src == botaoVoltar)
+        if(src == botaoVoltar || src == botaoCancelar)
 			this.janela.dispose();
     }
 
@@ -206,10 +209,14 @@ public class TelaDadosSalto implements ActionListener {
 
     public void mensagemErroCadastro() {
         JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-                        + "Pode ter ocorrido um dos dois erros a seguir:  \n"
+                        + "Pode ter ocorrido um dos erros a seguir:  \n"
                         + "1. Nem todos os campos foram preenchidos\n"
-                        + "2. Preço, Quantidade em estoque ou tamanho do salto\n"
-                        + " não são apenas números", null,
+                        + "2. Preço, Quantidade em estoque ou Tamanho do salto\n"
+                        + "  não são apenas números\n"
+                        + "3. Quantidade em estoque ou Tamanho do salto\n"
+                        + "  não são valores inteiros\n"
+                        + "4. Valor decimal de Preço preenchido com\n"
+                        + " vírgula ao invés de ponto", null,
                 JOptionPane.ERROR_MESSAGE);
     }
 

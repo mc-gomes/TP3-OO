@@ -12,6 +12,7 @@ public class Cliente {
 
 	}
 	
+	
 	public Cliente(String n, String dt, String _cpf, Endereco e, Telefone t) {
 		nome = n;
 		dtNascimento = dt;
@@ -170,65 +171,9 @@ public class Cliente {
 		}
 		
 	}
-		
-		/*int num = 0;
-		String nome = listaDeCliente.get(n).getNome();
-		
-		System.out.println("\n<<Alterar dados de '" + nome + "'>>");
 
-		do {
-			System.out.println("\nSelecione o que deseja alterar:"
-					+ "\n1- Nome do cliente (Atual: "+listaDeCliente.get(n).getNome()+")"
-					+ "\n2- CPF do cliente (Atual: "+listaDeCliente.get(n).getcPF()+")"
-					+ "\n3- Data de nascimento (Atual: "+listaDeCliente.get(n).getDtNascimento()+")"
-					+ "\n4- Endereço (Atual: "+listaDeCliente.get(n).getEndereco().toString()+")"
-					+ "\n5- Telefone (Atual: "+listaDeCliente.get(n).getTelefone().toString()+")"
-					+ "\n6- Sair");
-			System.out.print(">> ");
-			num = ler.nextInt();
-			ler.nextLine();
-
-			switch (num) {
-				case 1:
-					System.out.println("\nNovo nome do cliente: ");
-					listaDeCliente.get(n).setNome(ler.nextLine());
-					break;
-				case 2:
-					System.out.println("\nInforme o novo CPF: ");
-					listaDeCliente.get(n).setcPF(ler.nextLine());;
-					break;
-				case 3:
-					System.out.println("\nNova data de nascimento (DD/MM/AA): ");
-					listaDeCliente.get(n).setDtNascimento(ler.nextLine());
-					break;
-				case 4:
-					System.out.println("\nNovo enderço: ");
-					listaDeCliente.get(n).endereco.setEndereco(ler.nextLine());
-					System.out.println("\nNova cidade: ");
-					listaDeCliente.get(n).endereco.setCidade(ler.nextLine());
-					System.out.println("\nNovo estado (UF): ");
-					listaDeCliente.get(n).endereco.setEstado(ler.nextLine());
-					break;
-				case 5:
-					System.out.println("\nNovo DDD: ");
-					listaDeCliente.get(n).telefone.setdDD(ler.nextLine());
-					System.out.println("\nNovo número: ");
-					listaDeCliente.get(n).telefone.setNumero(ler.nextLine());
-					break;
-				case 6:
-					System.out.println("Retornando ao menu...\n");
-					break;
-				default:
-					System.out.println("Opção inválida!\n");
-					break;
-
-			}
-		} while (num != 6);
-
-	}*/
 	
 	public void deletar(int n) {
-		//System.out.printf("Cliente '%s' deletado com sucesso!\n", listaDeCliente.get(n).getNome());
 		listaDeCliente.remove(listaDeCliente.get(n));
 	}
 
@@ -238,26 +183,6 @@ public class Cliente {
 			listaNomes[i] = listaDeCliente.get(i).getNome();
 		}
 		return listaNomes;
-	}
-	
-	public int selecionaCliente() {
-		int num;
-		
-		System.out.println("\nLista de clientes:");
-		for(int i=0; i<listaDeCliente.size(); i++) {
-			System.out.println("" + (i+1) + "- " +  listaDeCliente.get(i).getNome());
-		}
-		
-		do {
-			System.out.print("\nSelecione um cliente: ");
-			num = ler.nextInt();
-			
-			if(num < 1 || num > listaDeCliente.size())
-				System.out.println("Opção inválida, informe novamente.");
-			
-		}while (num < 1 || num > listaDeCliente.size());
-		
-		return num;
 	}
 	
 	public String getNome() {
