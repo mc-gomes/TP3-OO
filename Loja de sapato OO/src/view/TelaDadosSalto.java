@@ -12,7 +12,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de um salto já cadastrado ou preencher os
  * dados de um novo salto que será cadastrado
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosSalto implements ActionListener {
@@ -149,7 +149,7 @@ public class TelaDadosSalto implements ActionListener {
             String marca, preco, quantidade, cor, tipo, tam;
 
             try {
-                boolean res=true;
+                boolean check=true;
 
                 marca = valorMarca.getText();
                 preco = valorPreco.getText();
@@ -163,12 +163,12 @@ public class TelaDadosSalto implements ActionListener {
 
                 // verifica se há algum campo vazio
                 if ("".equals(marca) || "".equals(preco) || "".equals(quantidade)|| "".equals(cor) || "".equals(tam) || "".equals(tipo)) {
-                    res = false;
+                    check = false;
                 }
 
                 if(opcao == 1) { //cadastro de novo salto
 
-                    if(res) {
+                    if(check) {
                         Salto novosalto = new Salto(marca, Double.parseDouble(preco), Integer.parseInt(quantidade), cor, Integer.parseInt(tam), tipo);
                         salto.cadastrar(novosalto);
                         mensagemSucessoCadastro();
@@ -179,7 +179,7 @@ public class TelaDadosSalto implements ActionListener {
                 }
                 else if (opcao == 2) {
                     // edição dados salto
-                    if(res){
+                    if(check){
                         for (int i=1; i< 7; i++) {
                             salto.editar(posicao, dados[i-1], i);
                         }

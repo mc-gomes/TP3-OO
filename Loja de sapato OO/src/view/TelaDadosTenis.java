@@ -13,7 +13,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de um tênis já cadastrado ou preencher os
  * dados de um novo tênis que será cadastrado
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosTenis implements ActionListener {
@@ -140,7 +140,7 @@ public class TelaDadosTenis implements ActionListener {
 			String marca, preco, qtd, cor, tipo;
 			
 			try {
-				boolean res=true;
+				boolean check=true;
 				
 				marca = valorMarca.getText();
 				preco = valorPreco.getText();
@@ -153,12 +153,12 @@ public class TelaDadosTenis implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
 						"".equals(tipo)) {
-					res = false;
+					check = false;
 				}
 				
 				if(opcao == 1) { //cadastro de novo Tenis
 					
-					if(res) {
+					if(check) {
 						Tenis novoTenis = new Tenis(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, tipo);
 						tenis.cadastrar(novoTenis);
 						mensagemSucessoCadastro();
@@ -169,7 +169,7 @@ public class TelaDadosTenis implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados Tenis
-					if(res){
+					if(check){
 						for (int i=1; i< 6; i++) {
 							tenis.editar(posicao, dados[i-1], i);							
 						}

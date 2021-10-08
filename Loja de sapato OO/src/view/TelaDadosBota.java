@@ -13,7 +13,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de uma bota já cadastrada ou preencher os
  * dados de uma nova bota que será cadastrada
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosBota implements ActionListener {
@@ -148,7 +148,7 @@ public class TelaDadosBota implements ActionListener {
 			String marca, preco, qtd, cor, cano, genero;
 			
 			try {
-				boolean res=true;
+				boolean check=true;
 				
 				marca = valorMarca.getText();
 				preco = valorPreco.getText();
@@ -162,12 +162,12 @@ public class TelaDadosBota implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
 						"".equals(cano) || "".equals(genero)) {
-					res = false;
+					check = false;
 				}
 				
 				if(opcao == 1) { //cadastro de nova Bota
 					
-					if(res) {
+					if(check) {
 						Bota novoBota = new Bota(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, genero);
 						bota.cadastrar(novoBota);
 						mensagemSucessoCadastro();
@@ -178,7 +178,7 @@ public class TelaDadosBota implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados Bota
-					if(res){
+					if(check){
 						for (int i=1; i< 7; i++) {
 							bota.editar(posicao, dados[i-1], i);							
 						}

@@ -9,7 +9,7 @@ import modelo.*;
 /**
  * Classe responsável por mostrar uma janela com as possíveis ações
  * relacionadas aos clientes
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaCliente implements ActionListener, ListSelectionListener{		

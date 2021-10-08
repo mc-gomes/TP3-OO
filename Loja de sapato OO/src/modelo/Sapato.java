@@ -5,7 +5,7 @@ package modelo;
  * Classe mãe abstrata que serve de modelo para as classes
  * concretas que herdam dela, que são: Bota, Chinelo,
  * Chuteira, Salto e Tênis.
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public abstract class Sapato {

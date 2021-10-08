@@ -13,7 +13,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de uma chuteira já cadastrada ou preencher os
  * dados de uma nova chuteira que será cadastrada
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosChuteira implements ActionListener {
@@ -157,7 +157,7 @@ public class TelaDadosChuteira implements ActionListener {
 			String nome, marca, preco, qtd, cor, cano, tipo;
 			
 			try {
-				boolean res=true;
+				boolean check=true;
 				
 				nome = valorNome.getText();
 				marca = valorMarca.getText();
@@ -172,12 +172,12 @@ public class TelaDadosChuteira implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
 						"".equals(cano) || "".equals(tipo)) {
-					res = false;
+					check = false;
 				}
 				
 				if(opcao == 1) { //cadastro de nova Chuteira
 					
-					if(res) {
+					if(check) {
 						Chuteira novoChuteira = new Chuteira(nome, marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, tipo);
 						chuteira.cadastrar(novoChuteira);
 						mensagemSucessoCadastro();
@@ -188,7 +188,7 @@ public class TelaDadosChuteira implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados Chuteira
-					if(res){
+					if(check){
 						for (int i=1; i< 8; i++) {
 							chuteira.editar(posicao, dados[i-1], i);							
 						}

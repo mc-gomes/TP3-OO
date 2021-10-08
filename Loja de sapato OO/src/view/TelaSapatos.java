@@ -8,7 +8,7 @@ import modelo.*;
 /**
  * Classe responsável por exibir uma tela com botões, onde
  * será possível filtrar o tipo de sapato que será analisado
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaSapatos implements ActionListener, ListSelectionListener {		

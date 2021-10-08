@@ -6,7 +6,7 @@ import modelo.*;
 
 /**
  * Classe principal que implementa o método main
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class MenuPrincipal implements ActionListener {

@@ -12,7 +12,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de um chinelo já cadastrado ou preencher os
  * dados de um novo chinelo que será cadastrado
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosChinelo implements ActionListener {
@@ -141,7 +141,7 @@ public class TelaDadosChinelo implements ActionListener {
             String marca, preco, quantidade, cor, estilo;
 
             try {
-                boolean res=true;
+                boolean check=true;
 
                 marca = valorMarca.getText();
                 preco = valorPreco.getText();
@@ -154,12 +154,12 @@ public class TelaDadosChinelo implements ActionListener {
 
                 // verifica se há algum campo vazio
                 if ("".equals(marca) || "".equals(preco) || "".equals(quantidade)|| "".equals(cor) || "".equals(estilo)) {
-                    res = false;
+                    check = false;
                 }
 
                 if(opcao == 1) { //cadastro de novo chinelo
 
-                    if(res) {
+                    if(check) {
                         Chinelo novoChinelo = new Chinelo(marca, Double.parseDouble(preco), Integer.parseInt(quantidade), cor,estilo);
                         chinelo.cadastrar(novoChinelo);
                         mensagemSucessoCadastro();
@@ -170,7 +170,7 @@ public class TelaDadosChinelo implements ActionListener {
                 }
                 else if (opcao == 2) {
                     // edição dados chinelo
-                    if(res){
+                    if(check){
                         for (int i=1; i< 6; i++) {
                             chinelo.editar(posicao, dados[i-1], i);
                         }

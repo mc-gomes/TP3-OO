@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe responsável por instanciar objetos do tipo Bota
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class Bota extends Sapato{

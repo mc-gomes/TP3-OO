@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Classe responsável por instanciar objetos do tipo Cliente
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class Cliente {

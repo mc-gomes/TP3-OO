@@ -13,7 +13,7 @@ import modelo.*;
  * Classe responsável por mostrar uma janela em que é possível
  * visualizar os dados de um cliente já cadastrado ou preencher os
  * dados de um novo cliente que será cadastrado
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class TelaDadosCliente implements ActionListener {

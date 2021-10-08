@@ -3,7 +3,7 @@ package modelo;
 /**
  * Classe responsável por instanciar objetos do tipo Endereço,
  * que é um atributo do objeto Cliente
- * @author Matheus Costa
+ * @author Matheus Costa e Laura Pinos
  *
  */
 public class Endereco {
