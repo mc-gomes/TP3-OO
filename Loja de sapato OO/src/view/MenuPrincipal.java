@@ -18,11 +18,28 @@ public class MenuPrincipal implements ActionListener {
 	private static JButton botaoVenda = new JButton("Venda");
 	private static JButton sair = new JButton("Sair");
 	
+	Cliente cliente = new Cliente();
+	Bota bota = new Bota();
+	Chinelo chinelo = new Chinelo();
+	Chuteira chuteira = new Chuteira();
+	Salto salto = new Salto();
+	Tenis tenis = new Tenis();
+	
 	/**
 	 * Construtor que cria um objeto JFrame e apresenta uma tela de menu
 	 */
 	public MenuPrincipal() {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Puxa os dados cadastrados iniciais de
+		// cada objeto abaixo apenas uma vez
+		// para que funcione ao longo de todo o programa
+		cliente.preCadastrosCliente();
+		bota.preCadastrosBota();
+		chinelo.preCadastrosChinelo();
+		chuteira.preCadastrosChuteira();
+		salto.preCadastrosSalto();
+		tenis.preCadastrosTenis();		
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 150, 30);
@@ -62,10 +79,10 @@ public class MenuPrincipal implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == botaoCliente)
-			new TelaCliente().mostrarDados();
+			new TelaCliente().mostrarDados(cliente);
 		
 		if(src == botaoSapato)
-			new TelaSapatos().menuDeOpcoes();
+			new TelaSapatos().menuDeOpcoes(bota, chinelo, chuteira, salto, tenis);
 		
 		if(src == botaoVenda)
 			new TelaVendaCliente().mostraClientes();

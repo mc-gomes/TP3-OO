@@ -54,8 +54,17 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	 * aos tipos de sapatos: botas, chinelos, chuteiras,
 	 * saltos e tênis
 	 */
-	public void menuDeOpcoes() {
-
+	public void menuDeOpcoes(Bota bt, Chinelo chi, Chuteira chu, Salto st, Tenis te) {
+		
+		// Puxa somente uma vez os dados cadastrados
+		// iniciais de cada tipo de sapato
+		b = bt;
+		c = chi;
+		ch = chu;
+		s = st;
+		t = te;
+		
+		
         tituloMenu.setFont(new Font("Arial", Font.BOLD, 15));
         tituloMenu.setBounds(122, 10, 150, 30);
         bota.setBounds(135, 50, 100, 30);
@@ -99,7 +108,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		switch (op) {
 		case 1:// Mostra lista de botas cadastradas
 			String[] listaBota = new String[50];
-			b.preCadastrosBota();
 			
 			listaBota = b.listaNomesSapatos();
 			listaBotasCadastradas = new JList<String>(listaBota);
@@ -141,7 +149,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 		case 2:// Mostra lista de chinelos cadastrados
 			String[] listaChinelo = new String[50];
-			c.preCadastrosChinelo();
 			
 			listaChinelo = c.listaNomesSapatos();
 			listaChinelosCadastrados = new JList<String>(listaChinelo);
@@ -182,7 +189,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			
 		case 3: //Mostra lista de chuteiras cadastradas
 			String[] listaChuteira = new String[50];
-			ch.preCadastrosChuteira();
 			
 			listaChuteira = ch.listaNomesSapatos();
 			listaChuteirasCadastradas = new JList<String>(listaChuteira);
@@ -223,7 +229,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		case 4:// Mostra lista de saltos cadastrados
 			String[] listaSalto = new String[50];
-			s.preCadastrosSalto();
 
 			listaSalto = s.listaNomesSapatos();
 			listaSaltosCadastrados = new JList<String>(listaSalto);
@@ -265,7 +270,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		case 5:// Mostra lista de tênis cadastrados
 			String[] listaTenis = new String[50];
-			t.preCadastrosTenis();
 
 			listaTenis = t.listaNomesSapatos();
 			listaTenisCadastrados = new JList<String>(listaTenis);

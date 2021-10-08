@@ -40,8 +40,8 @@ public class TelaCliente implements ActionListener, ListSelectionListener{
 	 * possível realizar o CRUD de Cliente e realizar uma
 	 * operação de busca por um cliente pelo seu CPF
 	 */
-	public void mostrarDados(){
-		c.preCadastrosCliente();
+	public void mostrarDados(Cliente cli){
+		c = cli;
 		listaNomes = c.listaNomesClientes();
 		
 		listaClientesCadastrados = new JList<String>(listaNomes);
