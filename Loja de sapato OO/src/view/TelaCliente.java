@@ -2,7 +2,6 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-//import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.event.*;
 import modelo.*;
 
