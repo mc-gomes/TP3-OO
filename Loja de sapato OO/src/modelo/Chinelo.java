@@ -53,6 +53,15 @@ public class Chinelo extends Sapato{
 	}
 	
 	/**
+	 * Método que retorna um objeto Chinelo específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Chinelo
+	 */
+	public Chinelo retornaChinelo(int pos) {
+		return listaDeChinelo.get(pos);		
+	}
+	
+	/**
 	 * Adiciona um novo objeto Chinelo no ArrayList
 	 * @param chinelo : objeto que será adicionado no ArrayList
 	 */

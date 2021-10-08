@@ -60,6 +60,15 @@ public class Chuteira extends Sapato{
 	}
 	
 	/**
+	 * Método que retorna um objeto Chuteira específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Chuteira
+	 */
+	public Chuteira retornaChuteira(int pos) {
+		return listaDeChuteira.get(pos);		
+	}
+	
+	/**
 	 * Adiciona um novo objeto Chuteira no ArrayList
 	 * @param chuteira : objeto que será adicionado no ArrayList
 	 */

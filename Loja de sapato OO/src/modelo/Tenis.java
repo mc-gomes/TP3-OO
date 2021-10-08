@@ -55,6 +55,15 @@ public class Tenis extends Sapato{
 	}
 	
 	/**
+	 * Método que retorna um objeto Tenis específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Tenis
+	 */
+	public Tenis retornaTenis(int pos) {
+		return listaDeTenis.get(pos);		
+	}
+	
+	/**
 	 * Adiciona um novo objeto Tenis no ArrayList
 	 * @param tenis : objeto que será adicionado no ArrayList
 	 */

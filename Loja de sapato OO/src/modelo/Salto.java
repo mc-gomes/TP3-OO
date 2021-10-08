@@ -58,6 +58,15 @@ public class Salto extends Sapato{
 	}
 	
 	/**
+	 * Método que retorna um objeto Salto específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Salto
+	 */
+	public Salto retornaSalto(int pos) {
+		return listaDeSalto.get(pos);		
+	}
+	
+	/**
 	 * Adiciona um novo objeto Salto no ArrayList
 	 * @param salto : objeto que será adicionado no ArrayList
 	 */

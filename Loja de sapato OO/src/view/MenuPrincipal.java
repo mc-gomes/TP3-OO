@@ -85,7 +85,7 @@ public class MenuPrincipal implements ActionListener {
 			new TelaSapatos().menuDeOpcoes(bota, chinelo, chuteira, salto, tenis);
 		
 		if(src == botaoVenda)
-			new TelaVendaCliente().mostraClientes();
+			new TelaVendaCliente().mostraClientes(cliente,bota, chinelo, chuteira, salto, tenis);
 		
 		if (src == sair)
 			janela.dispose();

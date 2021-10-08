@@ -144,7 +144,6 @@ public class TelaCliente implements ActionListener, ListSelectionListener{
 	
 	}
 
-	//Captura eventos relacionados ao JList
 	/**
 	 * Método que analisa se houve um clique na seção onde aparecem
 	 * os clientes. Caso haja um clique no nome de um cliente, ele

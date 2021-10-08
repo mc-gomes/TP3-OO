@@ -58,6 +58,15 @@ public class Bota extends Sapato{
 	}
 	
 	/**
+	 * Método que retorna um objeto bota específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Bota
+	 */
+	public Bota retornaBota(int pos) {
+		return listaDeBota.get(pos);		
+	}
+	
+	/**
 	 * Adiciona um novo objeto Bota no ArrayList
 	 * @param bota : objeto que será adicionado no ArrayList
 	 */

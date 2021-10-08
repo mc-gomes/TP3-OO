@@ -2,6 +2,11 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @deprecated
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class Venda {
 	private Cliente cliente;
 	private Sapato produto;

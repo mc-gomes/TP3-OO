@@ -64,7 +64,16 @@ public class Cliente {
 		listaDeCliente.add(cliente1);
 		listaDeCliente.add(cliente2);
 		
-	}	
+	}
+	
+	/**
+	 * Método que retorna um objeto Cliente específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Cliente
+	 */
+	public Cliente retornaCliente(int pos) {
+		return listaDeCliente.get(pos);		
+	}
 	
 	/**
 	 * Busca por um cliente que possua um CPF igual ao número passado como parâmetro
