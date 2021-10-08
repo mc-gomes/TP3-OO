@@ -16,6 +16,13 @@ import javax.swing.event.ListSelectionListener;
 
 import modelo.*;
 
+/**
+ * Classe responsável por exibir uma tela com botões, onde
+ * será possível filtrar o tipo de sapato e selecionar venda
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
+
 public class TelaVendaSapato implements ActionListener, ListSelectionListener  {
 
 	private JFrame janelaMenu = new JFrame("Loja de Sapatos - Menu Sapatos");
@@ -93,7 +100,7 @@ public class TelaVendaSapato implements ActionListener, ListSelectionListener  {
 	
 	/**
 	 * Método que cria e exibe uma janela onde, a partir da mesma, é
-	 * possível realizar o CRUD de um determinado tipo de sapato,
+	 * possível ver um determinado tipo de sapato,
 	 * a depender da escolha do usuário
 	 * @param op indica qual foi o tipo de sapato filtrado
 	 */
