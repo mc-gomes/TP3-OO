@@ -6,8 +6,13 @@ import javax.swing.*;
 import javax.swing.event.*;
 import modelo.*;
 
-
-public class TelaCliente implements ActionListener, ListSelectionListener {		
+/**
+ * Classe responsável por mostrar uma janela com as possíveis ações
+ * relacionadas aos clientes
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
+public class TelaCliente implements ActionListener, ListSelectionListener{		
 	private JFrame janela;
 	private JLabel titulo;
 	private JButton cadastroCliente;
@@ -22,25 +27,32 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
 	
+	/**
+	 * Método que armazena os nomes dos clientes cadastrados
+	 * em um Array do tipo String para serem exibidos na tela
+	 */
 	public void listaClientes() {
 		listaNomes = c.listaNomesClientes();
 	}
 	
-	public void mostrarDados(){
-		c.preCadastrosCliente();
-		listaClientes();
-
+	/**
+	 * Método que cria e mostra uma janela onde, a partir da mesma, é
+	 * possível realizar o CRUD de Cliente e realizar uma
+	 * operação de busca por um cliente pelo seu CPF
+	 */
+	public void mostrarDados(Cliente cli){
+		c = cli;
+		listaNomes = c.listaNomesClientes();
+		
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Loja de Sapatos - Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
 		titulo.setFont(new Font("Arial", Font.BOLD, 15));
 		titulo.setBounds(125, 10, 250, 30);
 		
-//		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//		listaClientesCadastrados.setVisibleRowCount(4);
 		labelBuscar.setFont(new Font("Arial", Font.PLAIN, 11));
 		labelBuscar.setBounds(26, 40, 100, 35);
-		//campoBuscaCPF = new JTextField(200);
+		campoBuscaCPF = new JTextField(200);
 		campoBuscaCPF.setBounds(135, 46, 130, 25);
 		botaoBuscar.setFont(new Font("Arial", Font.PLAIN, 12));
 		botaoBuscar.setBounds(275, 45, 100, 25);
@@ -85,14 +97,16 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 		
 	}
 
-	//Captura eventos relacionados aos botões da interface
+	/**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de clientes
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		//Cadastro de novo cliente
 		if(src == cadastroCliente)
-			new TelaDadosCliente().cadastrarEditar(1, c, this, 0);
-			//System.out.println("cadastro cliente clicado");
+			new TelaDadosCliente().cadastrarEditar(1, c, 0);
 
 		// Atualiza a lista de nomes de clientes mostrada no JList
 		if(src == atualizaClientes) {
@@ -101,13 +115,12 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 			listaClientesCadastrados.updateUI();
 		}
 		
-		if(src == botaoVoltar)
-			janela.dispose();
-		
+		//Busca um cliente pelo CPF
 		if (src == botaoBuscar) {
 			try {
 				String cpf = campoBuscaCPF.getText().replaceAll("[\\D]", "");
 				int p = c.posicaoClienteCPF(cpf);
+				
 				if (p == -1) {
 					c.clienteNaoEncontrado();
 					listaClientesCadastrados.setListData(c.listaNomesClientes());
@@ -120,20 +133,30 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 				}
 			}catch (NullPointerException exc1) {
 				JOptionPane.showMessageDialog(null,"ERRO!\n "
-		                + "Campo de busca com valor vazio", null,
+		                + "Pode ter ocorrido um dos erros a seguir:	\n"
+		                + "1. Campo de busca com valor vazio\n"
+		                + "2. Não há nenhum cliente cadastrado com esse CPF", null,
 		        JOptionPane.ERROR_MESSAGE);
 			}
-			
 		}
+
+		if(src == botaoVoltar)
+			janela.dispose();
+	
 	}
 
 	//Captura eventos relacionados ao JList
+	/**
+	 * Método que analisa se houve um clique na seção onde aparecem
+	 * os clientes. Caso haja um clique no nome de um cliente, ele
+	 * redireciona para uma tela que vai mostrar seus dados
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-				new TelaDadosCliente().cadastrarEditar(2, c, this, 
+				new TelaDadosCliente().cadastrarEditar(2, c,
 						listaClientesCadastrados.getSelectedIndex());
 			}
 		}catch (NullPointerException exc) {
@@ -145,7 +168,5 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 					+ "Cliente não encontrado!", null, 
 					JOptionPane.ERROR_MESSAGE);
 	    }
-
 	}
-
 }
