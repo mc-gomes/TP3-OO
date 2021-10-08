@@ -1,5 +1,11 @@
 package modelo;
 
+/**
+ * Classe responsável por instanciar objetos do tipo Telefone,
+ * que é um atributo do objeto Cliente
+ * @author Matheus Costa
+ *
+ */
 public class Telefone {
 
 	private int DDD;
@@ -14,6 +20,9 @@ public class Telefone {
 		numero = num;
 	}
 	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public String toString() {
 		return "(" + DDD + ") " + numero;

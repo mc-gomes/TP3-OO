@@ -5,7 +5,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 import modelo.*;
 
-
+/**
+ * Classe responsável por exibir uma tela com botões, onde
+ * será possível filtrar o tipo de sapato que será analisado
+ * @author Matheus Costa
+ *
+ */
 public class TelaSapatos implements ActionListener, ListSelectionListener {		
 	private JFrame janelaMenu = new JFrame("Loja de Sapatos - Menu Sapatos");
 	private JLabel tituloMenu = new JLabel("Tipos de Sapatos");
@@ -44,7 +49,11 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 	Salto s = new Salto();
 	Tenis t = new Tenis();
 	
-	
+	/**
+	 * Método que exibe uma tela com botões relativos
+	 * aos tipos de sapatos: botas, chinelos, chuteiras,
+	 * saltos e tênis
+	 */
 	public void menuDeOpcoes() {
 
         tituloMenu.setFont(new Font("Arial", Font.BOLD, 15));
@@ -78,11 +87,17 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
         janelaMenu.setLocationRelativeTo(null);
         janelaMenu.setVisible(true);
     }
-
+	
+	/**
+	 * Método que cria e exibe uma janela onde, a partir da mesma, é
+	 * possível realizar o CRUD de um determinado tipo de sapato,
+	 * a depender da escolha do usuário
+	 * @param op indica qual foi o tipo de sapato filtrado
+	 */
 	public void mostrarSapatos(int op){
 
 		switch (op) {
-		case 1:// Mostrar dados de botas cadastradas (JList)
+		case 1:// Mostra lista de botas cadastradas
 			String[] listaBota = new String[50];
 			b.preCadastrosBota();
 			
@@ -124,7 +139,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			break;
 
-		case 2:// Mostrar dados de chinelos cadastradas (JList)
+		case 2:// Mostra lista de chinelos cadastrados
 			String[] listaChinelo = new String[50];
 			c.preCadastrosChinelo();
 			
@@ -165,7 +180,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			break;
 			
-		case 3:
+		case 3: //Mostra lista de chuteiras cadastradas
 			String[] listaChuteira = new String[50];
 			ch.preCadastrosChuteira();
 			
@@ -206,7 +221,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			break;
 		
-		case 4:// Mostrar dados de saltos cadastrados (JList)
+		case 4:// Mostra lista de saltos cadastrados
 			String[] listaSalto = new String[50];
 			s.preCadastrosSalto();
 
@@ -248,7 +263,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 
 			break;
 		
-		case 5:// Mostrar dados de tenis cadastrados (JList)
+		case 5:// Mostra lista de tênis cadastrados
 			String[] listaTenis = new String[50];
 			t.preCadastrosTenis();
 
@@ -291,7 +306,9 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			break;
 			
 		default:
-			JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
+			JOptionPane.showMessageDialog(null,"OPÇÃO NÃO ENCONTRADA!\n"
+					+ "Erro na passagem de parâmetro em:\n "
+					+ "Classe 'TelaSapatos.java' ", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -302,7 +319,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		//Botas
 		if(src == cadastroBota)
-			new TelaDadosBota().cadastrarEditar(1, b, this, 0);
+			new TelaDadosBota().cadastrarEditar(1, b, 0);
 
 		if(src == atualizaBota) {
 			listaBotasCadastradas.setListData(b.listaNomesSapatos());			
@@ -311,7 +328,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		//Chinelos
 		if(src == cadastroChinelo)
-			new TelaDadosChinelo().cadastrarEditar(1, c, this, 0);
+			new TelaDadosChinelo().cadastrarEditar(1, c, 0);
 
 		if(src == atualizaChinelo) {
 			listaBotasCadastradas.setListData(c.listaNomesSapatos());			
@@ -320,7 +337,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		//Chuteiras
 		if(src == cadastroChuteira)
-			new TelaDadosChuteira().cadastrarEditar(1, ch, this, 0);
+			new TelaDadosChuteira().cadastrarEditar(1, ch, 0);
 
 		if(src == atualizaChuteira) {
 			listaChuteirasCadastradas.setListData(ch.listaNomesSapatos());			
@@ -329,7 +346,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		//Saltos
 		if(src == cadastroSalto)
-			new TelaDadosSalto().cadastrarEditar(1, s, this, 0);
+			new TelaDadosSalto().cadastrarEditar(1, s, 0);
 
 		if(src == atualizaSalto) {
 			listaSaltosCadastrados.setListData(s.listaNomesSapatos());			
@@ -338,7 +355,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		// Tenis
 		if(src == cadastroTenis)
-			new TelaDadosTenis().cadastrarEditar(1, t, this, 0);
+			new TelaDadosTenis().cadastrarEditar(1, t, 0);
 
 		if(src == atualizaTenis) {
 			listaTenisCadastrados.setListData(t.listaNomesSapatos());			
@@ -349,7 +366,7 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 			this.janela.dispose();
 		
 		
-		// Atualiza a lista de nomes de professores mostrada no JList
+		// Mostra uma tela com a lista do tipo de sapato escolhido
 		if(src == bota) {
 			mostrarSapatos(1);
 		}
@@ -368,7 +385,6 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		if(src == sair) {
 			janelaMenu.dispose();
 		}
-
 	}
 
 	//Captura eventos relacionados ao JList
@@ -377,23 +393,23 @@ public class TelaSapatos implements ActionListener, ListSelectionListener {
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaBotasCadastradas) {
-				new TelaDadosBota().cadastrarEditar(2, b, this, 
+				new TelaDadosBota().cadastrarEditar(2, b,
 						listaBotasCadastradas.getSelectedIndex());
 			}
 			if(e.getValueIsAdjusting() && src == listaChinelosCadastrados) {
-				new TelaDadosChinelo().cadastrarEditar(2, c, this, 
+				new TelaDadosChinelo().cadastrarEditar(2, c,
 						listaChinelosCadastrados.getSelectedIndex());
 			}
 			if(e.getValueIsAdjusting() && src == listaChuteirasCadastradas) {
-				new TelaDadosChuteira().cadastrarEditar(2, ch, this, 
+				new TelaDadosChuteira().cadastrarEditar(2, ch,
 						listaChuteirasCadastradas.getSelectedIndex());
 			}
 			if(e.getValueIsAdjusting() && src == listaSaltosCadastrados) {
-				new TelaDadosSalto().cadastrarEditar(2, s, this, 
+				new TelaDadosSalto().cadastrarEditar(2, s,
 						listaSaltosCadastrados.getSelectedIndex());
 			}
 			if(e.getValueIsAdjusting() && src == listaTenisCadastrados) {
-				new TelaDadosTenis().cadastrarEditar(2, t, this, 
+				new TelaDadosTenis().cadastrarEditar(2, t,
 						listaTenisCadastrados.getSelectedIndex());
 			}
 		}catch (NullPointerException exc) {

@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de uma bota já cadastrada ou preencher os
+ * dados de uma nova bota que será cadastrada
+ * @author Matheus Costa
+ *
+ */
 public class TelaDadosBota implements ActionListener {
 
 	private JFrame janela;
@@ -34,8 +41,15 @@ public class TelaDadosBota implements ActionListener {
 	private int posicao;
 	private int opcao;
 	private String s;
-
-	public void cadastrarEditar(int op, Bota b,	TelaSapatos p, int pos) {
+	
+	/**
+	 * Método que abre uma janela seja ou para cadastrar uma nova
+	 * bota ou para exibir os dados de uma bota já cadastrada
+	 * @param op : variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param b : o objeto Bota que será visualizado na opção de exibir dados
+	 * @param pos : a posição da bota dentro da lista de botas cadastradas
+	 */
+	public void cadastrarEditar(int op, Bota b,	int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -59,7 +73,7 @@ public class TelaDadosBota implements ActionListener {
 			botaoCancelar.setBounds(265, 230, 115, 30);
 			this.janela.add(botaoCancelar);
 		}
-		//Preenche com dados do Bota clicada
+		//Preenche com dados da Bota clicada
 		if (op == 2) {
 			
 			valorMarca = new JTextField(bota.retornaDado(pos, 1), 200);
@@ -121,12 +135,16 @@ public class TelaDadosBota implements ActionListener {
 		botaoCancelar.addActionListener(this);
 	}
 
-
+	/**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de uma bota
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		if(src == botaoSalvar) {
-			
+			// Varáveis para armazenar os valores dos campos de texto
 			String marca, preco, qtd, cor, cano, genero;
 			
 			try {
@@ -147,7 +165,7 @@ public class TelaDadosBota implements ActionListener {
 					res = false;
 				}
 				
-				if(opcao == 1) { //cadastro de novo Bota
+				if(opcao == 1) { //cadastro de nova Bota
 					
 					if(res) {
 						Bota novoBota = new Bota(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, genero);
@@ -177,10 +195,8 @@ public class TelaDadosBota implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-
 			bota.deletar(posicao);
 			mensagemSucessoExclusao();
-	
 		}
 		
 		if(src == botaoVoltar || src == botaoCancelar)

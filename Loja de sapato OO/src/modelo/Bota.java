@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por instanciar objetos do tipo Bota
+ * @author Matheus Costa
+ *
+ */
 public class Bota extends Sapato{
 	private String cano;
 	private String genero;
@@ -19,6 +24,9 @@ public class Bota extends Sapato{
 		genero = g;
 	}
 	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
@@ -26,8 +34,15 @@ public class Bota extends Sapato{
 				"\n-Altura do cano: " + cano + "\n";
 	}
 	
+	/**
+	 * Variável do tipo ArrayList que vai armazenar todos os objetos do tipo Bota
+	 */
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
 	
+	/**
+	 * Cria objetos do tipo Bota que vão servir
+	 * como dados cadastrados iniciais, e os adiciona no ArrayList
+	 */
 	public void preCadastrosBota(){
 		
 		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");
@@ -42,10 +57,21 @@ public class Bota extends Sapato{
 
 	}
 	
+	/**
+	 * Adiciona um novo objeto Bota no ArrayList
+	 * @param bota : objeto que será adicionado no ArrayList
+	 */
 	public void cadastrar(Bota bota) {
 		listaDeBota.add(bota);
 	}
 	
+	/**
+	 * Busca pelo valor de um atributo específico de um
+	 * objeto Bota, dentro do ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param info : é o parametro que indica qual valor será buscado
+	 * @return uma variável String que recebe o valor buscado
+	 */
 	public String retornaDado(int pos, int info) {
 		String dado = "";
 		
@@ -71,6 +97,13 @@ public class Bota extends Sapato{
 		return dado;
 	}
 	
+	/**
+	 * Altera o valor de algum atributo de um objeto Bota já existente
+	 * no ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param dado : o novo valor do atributo alterado
+	 * @param info : é o parametro que indica qual valor será alterado
+	 */
 	public void editar(int pos, String dado, int info) {
 		
 		if(info == 1) {
@@ -93,10 +126,19 @@ public class Bota extends Sapato{
 		}
 	}
 	
+	/**
+	 * Remove um objeto Bota presente no ArrayList
+	 * @param n : é a posição em que o objeto a ser removido se encontra dentro do ArrayList
+	 */
 	public void deletar(int n) {
 		listaDeBota.remove(listaDeBota.get(n));
 	}
 	
+	/**
+	 * Busca pelo nome da marca de cada objeto Bota armazenado
+	 * no ArrayList e insere em um Array do tipo String
+	 * @return um Array que armazena os nomes das marcas das botas
+	 */
 	public String[] listaNomesSapatos() {
 		String[] listaNomes = new String[200];
 		for(int i=0; i< listaDeBota.size(); i++) {

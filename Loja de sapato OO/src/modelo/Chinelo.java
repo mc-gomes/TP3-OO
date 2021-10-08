@@ -2,6 +2,11 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por instanciar objetos do tipo Chinelo
+ * @author Matheus Costa
+ *
+ */
 public class Chinelo extends Sapato{
 	private String estilo;
 	
@@ -16,14 +21,25 @@ public class Chinelo extends Sapato{
 		this.cor = c;
 		estilo = e;
 	}
-
+	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
 				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n";
 	}
+	
+	/**
+	 * Variável do tipo ArrayList que vai armazenar todos os objetos do tipo Chinelo
+	 */
 	ArrayList<Chinelo> listaDeChinelo = new ArrayList<Chinelo>();
 	
+	/**
+	 * Cria objetos do tipo Chinelo que vão servir
+	 * como dados cadastrados iniciais, e os adiciona no ArrayList
+	 */
 	public void preCadastrosChinelo() {
 		Chinelo chinelo1 = new Chinelo("Chinelo Nike",159.90, 50, "Preto","slide");
 		Chinelo chinelo2 = new Chinelo("Chinelo Colcci", 79.90, 50, "Preto e vermelho","normal");
@@ -36,10 +52,21 @@ public class Chinelo extends Sapato{
 		listaDeChinelo.add(chinelo4);
 	}
 	
+	/**
+	 * Adiciona um novo objeto Chinelo no ArrayList
+	 * @param chinelo : objeto que será adicionado no ArrayList
+	 */
 	public void cadastrar(Chinelo chinelo) {
 		listaDeChinelo.add(chinelo);
 	}
 	
+	/**
+	 * Busca pelo valor de um atributo específico de um
+	 * objeto Chinelo, dentro do ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param info : é o parametro que indica qual valor será buscado
+	 * @return uma variável String que recebe o valor buscado
+	 */
 	public String retornaDado(int pos, int info) {
 		String dado = "";
 		
@@ -62,6 +89,13 @@ public class Chinelo extends Sapato{
 		return dado;
 	}
 	
+	/**
+	 * Altera o valor de algum atributo de um objeto Chinelo já existente
+	 * no ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param dado : o novo valor do atributo alterado
+	 * @param info : é o parametro que indica qual valor será alterado
+	 */
 	public void editar(int pos, String dado, int info) {
 		
 		if(info == 1) {
@@ -81,10 +115,19 @@ public class Chinelo extends Sapato{
 		}	
 	}
 	
+	/**
+	 * Remove um objeto Chinelo presente no ArrayList
+	 * @param n : é a posição em que o objeto a ser removido se encontra dentro do ArrayList
+	 */
 	public void deletar(int n) {
 		listaDeChinelo.remove(listaDeChinelo.get(n));
 	}
 	
+	/**
+	 * Busca pelo nome da marca de cada objeto Chinelo armazenado
+	 * no ArrayList e insere em um Array do tipo String
+	 * @return um Array que armazena os nomes das marcas dos chinelos
+	 */
 	public String[] listaNomesSapatos() {
 		String[] listaNomes = new String[200];
 		for(int i=0; i< listaDeChinelo.size(); i++) {
