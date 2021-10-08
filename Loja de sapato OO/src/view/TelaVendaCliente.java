@@ -12,17 +12,30 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 	private JLabel subTit;
 	private JLabel msg = new JLabel("Selecione um cliente para cadastrar uma venda");
 	private JButton cancelar;
+	private JPanel panel = new JPanel(new BorderLayout());
+	private JScrollPane barraScroll = new JScrollPane();
 	private JList<String> listaClientesCadastrados;
 	private String[] listaNomes = new String[50];
 	Cliente c = new Cliente();
+	Bota b = new Bota();
+	Chinelo chi = new Chinelo();
+	Chuteira ch = new Chuteira();
+	Salto s = new Salto();
+	Tenis t = new Tenis();
 	
 	public void listaClientes() {
 		listaNomes = c.listaNomesClientes();
 	}
 
-	public void mostraClientes(){
-		c.preCadastrosCliente();
-		listaClientes();// listaNomes = c.listaNomesClientes();
+	public void mostraClientes(Cliente cli, Bota b1,Chinelo c1,Chuteira ch1,Salto s1,Tenis t1){
+		c=cli;
+		b=b1;
+		chi=c1;
+		ch=ch1;
+		s=s1;
+		t=t1;
+		
+		listaClientes();
 
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Loja de Sapatos - Venda");
@@ -35,18 +48,18 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 		subTit.setBounds(25, 45, 200, 20);
 		msg.setFont(new Font("Arial", Font.PLAIN, 10));
 		msg.setBounds(25, 195, 300, 10);
-		listaClientesCadastrados.setBounds(25, 70, 350, 120);
-		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listaClientesCadastrados.setVisibleRowCount(10);
+		panel.setBounds(25, 70, 350, 120);
+		barraScroll.getViewport().add(listaClientesCadastrados);
+		panel.add(barraScroll);
 		
-		cancelar.setBounds(260, 220, 115, 30); // 265, 210, 115, 30
+		cancelar.setBounds(260, 220, 115, 30); 
 		
 		janela.setLayout(null);
 		
 		janela.add(titulo);
 		janela.add(subTit);
+		janela.add(panel);
 		janela.add(msg);
-		janela.add(listaClientesCadastrados);
 		janela.add(cancelar);
 		
 		janela.setSize(400, 300);
@@ -59,7 +72,7 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 	}	
 	
 
-	//Captura eventos relacionados aos botões da interface
+	//Captura eventos relacionados aos botÃµes da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -74,17 +87,13 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 		
 		try {
 			if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-				JOptionPane.showMessageDialog(null,"As medidas de cadastro de venda\n "
-						+ "ainda precisam ser implementadas", null, 
-						JOptionPane.INFORMATION_MESSAGE);
+				new TelaVendaSapato().menuDeEscolha(c.retornaCliente(listaClientesCadastrados.getSelectedIndex()),
+						b,chi,ch,s,t);
 			}
-		}catch (NullPointerException exc) {
-			JOptionPane.showMessageDialog(null,"As medidas de cadastro de venda\n"
-					+ "ainda precisam ser implementadas", null, 
-					JOptionPane.INFORMATION_MESSAGE);
+			
 		}catch (IndexOutOfBoundsException exc) {
 			JOptionPane.showMessageDialog(null,"ERRO!\n\n"
-					+ "Cliente não econtrado!", null, 
+					+ "Cliente nÃ£o econtrado!", null, 
 					JOptionPane.ERROR_MESSAGE);
 	    }
 
