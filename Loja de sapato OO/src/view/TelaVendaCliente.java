@@ -5,6 +5,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 import modelo.*;
 
+/**
+ * Classe responsável por exibir uma tela com botões, onde
+ * será possível filtrar o tipo de sapato que será analisado
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 
 public class TelaVendaCliente implements ActionListener, ListSelectionListener {		
 	private JFrame janela;
@@ -22,6 +28,11 @@ public class TelaVendaCliente implements ActionListener, ListSelectionListener {
 	Chuteira ch = new Chuteira();
 	Salto s = new Salto();
 	Tenis t = new Tenis();
+	
+	/**
+	 * Método que exibe uma tela com lista de 
+	 * clientes cadastrados s
+	 */
 	
 	public void listaClientes() {
 		listaNomes = c.listaNomesClientes();
