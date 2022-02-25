@@ -59,6 +59,7 @@ public class Chuteira extends Sapato{
 
 	}
 	
+
 	/**
 	 * Método que retorna um objeto Chuteira específico
 	 * @param pos a posição do objeto específico no ArrayList

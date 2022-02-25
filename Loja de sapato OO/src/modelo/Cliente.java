@@ -100,7 +100,6 @@ public class Cliente {
 	 */
 	public String[] buscarClienteCPF(int pos) {
 		String[] listaNomes = new String[200];
-//		Cliente c = new Cliente("", "");
 		Cliente c = new Cliente("");
 		for(int i =0; i< pos; i++) {
 			listaDeCliente.add(c);
