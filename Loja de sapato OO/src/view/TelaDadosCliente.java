@@ -190,7 +190,7 @@ public class TelaDadosCliente implements ActionListener {
 				}
 				
 				try {
-					CPF = Integer.parseInt(cpf);		
+					CPF = Integer.parseInt(cpf);
 				} catch (NumberFormatException exc2) {
 					check = false;
 				}

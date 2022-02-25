@@ -109,9 +109,10 @@ public class Validacao {
 		}
 		
 		// Verifica se está em maiúsculo
-		if(estado.toUpperCase().equals(estado)) {
+		if(!estado.toUpperCase().equals(estado)) {
 			return false;
 		}
+		
 		
 		// Verifica se está entre os estados possíveis
 		if(!estado.equals("AC") && !estado.equals("AL") && !estado.equals("AP") &&  !estado.equals("AM") && 

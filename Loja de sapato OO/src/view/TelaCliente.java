@@ -82,12 +82,12 @@ public class TelaCliente implements ActionListener, ListSelectionListener{
 		janela.add(atualizaClientes);
 		janela.add(botaoVoltar);
 		janela.add(botaoBuscar);
-	
+
 		janela.pack();
 		janela.setSize(400, 300);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
-		
+
 		cadastroCliente.addActionListener(this);
 		atualizaClientes.addActionListener(this);
 		botaoVoltar.addActionListener(this);
