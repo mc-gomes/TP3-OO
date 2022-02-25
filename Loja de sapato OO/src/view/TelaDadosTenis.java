@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de um tênis já cadastrado ou preencher os
+ * dados de um novo tênis que será cadastrado
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class TelaDadosTenis implements ActionListener {
 
 	private JFrame janela;
@@ -32,8 +39,15 @@ public class TelaDadosTenis implements ActionListener {
 	private int posicao;
 	private int opcao;
 	private String s;
-
-	public void cadastrarEditar(int op, Tenis t, TelaSapatos p, int pos) {
+	
+	/**
+	 * Método que abre uma janela seja ou para cadastrar um novo
+	 * tênis ou para exibir os dados de um tênis já cadastrado
+	 * @param op variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param t o objeto Tenis que será visualizado na opção de exibir dados
+	 * @param pos a posição da bota dentro da lista de botas cadastradas
+	 */
+	public void cadastrarEditar(int op, Tenis t, int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -56,7 +70,7 @@ public class TelaDadosTenis implements ActionListener {
 			botaoCancelar.setBounds(265, 200, 115, 30);
 			this.janela.add(botaoCancelar);
 		}
-		//Preenche com dados do Tenis clicada
+		//Preenche com dados do Tenis clicado
 		if (op == 2) {
 			
 			valorMarca = new JTextField(tenis.retornaDado(pos, 1), 200);
@@ -64,7 +78,6 @@ public class TelaDadosTenis implements ActionListener {
 			valorQtd = new JTextField(tenis.retornaDado(pos, 3), 200);
 			valorCor = new JTextField(tenis.retornaDado(pos, 4), 200);
 			valorTipo = new JTextField(tenis.retornaDado(pos, 5), 200);
-			
 			
 			botaoSalvar.setBounds(145, 200, 115, 30);
 			botaoExcluir.setBounds(265, 200, 115, 30);
@@ -114,16 +127,20 @@ public class TelaDadosTenis implements ActionListener {
 		botaoCancelar.addActionListener(this);
 	}
 
-
+	/**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de um tênis
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		if(src == botaoSalvar) {
-			
+			// Varáveis para armazenar os valores dos campos de texto
 			String marca, preco, qtd, cor, tipo;
 			
 			try {
-				boolean res=true;
+				boolean check=true;
 				
 				marca = valorMarca.getText();
 				preco = valorPreco.getText();
@@ -136,12 +153,12 @@ public class TelaDadosTenis implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
 						"".equals(tipo)) {
-					res = false;
+					check = false;
 				}
 				
 				if(opcao == 1) { //cadastro de novo Tenis
 					
-					if(res) {
+					if(check) {
 						Tenis novoTenis = new Tenis(marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, tipo);
 						tenis.cadastrar(novoTenis);
 						mensagemSucessoCadastro();
@@ -152,7 +169,7 @@ public class TelaDadosTenis implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados Tenis
-					if(res){
+					if(check){
 						for (int i=1; i< 6; i++) {
 							tenis.editar(posicao, dados[i-1], i);							
 						}

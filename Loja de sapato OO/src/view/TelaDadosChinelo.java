@@ -8,6 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de um chinelo já cadastrado ou preencher os
+ * dados de um novo chinelo que será cadastrado
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class TelaDadosChinelo implements ActionListener {
     
 	private JFrame janela;
@@ -31,8 +38,15 @@ public class TelaDadosChinelo implements ActionListener {
     private int posicao;
     private int opcao;
     private String s;
-
-    public void cadastrarEditar(int op, Chinelo c, TelaSapatos p, int pos) {
+    
+    /**
+     * Método que abre uma janela seja ou para cadastrar um novo
+	 * chinelo ou para exibir os dados de um chinelo já cadastrado
+	 * @param op : variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param c : o objeto Chinelo que será visualizado na opção de exibir dados
+     * @param pos : a posição do chinelo dentro da lista de chinelos cadastrados
+     */
+    public void cadastrarEditar(int op, Chinelo c, int pos) {
 
         opcao = op;
         posicao = pos;
@@ -55,7 +69,7 @@ public class TelaDadosChinelo implements ActionListener {
 			botaoCancelar.setBounds(265, 190, 115, 30);
 			this.janela.add(botaoCancelar);
         }
-        //Preenche com dados do bota clicado
+        //Preenche com dados do chinelo clicado
         if (op == 2) {
 
             valorMarca = new JTextField(chinelo.retornaDado(pos, 1), 200);
@@ -114,16 +128,20 @@ public class TelaDadosChinelo implements ActionListener {
 		botaoCancelar.addActionListener(this);
     }
 
-
+    /**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de um chinelo
+	 */
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
 
         if(src == botaoSalvar) {
-
+        	// Varáveis para armazenar os valores dos campos de texto
             String marca, preco, quantidade, cor, estilo;
 
             try {
-                boolean res=true;
+                boolean check=true;
 
                 marca = valorMarca.getText();
                 preco = valorPreco.getText();
@@ -136,12 +154,12 @@ public class TelaDadosChinelo implements ActionListener {
 
                 // verifica se há algum campo vazio
                 if ("".equals(marca) || "".equals(preco) || "".equals(quantidade)|| "".equals(cor) || "".equals(estilo)) {
-                    res = false;
+                    check = false;
                 }
 
                 if(opcao == 1) { //cadastro de novo chinelo
 
-                    if(res) {
+                    if(check) {
                         Chinelo novoChinelo = new Chinelo(marca, Double.parseDouble(preco), Integer.parseInt(quantidade), cor,estilo);
                         chinelo.cadastrar(novoChinelo);
                         mensagemSucessoCadastro();
@@ -152,7 +170,7 @@ public class TelaDadosChinelo implements ActionListener {
                 }
                 else if (opcao == 2) {
                     // edição dados chinelo
-                    if(res){
+                    if(check){
                         for (int i=1; i< 6; i++) {
                             chinelo.editar(posicao, dados[i-1], i);
                         }
@@ -169,10 +187,8 @@ public class TelaDadosChinelo implements ActionListener {
         }
 
         if(src == botaoExcluir) {
-
             chinelo.deletar(posicao);
             mensagemSucessoExclusao();
-
         }
         
         if(src == botaoVoltar || src == botaoCancelar)

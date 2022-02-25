@@ -1,5 +1,11 @@
 package modelo;
 
+/**
+ * Classe responsável por instanciar objetos do tipo Endereço,
+ * que é um atributo do objeto Cliente
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class Endereco {
 	private String endereco;
 	private String cidade;
@@ -15,6 +21,9 @@ public class Endereco {
 		estado = e;
 	}
 	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public String toString() {
 		return endereco + " - " + cidade + ", " + estado;

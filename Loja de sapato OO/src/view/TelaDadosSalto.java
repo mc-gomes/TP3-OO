@@ -8,6 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de um salto já cadastrado ou preencher os
+ * dados de um novo salto que será cadastrado
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class TelaDadosSalto implements ActionListener {
     
 	private JFrame janela;
@@ -34,8 +41,14 @@ public class TelaDadosSalto implements ActionListener {
     private int opcao;
     private String s;
 
-    public void cadastrarEditar(int op, Salto st,
-                                TelaSapatos p, int pos) {
+    /**
+     * Método que abre uma janela seja ou para cadastrar um novo
+	 * aslto ou para exibir os dados de um salto já cadastrado
+	 * @param op : variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param st : o objeto Salto que  será visualizado na opção de exibir dados
+     * @param pos : a posição do salto dentro da lista de saltos cadastrados
+     */
+    public void cadastrarEditar(int op, Salto st, int pos) {
 
         opcao = op;
         posicao = pos;
@@ -59,7 +72,7 @@ public class TelaDadosSalto implements ActionListener {
 			botaoCancelar.setBounds(265, 210, 115, 30);
 			this.janela.add(botaoCancelar);
         }
-        //Preenche com dados do bota clicado
+        //Preenche com dados do salto clicado
         if (op == 2) {
 
             valorMarca = new JTextField(salto.retornaDado(pos, 1), 200);
@@ -122,16 +135,21 @@ public class TelaDadosSalto implements ActionListener {
         botaoVoltar.addActionListener(this);
 		botaoCancelar.addActionListener(this);
     }
-
+    
+    /**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de um salto
+	 */
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
 
         if(src == botaoSalvar) {
-
+        	// Varáveis para armazenar os valores dos campos de texto
             String marca, preco, quantidade, cor, tipo, tam;
 
             try {
-                boolean res=true;
+                boolean check=true;
 
                 marca = valorMarca.getText();
                 preco = valorPreco.getText();
@@ -145,12 +163,12 @@ public class TelaDadosSalto implements ActionListener {
 
                 // verifica se há algum campo vazio
                 if ("".equals(marca) || "".equals(preco) || "".equals(quantidade)|| "".equals(cor) || "".equals(tam) || "".equals(tipo)) {
-                    res = false;
+                    check = false;
                 }
 
                 if(opcao == 1) { //cadastro de novo salto
 
-                    if(res) {
+                    if(check) {
                         Salto novosalto = new Salto(marca, Double.parseDouble(preco), Integer.parseInt(quantidade), cor, Integer.parseInt(tam), tipo);
                         salto.cadastrar(novosalto);
                         mensagemSucessoCadastro();
@@ -161,7 +179,7 @@ public class TelaDadosSalto implements ActionListener {
                 }
                 else if (opcao == 2) {
                     // edição dados salto
-                    if(res){
+                    if(check){
                         for (int i=1; i< 7; i++) {
                             salto.editar(posicao, dados[i-1], i);
                         }

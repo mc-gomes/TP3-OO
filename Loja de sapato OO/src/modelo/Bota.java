@@ -1,14 +1,18 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
+/**
+ * Classe responsável por instanciar objetos do tipo Bota
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class Bota extends Sapato{
 	private String cano;
 	private String genero;
 	
 	public Bota() {
-		//preCadastrosBota();
+		
 	}
 	
 	public Bota(String m, double p, int q, String c, String ca, String g) {
@@ -20,6 +24,9 @@ public class Bota extends Sapato{
 		genero = g;
 	}
 	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public String toString() {
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
@@ -27,13 +34,21 @@ public class Bota extends Sapato{
 				"\n-Altura do cano: " + cano + "\n";
 	}
 	
+	/**
+	 * Variável do tipo ArrayList que vai armazenar todos os objetos do tipo Bota
+	 */
 	ArrayList<Bota> listaDeBota = new ArrayList<Bota>();
+	
+	/**
+	 * Cria objetos do tipo Bota que vão servir
+	 * como dados cadastrados iniciais, e os adiciona no ArrayList
+	 */
 	public void preCadastrosBota(){
 		
-		Bota bota1 = new Bota("Bota MADALE", 199.60, 10, "Preto", "alto", "feminino");
-		Bota bota2 = new Bota("Bota WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
-		Bota bota3 = new Bota("Bota Tricae", 35.99, 13, "Branco", "alto", "infantil");
-		Bota bota4 = new Bota("Bota MADALE", 194.90, 10, "Marrom", "alto", "masculino");
+		Bota bota1 = new Bota("MADALE", 199.60, 10, "Preto", "alto", "feminino");
+		Bota bota2 = new Bota("WorldColors", 89.90, 5, "Transparente", "alto", "infantil");
+		Bota bota3 = new Bota("Tricae", 35.99, 13, "Branco", "alto", "infantil");
+		Bota bota4 = new Bota("MADALE", 194.90, 10, "Marrom", "alto", "masculino");
 		
 		listaDeBota.add(bota1);
 		listaDeBota.add(bota2);
@@ -42,6 +57,30 @@ public class Bota extends Sapato{
 
 	}
 	
+	/**
+	 * Método que retorna um objeto bota específico
+	 * @param pos a posição do objeto específico no ArrayList
+	 * @return um objeto Bota
+	 */
+	public Bota retornaBota(int pos) {
+		return listaDeBota.get(pos);		
+	}
+	
+	/**
+	 * Adiciona um novo objeto Bota no ArrayList
+	 * @param bota : objeto que será adicionado no ArrayList
+	 */
+	public void cadastrar(Bota bota) {
+		listaDeBota.add(bota);
+	}
+	
+	/**
+	 * Busca pelo valor de um atributo específico de um
+	 * objeto Bota, dentro do ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param info : é o parametro que indica qual valor será buscado
+	 * @return uma variável String que recebe o valor buscado
+	 */
 	public String retornaDado(int pos, int info) {
 		String dado = "";
 		
@@ -66,14 +105,14 @@ public class Bota extends Sapato{
 		
 		return dado;
 	}
-
-	Scanner ler = new Scanner (System.in);
 	
-	public void cadastrar(Bota bota) {
-		listaDeBota.add(bota);
-		
-	}
-	
+	/**
+	 * Altera o valor de algum atributo de um objeto Bota já existente
+	 * no ArrayList
+	 * @param pos : é a posição do objeto selecionado dentro do ArrayList
+	 * @param dado : o novo valor do atributo alterado
+	 * @param info : é o parametro que indica qual valor será alterado
+	 */
 	public void editar(int pos, String dado, int info) {
 		
 		if(info == 1) {
@@ -94,39 +133,27 @@ public class Bota extends Sapato{
 		else if(info == 6) {
 			listaDeBota.get(pos).setGenero(dado);
 		}
-		
 	}
 	
+	/**
+	 * Remove um objeto Bota presente no ArrayList
+	 * @param n : é a posição em que o objeto a ser removido se encontra dentro do ArrayList
+	 */
 	public void deletar(int n) {
 		listaDeBota.remove(listaDeBota.get(n));
 	}
 	
+	/**
+	 * Busca pelo nome da marca de cada objeto Bota armazenado
+	 * no ArrayList e insere em um Array do tipo String
+	 * @return um Array que armazena os nomes das marcas das botas
+	 */
 	public String[] listaNomesSapatos() {
 		String[] listaNomes = new String[200];
 		for(int i=0; i< listaDeBota.size(); i++) {
 			listaNomes[i] = listaDeBota.get(i).getMarca();
 		}
 		return listaNomes;
-	}
-	
-	public int selecionaProduto() {
-		int num;
-		System.out.println("<<BOTAS CADASTRADAS>>\n");
-		for(int i=0; i<listaDeBota.size(); i++) {
-			System.out.println("-> PRODUTO " + (i+1));
-			System.out.println(listaDeBota.get(i).toString());
-		}
-		
-		do {
-			System.out.print("Selecione um produto: ");
-			num = ler.nextInt();
-			
-			if(num < 1 || num > listaDeBota.size())
-				System.out.println("Opção inválida, informe novamente.\n");
-			
-		}while (num < 1 || num > listaDeBota.size());
-		
-		return num;
 	}
 	
 	public String getMarca() {

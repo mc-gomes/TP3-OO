@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de um cliente já cadastrado ou preencher os
+ * dados de um novo cliente que será cadastrado
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class TelaDadosCliente implements ActionListener {
 
 	private JFrame janela;
@@ -33,13 +40,18 @@ public class TelaDadosCliente implements ActionListener {
 	private JButton botaoCancelar = new JButton("Cancelar");
 	private static Cliente cliente = new Cliente();
 	
-
 	private int posicao;
 	private int opcao;
 	private String s;
-
-	public void cadastrarEditar(int op, Cliente c, 
-			TelaCliente p, int pos) {
+	
+	/**
+	 * Método que abre uma janela seja ou para cadastrar um novo cliente
+	 * ou para exibir os dados de um cliente já cadastrado
+	 * @param op : variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param c : o objeto Cliente que será visualizado na opção de exibir dados
+	 * @param pos : a posição do cliente dentro da lista de clientes cadastrados
+	 */
+	public void cadastrarEditar(int op, Cliente c, int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -84,7 +96,6 @@ public class TelaDadosCliente implements ActionListener {
 			this.janela.add(botaoVoltar);
 
 		}
-	
 
 		labelNome.setBounds(30, 20, 150, 25);
 		valorNome.setBounds(200, 20, 180, 25);
@@ -137,19 +148,24 @@ public class TelaDadosCliente implements ActionListener {
 		botaoVoltar.addActionListener(this);
 		botaoCancelar.addActionListener(this);
 	}
-
-
+	
+	/**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de um cliente
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		if(src == botaoSalvar) {
-			
+			// Varáveis para armazenar os valores dos campos de texto
 			String nome, dtNasc, cpf, end, cid, est, ddd, num;
 			Endereco nvEnd = new Endereco();
 			Telefone nvTel = new Telefone();
+			int CPF;
 			
 			try {
-				boolean res=true;
+				boolean check = true;
 				
 				nome = valorNome.getText();
 				cpf = valorCPF.getText();
@@ -170,12 +186,18 @@ public class TelaDadosCliente implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) ||
 						"".equals(cid) || "".equals(est) ||"".equals(ddd) || "".equals(num)) {
-					res = false;
+					check = false;
+				}
+				
+				try {
+					CPF = Integer.parseInt(cpf);
+				} catch (NumberFormatException exc2) {
+					check = false;
 				}
 				
 				if(opcao == 1) { //cadastro de novo cliente
 					
-					if(res) {
+					if(check) {
 						Cliente novoCliente = new Cliente(nome, cpf, dtNasc, nvEnd, nvTel);
 						cliente.cadastrar(novoCliente);
 						mensagemSucessoCadastro();
@@ -186,7 +208,7 @@ public class TelaDadosCliente implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados cliente
-					if(res){
+					if(check){
 						for (int i=1; i< 9; i++) {
 							cliente.editar(posicao, dados[i-1], i);							
 						}
@@ -194,7 +216,7 @@ public class TelaDadosCliente implements ActionListener {
 					}
 					else mensagemErroCadastro();
 				}
-
+				
 			} catch (NullPointerException exc1) {
 				mensagemErroCadastro();
 			} catch (NumberFormatException exc2) {
@@ -203,10 +225,8 @@ public class TelaDadosCliente implements ActionListener {
 		}
 
 		if(src == botaoExcluir) {
-
 			cliente.deletar(posicao);
 			mensagemSucessoExclusao();
-	
 		}
 		
 		if(src == botaoVoltar || src == botaoCancelar)

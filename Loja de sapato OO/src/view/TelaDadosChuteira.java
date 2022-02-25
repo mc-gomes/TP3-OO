@@ -9,6 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.*;
 
+/**
+ * Classe responsável por mostrar uma janela em que é possível
+ * visualizar os dados de uma chuteira já cadastrada ou preencher os
+ * dados de uma nova chuteira que será cadastrada
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
 public class TelaDadosChuteira implements ActionListener {
 
 	private JFrame janela;
@@ -36,8 +43,15 @@ public class TelaDadosChuteira implements ActionListener {
 	private int posicao;
 	private int opcao;
 	private String s;
-
-	public void cadastrarEditar(int op, Chuteira ch,	TelaSapatos p, int pos) {
+	
+	/**
+	 * Método que abre uma janela seja ou para cadastrar uma nova
+	 * chuteira ou para exibir os dados de uma chuteira já cadastrada
+	 * @param op : variável do tipo int que indica se será uma janela para cadastro ou para exibição de dados
+	 * @param ch : o objeto Chuteira que será visualizado na opção de exibir dados
+	 * @param pos : a posição da chuteira dentro da lista de chuteiras cadastradas
+	 */
+	public void cadastrarEditar(int op, Chuteira ch, int pos) {
 
 		opcao = op;
 		posicao = pos;
@@ -62,7 +76,7 @@ public class TelaDadosChuteira implements ActionListener {
 			botaoCancelar.setBounds(265, 250, 115, 30);
 			this.janela.add(botaoCancelar);
 		}
-		//Preenche com dados do Chuteira clicada
+		//Preenche com dados da Chuteira clicada
 		if (op == 2) {
 			
 			valorNome = new JTextField(chuteira.retornaDado(pos, 1), 200);
@@ -130,16 +144,20 @@ public class TelaDadosChuteira implements ActionListener {
 		botaoCancelar.addActionListener(this);
 	}
 
-
+	/**
+	 * Método que identifica e analisa as ações dos botões
+	 * apresentados na tela de cadastro ou de exibição
+	 * dos dados de uma chuteira
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		if(src == botaoSalvar) {
-			
+			// Varáveis para armazenar os valores dos campos de texto
 			String nome, marca, preco, qtd, cor, cano, tipo;
 			
 			try {
-				boolean res=true;
+				boolean check=true;
 				
 				nome = valorNome.getText();
 				marca = valorMarca.getText();
@@ -154,12 +172,12 @@ public class TelaDadosChuteira implements ActionListener {
 				// verifica se há algum campo vazio
 				if ("".equals(marca) || "".equals(preco) || "".equals(qtd) || "".equals(cor) ||
 						"".equals(cano) || "".equals(tipo)) {
-					res = false;
+					check = false;
 				}
 				
-				if(opcao == 1) { //cadastro de novo Chuteira
+				if(opcao == 1) { //cadastro de nova Chuteira
 					
-					if(res) {
+					if(check) {
 						Chuteira novoChuteira = new Chuteira(nome, marca, Double.parseDouble(preco), Integer.parseInt(qtd), cor, cano, tipo);
 						chuteira.cadastrar(novoChuteira);
 						mensagemSucessoCadastro();
@@ -170,7 +188,7 @@ public class TelaDadosChuteira implements ActionListener {
 				}
 				else if (opcao == 2) {
 					// edição dados Chuteira
-					if(res){
+					if(check){
 						for (int i=1; i< 8; i++) {
 							chuteira.editar(posicao, dados[i-1], i);							
 						}
@@ -189,7 +207,6 @@ public class TelaDadosChuteira implements ActionListener {
 		if(src == botaoExcluir) {
 			chuteira.deletar(posicao);
 			mensagemSucessoExclusao();
-	
 		}
 		
 		if(src == botaoVoltar || src == botaoCancelar)

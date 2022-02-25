@@ -2,6 +2,9 @@ package modelo;
 
 import java.util.Scanner;
 
+/**
+ * @deprecated
+ */
 public class Main {
 	
 	static void sleep(int seg) {

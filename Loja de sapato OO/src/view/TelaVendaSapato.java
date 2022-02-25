@@ -1,241 +1,358 @@
 package view;
+import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import modelo.*;
 
-public class TelaVendaSapato implements ActionListener {
+/**
+ * Classe responsável por exibir uma tela com botões, onde
+ * será possível filtrar o tipo de sapato e selecionar venda
+ * @author Matheus Costa e Laura Pinos
+ *
+ */
+public class TelaVendaSapato implements ActionListener, ListSelectionListener  {
 
+	private JFrame janelaMenu = new JFrame("Loja de Sapatos - Venda");
+	private JLabel tituloMenu = new JLabel("Tipos de Sapatos");
 	private JFrame janela;
-	private JLabel labelNome = new JLabel("Nome:");
-	private JTextField valorNome;
-	private JLabel labelCPF = new JLabel("CPF:");
-	private JTextField valorCPF;
-	private JLabel labelData = new JLabel("Data de nascimento:");
-	private JTextField valorData;
-	private JLabel labelEnd = new JLabel("Endereço:");
-	private JTextField valorEnd;
-	private JLabel labelCidade = new JLabel("Cidade:");
-	private JTextField valorCidade;
-	private JLabel labelUF = new JLabel("Estado (UF):");
-	private JTextField valorUF;
-	private JLabel labelTelefone = new JLabel("Telefone:");
-	private JTextField valorDDD;
-	private JTextField valorTelefone;
-	private JButton botaoExcluir = new JButton("Excluir");
-	private JButton botaoSalvar = new JButton("Salvar");
-	private static Cliente cliente = new Cliente();
+	private JLabel titulo;
+    private JButton bota = new JButton("Bota");
+    private JButton chinelo = new JButton("Chinelo");
+    private JButton chuteira = new JButton("Chuteira");
+    private JButton tenis = new JButton("Tênis");
+    private JButton salto = new JButton("Salto");
+    private JButton sair = new JButton("Sair");
+    private JButton finalizar= new JButton("Finalizar");
+    private JButton cancelar = new JButton("Cancelar");
+  
+	private JList<String> listaBotasCadastradas;
+	private JList<String> listaChinelosCadastrados;
+	private JList<String> listaChuteirasCadastradas;
+	private JList<String> listaSaltosCadastrados;
+	private JList<String> listaTenisCadastrados;
 	
-	private int posicao;
-	private int opcao;
-	private String s;
-
-	public void cadastrarVenda(int op, Cliente c, 
-			TelaCliente p, int pos) {
-
-		opcao = op;
-		posicao = pos;
-		cliente = c;
-		
-		if (op == 1) s = "Cadastro de Cliente";
-		if (op == 2) s = "Dados do Cliente";
-
-		janela = new JFrame(s);
-
-		if (op == 1) { //Não preenche com dados
-			
-			valorNome = new JTextField(200);
-			valorCPF = new JTextField(200);
-			valorData = new JTextField(200);
-			valorEnd = new JTextField(100);
-			valorCidade = new JTextField(100);
-			valorUF = new JTextField(50);
-			valorDDD = new JTextField(3);
-			valorTelefone = new JTextField(10);
-			
-			botaoSalvar.setBounds(265, 210, 115, 30);
-		}
-		//Preenche com dados do cliente clicado
-		if (op == 2) {
-			
-			valorNome = new JTextField(cliente.retornaDado(pos, 1), 200);
-			valorCPF = new JTextField(cliente.retornaDado(pos, 2), 200);
-			valorData = new JTextField(cliente.retornaDado(pos, 3), 200);
-			valorEnd = new JTextField(cliente.retornaDado(pos, 4), 200);
-			valorCidade = new JTextField(cliente.retornaDado(pos, 5), 200);
-			valorUF = new JTextField(cliente.retornaDado(pos, 6), 200);
-			valorDDD = new JTextField(cliente.retornaDado(pos, 7), 200);
-			valorTelefone = new JTextField(cliente.retornaDado(pos, 8), 200);
-			
-			botaoSalvar.setBounds(130, 210, 115, 30);
-			botaoExcluir.setBounds(265, 210, 115, 30);
-			this.janela.add(botaoExcluir);
-
-		}
+	private JPanel panel = new JPanel(new BorderLayout());
+	private JScrollPane barraScroll = new JScrollPane();
+	Bota b = new Bota();
+	Chinelo c = new Chinelo();
+	Chuteira ch = new Chuteira();
+	Salto s = new Salto();
+	Tenis t = new Tenis();
+	Cliente cli= new Cliente();
 	
-
-		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(200, 20, 180, 25);
+	/**
+	 * Método que exibe uma tela com botões relativos
+	 * aos tipos de sapatos: botas, chinelos, chuteiras,
+	 * saltos e tênis
+	 */
+	public void menuDeEscolha(Cliente cliente, Bota b1, Chinelo c1, Chuteira ch1, Salto s1, Tenis t1) {
+		cli=cliente ;
+		b=b1;
+		c=c1;
+		ch=ch1;
+		s=s1;
+		t=t1;
 		
-		labelCPF.setBounds(30, 50, 150, 25);
-		valorCPF.setBounds(200, 50, 180, 25);
-		
-		labelData.setBounds(30, 80, 150, 25);
-		valorData.setBounds(200, 80, 180, 25);
-		
-		labelEnd.setBounds(30, 110, 80, 25);
-		valorEnd.setBounds(30, 140, 155, 25);
+        tituloMenu.setFont(new Font("Arial", Font.BOLD, 15));
+        tituloMenu.setBounds(122, 10, 150, 30);
+        bota.setBounds(135, 50, 100, 30);
+        chinelo.setBounds(135, 100, 100, 30);
+        chuteira.setBounds(135, 150, 100, 30);
+        salto.setBounds(135, 200, 100, 30);
+        tenis.setBounds(135, 250, 100, 30);
+        sair.setBounds(135, 300, 100, 30);
 
-		labelCidade.setBounds(200, 110, 78, 25);
-		valorCidade.setBounds(200, 140, 140, 25);
+        janelaMenu.setLayout(null);
+
+        janelaMenu.add(tituloMenu);
+        janelaMenu.add(bota);
+        janelaMenu.add(chinelo);
+        janelaMenu.add(chuteira);
+        janelaMenu.add(tenis);
+        janelaMenu.add(salto);
+        janelaMenu.add(sair);
+
+
+        bota.addActionListener(this);
+		chinelo.addActionListener(this);
+		chuteira.addActionListener(this);
+		tenis.addActionListener(this);
+		salto.addActionListener(this);
+		sair.addActionListener(this);
 		
-		labelUF.setBounds(280, 110, 100, 25);
-		valorUF.setBounds(350, 140, 30, 25);
+        janelaMenu.setSize(400, 400);
+        janelaMenu.setLocationRelativeTo(null);
+        janelaMenu.setVisible(true);
+    }
+	
+	/**
+	 * Método que cria e exibe uma janela onde, a partir da mesma, é
+	 * possível ver um determinado tipo de sapato,
+	 * a depender da escolha do usuário
+	 * @param op indica qual foi o tipo de sapato filtrado
+	 */
+	public void mostrarSapatos(int op){
 		
-		labelTelefone.setBounds(30, 170, 150, 25);
-		valorDDD.setBounds(200, 170, 28, 25);
-		valorTelefone.setBounds(235, 170, 145, 25);
+		switch (op) {
+		case 1:// Mostra lista de botas cadastradas
+			String[] listaBota = new String[50];
+			
+			listaBota = b.listaNomesSapatos();
+			listaBotasCadastradas = new JList<String>(listaBota);
+			janela = new JFrame("Loja de Sapatos - Venda Botas");
+			titulo = new JLabel("Botas Cadastradas");
+
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaBotasCadastradas);
+			panel.add(barraScroll);
+
+			janela.setLayout(null);
+
+			janela.add(titulo);
+			janela.add(panel);
+
+			janela.setSize(400, 250);
+			janela.setVisible(true);
+
+			listaBotasCadastradas.addListSelectionListener(this);
+
+			break;
+
+		case 2:// Mostra lista de chinelos cadastrados
+			String[] listaChinelo = new String[50];
+			
+			listaChinelo = c.listaNomesSapatos();
+			listaChinelosCadastrados = new JList<String>(listaChinelo);
+			janela = new JFrame("Loja de Sapatos - Venda Chinelos");
+			titulo = new JLabel("Chinelos Cadastrados");
 		
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaChinelosCadastrados);
+			panel.add(barraScroll);
 
-		this.janela.add(labelNome);
-		this.janela.add(valorNome);
-		this.janela.add(labelCPF);
-		this.janela.add(valorCPF);
-		this.janela.add(labelData);
-		this.janela.add(valorData);
-		this.janela.add(labelEnd);
-		this.janela.add(valorEnd);
-		this.janela.add(labelCidade);
-		this.janela.add(valorCidade);
-		this.janela.add(labelUF);
-		this.janela.add(valorUF);
-		this.janela.add(labelTelefone);
-		this.janela.add(valorDDD);
-		this.janela.add(valorTelefone);
-		this.janela.add(botaoSalvar);
+			janela.setLayout(null);
 
-		this.janela.setLayout(null);
+			janela.add(titulo);
+			janela.add(panel);
+			
+			janela.setSize(400, 250);
+			janela.setVisible(true);
 
-		this.janela.setSize(400, 300);
-		janela.setLocationRelativeTo(null);
-		this.janela.setVisible(true);
+			listaChinelosCadastrados.addListSelectionListener(this);
 
-		botaoSalvar.addActionListener(this);
-		botaoExcluir.addActionListener(this);
+			break;
+			
+		case 3: //Mostra lista de chuteiras cadastradas
+			String[] listaChuteira = new String[50];
+			
+			listaChuteira = ch.listaNomesSapatos();
+			listaChuteirasCadastradas = new JList<String>(listaChuteira);
+			janela = new JFrame("Loja de Sapatos - Venda Chuteiras");
+			titulo = new JLabel("Chuteiras Cadastradas");
+			
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaChuteirasCadastradas);
+			panel.add(barraScroll);
+			
+			janela.setLayout(null);
+
+			janela.add(titulo);
+			janela.add(panel);
+			
+			janela.setSize(400, 250);
+			janela.setVisible(true);
+
+			listaChuteirasCadastradas.addListSelectionListener(this);
+
+			break;
+		
+		case 4:// Mostra lista de saltos cadastrados
+			String[] listaSalto = new String[50];
+			
+			listaSalto = s.listaNomesSapatos();
+			listaSaltosCadastrados = new JList<String>(listaSalto);
+			janela = new JFrame("Loja de Sapatos - Venda Saltos");
+			titulo = new JLabel("Saltos Cadastrados");
+			
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaSaltosCadastrados);
+			panel.add(barraScroll);
+
+			janela.setLayout(null);
+
+			janela.add(titulo);
+			janela.add(panel);
+
+			janela.setSize(400, 250);
+			janela.setVisible(true);
+			
+			listaSaltosCadastrados.addListSelectionListener(this);
+
+			break;
+		
+		case 5:// Mostra lista de tênis cadastrados
+			String[] listaTenis = new String[50];
+			
+			listaTenis = t.listaNomesSapatos();
+			listaTenisCadastrados = new JList<String>(listaTenis);
+			janela = new JFrame("Loja de Sapatos - Venda Tênis");
+			titulo = new JLabel("Tênis Cadastrados");
+			
+			titulo.setFont(new Font("Arial", Font.BOLD, 15));
+			titulo.setBounds(125, 10, 250, 30);
+			panel.setBounds(25, 50, 350, 120);
+			barraScroll.getViewport().add(listaTenisCadastrados);
+			panel.add(barraScroll);
+
+			janela.setLayout(null);
+
+			janela.add(titulo);
+			janela.add(panel);
+			
+			janela.setSize(400, 250);
+			janela.setVisible(true);
+
+			listaTenisCadastrados.addListSelectionListener(this);
+
+			break;
+			
+		default:
+			JOptionPane.showMessageDialog(null,"OPÇÃO NÃO ENCONTRADA!\n"
+					+ "Erro na passagem de parâmetro em:\n "
+					+ "Classe 'TelaSapatos.java' ", null, 
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
-
+	public void finalizaVenda(Cliente c1, int pos,int op) {
+		String produto="";
+		if(op==1) {
+			produto = b.retornaBota(pos).getMarca();					
+		}
+		if(op==2) {
+			produto = c.retornaChinelo(pos).getMarca();					
+		}
+		if(op==3) {
+			produto = ch.retornaChuteira(pos).getMarca();					
+		}
+		if(op==4) {
+			produto = s.retornaSalto(pos).getMarca();					
+		}
+		if(op==5) {
+			produto = t.retornaTenis(pos).getMarca();					
+		}
+		
+		String cl = c1.getNome();
+		JLabel mensagemCliente = new JLabel("Cliente: "+ cl);
+		JLabel mensagemProduto = new JLabel("Produto: "+ produto);
+		JLabel mensagem = new JLabel("Cadastro de venda");
+		mensagem.setFont(new Font("Arial", Font.BOLD, 15));
+		mensagem.setBounds(125, 10, 150, 30);
+		mensagemCliente.setBounds(30, 40, 200, 30);
+		mensagemProduto.setBounds(30, 70, 200, 30);
+		janela = new JFrame("Venda");
+		
+		finalizar.setFont(new Font("Arial", Font.PLAIN, 11));
+		finalizar.setBounds(130, 215, 120, 30);
+		cancelar.setFont(new Font("Arial", Font.PLAIN, 11));
+		cancelar.setBounds(255, 215, 120, 30);
+		
+		janela.setLayout(null);
+		janela.add(finalizar);
+		janela.add(cancelar);
+		janela.add(mensagem);
+		janela.add(mensagemCliente);
+		janela.add(mensagemProduto);
+		
+		finalizar.addActionListener(this);
+		cancelar.addActionListener(this);
+		janela.setSize(400, 300);
+		janela.setLocationRelativeTo(null);
+		janela.setVisible(true);
+		cancelar.addActionListener(this);
+		
+		listaBotasCadastradas.addListSelectionListener(this);
+	}
+	
+	//Captura eventos relacionados aos botões da interface
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
+	
+		// Mostra uma tela com a lista do tipo de sapato escolhido
+		if(src == bota) {
+			mostrarSapatos(1);
+		}
+		if(src == chinelo) {
+			mostrarSapatos(2);
+		}
+		if(src == chuteira) {
+			mostrarSapatos(3);
+		}
+		if(src == salto) {
+			mostrarSapatos(4);
+		}
+		if(src == tenis) {
+			mostrarSapatos(5);
+		}
+		if(src == sair) {
+			janelaMenu.dispose();
+		}
+		if(src == cancelar) {
+				janela.dispose();
+		}
+		if(src == finalizar) {
+			JOptionPane.showMessageDialog(null,"Venda concluída\n"
+					, null, 
+					JOptionPane.INFORMATION_MESSAGE);
+			janela.dispose();
+	}
+	}
+
+	//Captura eventos relacionados ao JList
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
 		
-		if(src == botaoSalvar) {
-			
-			String nome, dtNasc, cpf, end, cid, est, ddd, num;
-			Endereco nvEnd = new Endereco();
-			Telefone nvTel = new Telefone();
-			
-			try {
-				boolean res=true;
-				
-				nome = valorNome.getText();
-				cpf = valorCPF.getText();
-				dtNasc = valorData.getText();
-				end = valorEnd.getText();
-				nvEnd.setEndereco(end);
-				cid = valorCidade.getText();
-				nvEnd.setCidade(cid);
-				est = valorUF.getText();
-				nvEnd.setEstado(est);
-				ddd = valorDDD.getText();
-				nvTel.setdDD(ddd);
-				num = valorTelefone.getText();
-				nvTel.setNumero(num);
-				
-				String[] dados = {nome, cpf, dtNasc, end, cid, est, ddd, num};
-				
-				// verifica se há algum campo vazio
-				if ("".equals(nome) || "".equals(cpf) || "".equals(dtNasc) || "".equals(end) ||
-						"".equals(cid) || "".equals(est) ||"".equals(ddd) || "".equals(num)) {
-					res = false;
-				}
-				
-				if(opcao == 1) { //cadastro de novo cliente
-					
-					if(res) {
-						Cliente novoCliente = new Cliente(nome, cpf, dtNasc, nvEnd, nvTel);
-						cliente.cadastrar(novoCliente);
-						mensagemSucessoCadastro();
-					}
-					else {
-						mensagemErroCadastro();
-					}
-				}
-				else if (opcao == 2) {
-					// edição dados cliente
-					if(res){
-						for (int i=1; i< 9; i++) {
-							cliente.editar(posicao, dados[i-1], i);							
-						}
-						mensagemSucessoCadastro();
-					}
-					else mensagemErroCadastro();
-				}
-
-			} catch (NullPointerException exc1) {
-				mensagemErroCadastro();
-			} catch (NumberFormatException exc2) {
-				mensagemErroCadastro();
+		try {	
+			if(e.getValueIsAdjusting() && src == listaBotasCadastradas) {
+				finalizaVenda(cli, listaBotasCadastradas.getSelectedIndex(), 1);
 			}
-		}
-
-		if(src == botaoExcluir) {
-			boolean res = false;
-
-			cliente.deletar(posicao);
-			if (!res) mensagemSucessoExclusao(); 
-			else mensagemErroExclusaoAluno(); 
-	
-		}
-	}
-
-	public void mensagemSucessoExclusao() {
-		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!\n"
-				+ "Lembre-se de atualizar a lista de cadastro!", null, 
+			if(e.getValueIsAdjusting() && src == listaChinelosCadastrados) {
+				finalizaVenda(cli, listaChinelosCadastrados.getSelectedIndex(), 2);
+			}
+			if(e.getValueIsAdjusting() && src == listaChuteirasCadastradas) {
+				finalizaVenda(cli, listaChuteirasCadastradas.getSelectedIndex(), 3);
+			}
+			if(e.getValueIsAdjusting() && src == listaSaltosCadastrados) {
+				finalizaVenda(cli, listaSaltosCadastrados.getSelectedIndex(), 4);
+			}
+			if(e.getValueIsAdjusting() && src == listaTenisCadastrados) {
+				finalizaVenda(cli, listaTenisCadastrados.getSelectedIndex(), 5);
+			}
+		} catch (NullPointerException exc) {
+			JOptionPane.showMessageDialog(null,"Erro ao finalizar venda", null, 
 				JOptionPane.INFORMATION_MESSAGE);
-		janela.dispose();
-	}
+		
+	    }
 
-	public void mensagemSucessoCadastro() {
-		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!\n"
-				+ "Lembre-se de atualizar a lista de cadastro!", null, 
-				JOptionPane.INFORMATION_MESSAGE);
-		janela.dispose();
 	}
-	
-	public void mensagemErroDeAcesso() {
-		JOptionPane.showMessageDialog(null,"ERRO AO BUSCAR CLIENTE!\n\n"
-				+ "Cliente não econtrado!", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void mensagemErroCadastro() {
-		JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-				+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
-				+ "1. Nem todos os campos foram preenchidos \n"
-				+ "2. CPF, DDD ou telefone não contém apenas números", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
-	public void mensagemErroExclusaoAluno() {
-		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-				+ "Verifique se o aluno está matriculado\n"
-				+ "em alguma disciplina. Se sim, cancele\n "
-				+ "a matricula e tente novamente.", null, 
-				JOptionPane.ERROR_MESSAGE);
-	}
-
 }
