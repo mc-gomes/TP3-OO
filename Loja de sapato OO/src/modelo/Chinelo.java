@@ -30,7 +30,6 @@ public class Chinelo extends Sapato{
 		return "-Marca: " + marca + "\n-Preço R$ " + preco + "\n-Quantidade em estoque: "
 				+ quantidade  + "\n-Cor: " + cor + "\n-Estilo da tira: " + estilo + "\n";
 	}
-	ArrayList<Chinelo> listaDeChinelo = new ArrayList<Chinelo>();
 	
 	/**
 	 * Variável do tipo ArrayList que vai armazenar todos os objetos do tipo Chinelo
